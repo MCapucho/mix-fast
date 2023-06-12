@@ -37,7 +37,7 @@ class ProdutoBuscarPorCategoriaUseCaseImplTest {
         produtoRequest = Produto.builder()
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -47,7 +47,7 @@ class ProdutoBuscarPorCategoriaUseCaseImplTest {
                 .codigo(UUID.randomUUID().toString())
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -69,9 +69,8 @@ class ProdutoBuscarPorCategoriaUseCaseImplTest {
 
     @Test
     void naoDeveBuscarPorCategoriaProduto_Erro() {
-        Exception exception = Assertions.assertThrows(ProdutoListEmptyException.class, () -> {
-            produtoBuscarPorCategoriaUseCaseImpl.buscarPorCategoria(CATEGORIA);
-        });
+        Exception exception = Assertions.assertThrows(ProdutoListEmptyException.class, () ->
+                produtoBuscarPorCategoriaUseCaseImpl.buscarPorCategoria(CATEGORIA));
 
         String mensagemEsperada = "Lista de produtos em branco";
         String mensagemAtual = exception.getMessage();

@@ -14,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,7 +36,7 @@ class ProdutoDeletarPorCodigoUseCaseImplTest {
                 .codigo(UUID.randomUUID().toString())
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())

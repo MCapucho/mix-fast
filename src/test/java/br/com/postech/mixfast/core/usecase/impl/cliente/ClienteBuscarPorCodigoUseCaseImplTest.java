@@ -60,9 +60,8 @@ class ClienteBuscarPorCodigoUseCaseImplTest {
 
     @Test
     void naoDeveBuscarPorCodigoCliente_Erro() {
-        Exception exception = Assertions.assertThrows(ClienteNotFoundException.class, () -> {
-           clienteBuscarPorCodigoUseCaseImpl.buscarPorCodigo(CODIGO);
-        });
+        Exception exception = Assertions.assertThrows(ClienteNotFoundException.class, () ->
+                clienteBuscarPorCodigoUseCaseImpl.buscarPorCodigo(CODIGO));
 
         String mensagemEsperada = "Cliente não encontrado com o código informado";
         String mensagemAtual = exception.getMessage();

@@ -34,7 +34,7 @@ class ProdutoBuscarTodosUseCaseImplTest {
         produtoRequest = Produto.builder()
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -44,7 +44,7 @@ class ProdutoBuscarTodosUseCaseImplTest {
                 .codigo(UUID.randomUUID().toString())
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -66,9 +66,8 @@ class ProdutoBuscarTodosUseCaseImplTest {
 
     @Test
     void naoDeveBuscarTodosProduto_Erro() {
-        Exception exception = Assertions.assertThrows(ProdutoListEmptyException.class, () -> {
-            produtoBuscarTodosUseCaseImpl.buscarTodos();
-        });
+        Exception exception = Assertions.assertThrows(ProdutoListEmptyException.class, () ->
+                produtoBuscarTodosUseCaseImpl.buscarTodos());
 
         String mensagemEsperada = "Lista de produtos em branco";
         String mensagemAtual = exception.getMessage();

@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
@@ -71,7 +70,7 @@ class ProdutoControllerTest {
         produtoRequest = Produto.builder()
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -81,7 +80,7 @@ class ProdutoControllerTest {
                 .codigo(UUID.randomUUID().toString())
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -90,7 +89,7 @@ class ProdutoControllerTest {
         produtoHttpRequest = ProdutoHttp.builder()
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(CategoriaHttp.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -100,7 +99,7 @@ class ProdutoControllerTest {
                 .codigo(UUID.randomUUID().toString())
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(CategoriaHttp.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())

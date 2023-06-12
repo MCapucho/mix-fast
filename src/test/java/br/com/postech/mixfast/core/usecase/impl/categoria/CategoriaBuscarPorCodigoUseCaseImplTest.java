@@ -54,9 +54,8 @@ class CategoriaBuscarPorCodigoUseCaseImplTest {
 
     @Test
     void naoDeveBuscarPorCodigoCategoria_Erro() {
-        Exception exception = Assertions.assertThrows(CategoriaNotFoundException.class, () -> {
-           categoriaBuscarPorCodigoUseCaseImpl.buscarPorCodigo(CODIGO);
-        });
+        Exception exception = Assertions.assertThrows(CategoriaNotFoundException.class, () ->
+                categoriaBuscarPorCodigoUseCaseImpl.buscarPorCodigo(CODIGO));
 
         String mensagemEsperada = "Categoria não encontrada com o código informado";
         String mensagemAtual = exception.getMessage();

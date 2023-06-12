@@ -58,9 +58,8 @@ class ClienteBuscarTodosUseCaseImplTest {
 
     @Test
     void naoDeveBuscarTodosCliente_Erro() {
-        Exception exception = Assertions.assertThrows(ClienteListEmptyException.class, () -> {
-            clienteBuscarTodosUseCaseImpl.buscarTodos();
-        });
+        Exception exception = Assertions.assertThrows(ClienteListEmptyException.class, () ->
+                clienteBuscarTodosUseCaseImpl.buscarTodos());
 
         String mensagemEsperada = "Lista de clientes em branco";
         String mensagemAtual = exception.getMessage();

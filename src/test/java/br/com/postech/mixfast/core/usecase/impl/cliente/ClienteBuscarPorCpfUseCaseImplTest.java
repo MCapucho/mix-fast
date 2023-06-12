@@ -60,9 +60,8 @@ class ClienteBuscarPorCpfUseCaseImplTest {
 
     @Test
     void naoDeveBuscarPorCpfCliente_Erro() {
-        Exception exception = Assertions.assertThrows(ClienteNotFoundException.class, () -> {
-           clienteBuscarPorCpfUseCaseImpl.buscarPorCpf(CPF);
-        });
+        Exception exception = Assertions.assertThrows(ClienteNotFoundException.class, () ->
+                clienteBuscarPorCpfUseCaseImpl.buscarPorCpf(CPF));
 
         String mensagemEsperada = "Cliente não encontrado com o CPF informado";
         String mensagemAtual = exception.getMessage();

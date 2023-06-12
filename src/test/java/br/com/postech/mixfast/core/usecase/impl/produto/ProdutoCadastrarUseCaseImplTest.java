@@ -34,7 +34,7 @@ class ProdutoCadastrarUseCaseImplTest {
         produtoRequest = Produto.builder()
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -44,7 +44,7 @@ class ProdutoCadastrarUseCaseImplTest {
                 .codigo(UUID.randomUUID().toString())
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -66,9 +66,8 @@ class ProdutoCadastrarUseCaseImplTest {
 
     @Test
     void naoDeveCadastrarUmProduto_Erro() {
-        Exception exception = Assertions.assertThrows(ProdutoBadRequestException.class, () -> {
-           produtoCadastrarUseCaseImpl.cadastrar(produtoRequest);
-        });
+        Exception exception = Assertions.assertThrows(ProdutoBadRequestException.class, () ->
+                produtoCadastrarUseCaseImpl.cadastrar(produtoRequest));
 
         String mensagemEsperada = "Cadastro de produto não foi concluído";
         String mensagemAtual = exception.getMessage();

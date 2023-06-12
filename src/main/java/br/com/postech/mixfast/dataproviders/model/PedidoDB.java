@@ -43,7 +43,7 @@ public class PedidoDB {
         getItens().forEach(PedidoProdutoDB::calcularValorTotal);
 
         this.valorTotal = getItens().stream()
-                .map(item -> item.getPrecoTotal())
+                .map(PedidoProdutoDB::getPrecoTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

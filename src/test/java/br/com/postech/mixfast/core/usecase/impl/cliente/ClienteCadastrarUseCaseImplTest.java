@@ -66,9 +66,8 @@ class ClienteCadastrarUseCaseImplTest {
 
     @Test
     void naoDeveCadastrarUmCliente_ErroBadRequest() {
-        Exception exception = Assertions.assertThrows(ClienteBadRequestException.class, () -> {
-           clienteCadastrarUseCaseImpl.cadastrar(clienteRequest);
-        });
+        Exception exception = Assertions.assertThrows(ClienteBadRequestException.class, () ->
+                clienteCadastrarUseCaseImpl.cadastrar(clienteRequest));
 
         String mensagemEsperada = "Cadastro de cliente não foi concluído";
         String mensagemAtual = exception.getMessage();
@@ -81,9 +80,8 @@ class ClienteCadastrarUseCaseImplTest {
         when(clienteGateway.encontrarPorCpf(anyString()))
                 .thenReturn(Boolean.TRUE);
 
-        Exception exception = Assertions.assertThrows(ClienteDuplicatedException.class, () -> {
-            clienteCadastrarUseCaseImpl.cadastrar(clienteRequest);
-        });
+        Exception exception = Assertions.assertThrows(ClienteDuplicatedException.class, () ->
+                clienteCadastrarUseCaseImpl.cadastrar(clienteRequest));
 
         String mensagemEsperada = "Cliente informado já cadastrado";
         String mensagemAtual = exception.getMessage();
@@ -96,9 +94,8 @@ class ClienteCadastrarUseCaseImplTest {
         when(clienteGateway.encontrarPorEmail(anyString()))
                 .thenReturn(Boolean.TRUE);
 
-        Exception exception = Assertions.assertThrows(ClienteDuplicatedException.class, () -> {
-            clienteCadastrarUseCaseImpl.cadastrar(clienteRequest);
-        });
+        Exception exception = Assertions.assertThrows(ClienteDuplicatedException.class, () ->
+                clienteCadastrarUseCaseImpl.cadastrar(clienteRequest));
 
         String mensagemEsperada = "Cliente informado já cadastrado";
         String mensagemAtual = exception.getMessage();

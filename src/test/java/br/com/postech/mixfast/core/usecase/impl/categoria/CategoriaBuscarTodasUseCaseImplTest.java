@@ -52,9 +52,8 @@ class CategoriaBuscarTodasUseCaseImplTest {
 
     @Test
     void naoDeveBuscarTodasCategoria_Erro() {
-        Exception exception = Assertions.assertThrows(CategoriaListEmptyException.class, () -> {
-           categoriaBuscarTodasUseCaseImpl.buscarTodas();
-        });
+        Exception exception = Assertions.assertThrows(CategoriaListEmptyException.class, () ->
+                categoriaBuscarTodasUseCaseImpl.buscarTodas());
 
         String mensagemEsperada = "Lista de categorias em branco";
         String mensagemAtual = exception.getMessage();

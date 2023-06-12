@@ -52,9 +52,8 @@ class CategoriaCadastrarUseCaseImplTest {
 
     @Test
     void naoDeveCadastrarUmaCategoria_Erro() {
-        Exception exception = Assertions.assertThrows(CategoriaBadRequestException.class, () -> {
-           categoriaCadastrarUseCaseImpl.cadastrar(categoriaRequest);
-        });
+        Exception exception = Assertions.assertThrows(CategoriaBadRequestException.class, () ->
+                categoriaCadastrarUseCaseImpl.cadastrar(categoriaRequest));
 
         String mensagemEsperada = "Cadastro de categoria não foi concluído";
         String mensagemAtual = exception.getMessage();

@@ -36,7 +36,7 @@ class ProdutoBuscarPorCodigoUseCaseImplTest {
         produtoRequest = Produto.builder()
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -46,7 +46,7 @@ class ProdutoBuscarPorCodigoUseCaseImplTest {
                 .codigo(UUID.randomUUID().toString())
                 .nome("Produto Teste")
                 .descricao("Produto Teste Descrição")
-                .preco(new BigDecimal(0.00))
+                .preco(new BigDecimal("0.00"))
                 .categoria(Categoria.builder()
                         .codigo(UUID.randomUUID().toString())
                         .build())
@@ -68,9 +68,8 @@ class ProdutoBuscarPorCodigoUseCaseImplTest {
 
     @Test
     void naoDeveBuscarPorCodigoProduto_Erro() {
-        Exception exception = Assertions.assertThrows(ProdutoNotFoundException.class, () -> {
-           produtoBuscarPorCodigoUseCaseImpl.buscarPorCodigo(CODIGO);
-        });
+        Exception exception = Assertions.assertThrows(ProdutoNotFoundException.class, () ->
+                produtoBuscarPorCodigoUseCaseImpl.buscarPorCodigo(CODIGO));
 
         String mensagemEsperada = "Produto não encontrado com o código informado";
         String mensagemAtual = exception.getMessage();
