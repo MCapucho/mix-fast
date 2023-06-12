@@ -45,7 +45,7 @@ class CategoriaAtualizarUseCaseImplTest {
     }
 
     @Test
-    void deveCadastrarUmaCategoriaComSucesso() {
+    void deveAtualizarUmaCategoriaComSucesso() {
         when(categoriaBuscarPorCodigoUseCase.buscarPorCodigo(anyString()))
                 .thenReturn(categoriaResponse);
 
@@ -59,7 +59,7 @@ class CategoriaAtualizarUseCaseImplTest {
     }
 
     @Test
-    void deveCadastrarUmaCategoriaComSucesso_NomeNull() {
+    void deveAtualizarUmaCategoriaComSucesso_NomeNull() {
         categoriaRequest.setNome(null);
 
         when(categoriaBuscarPorCodigoUseCase.buscarPorCodigo(anyString()))

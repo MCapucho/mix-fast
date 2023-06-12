@@ -18,7 +18,7 @@ public class ProdutoBuscarPorCodigoUseCaseImpl implements ProdutoBuscarPorCodigo
         Produto produto = produtoGateway.buscarPorCodigo(codigo);
 
         if (produto == null) {
-            throw new ProdutoNotFoundException("Produto não encontrado conforme o código informado");
+            throw new ProdutoNotFoundException("Produto não encontrado com o código informado");
         }
 
         return produto;

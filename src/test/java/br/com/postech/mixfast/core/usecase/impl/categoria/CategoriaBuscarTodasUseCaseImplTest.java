@@ -40,7 +40,7 @@ class CategoriaBuscarTodasUseCaseImplTest {
     }
 
     @Test
-    void deveCadastrarUmaCategoriaComSucesso() {
+    void deveBuscarTodasCategoriaComSucesso() {
         when(categoriaGateway.buscarTodas())
                 .thenReturn(List.of(categoriaResponse));
 
@@ -51,7 +51,7 @@ class CategoriaBuscarTodasUseCaseImplTest {
     }
 
     @Test
-    void naoDeveCadastrarUmaCategoria_Erro() {
+    void naoDeveBuscarTodasCategoria_Erro() {
         Exception exception = Assertions.assertThrows(CategoriaListEmptyException.class, () -> {
            categoriaBuscarTodasUseCaseImpl.buscarTodas();
         });

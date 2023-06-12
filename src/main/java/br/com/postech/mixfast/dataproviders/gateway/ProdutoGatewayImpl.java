@@ -55,9 +55,9 @@ public class ProdutoGatewayImpl implements ProdutoGateway {
     }
 
     @Override
-    public void deletarPorCodigo(Produto produto) {
+    public void deletarPorCodigo(String codigo) {
         try {
-            produtoRepository.deleteById(produto.getCodigo());
+            produtoRepository.deleteById(codigo);
         } catch (Exception e) {
             log.error("Erro ao remover um produto", e);
             throw new ResourceFailedException(BANCO_DE_DADOS);

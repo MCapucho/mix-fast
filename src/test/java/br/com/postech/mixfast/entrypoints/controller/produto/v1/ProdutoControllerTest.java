@@ -3,7 +3,6 @@ package br.com.postech.mixfast.entrypoints.controller.produto.v1;
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.usecase.interfaces.produto.*;
-import br.com.postech.mixfast.entrypoints.controller.produto.v1.ProdutoController;
 import br.com.postech.mixfast.entrypoints.handler.RestExceptionHandler;
 import br.com.postech.mixfast.entrypoints.http.CategoriaHttp;
 import br.com.postech.mixfast.entrypoints.http.ProdutoHttp;

@@ -42,7 +42,7 @@ class CategoriaBuscarPorCodigoUseCaseImplTest {
     }
 
     @Test
-    void deveCadastrarUmaCategoriaComSucesso() {
+    void deveBuscarPorCodigoCategoriaComSucesso() {
         when(categoriaGateway.buscarPorCodigo(anyString()))
                 .thenReturn(categoriaResponse);
 
@@ -53,7 +53,7 @@ class CategoriaBuscarPorCodigoUseCaseImplTest {
     }
 
     @Test
-    void naoDeveCadastrarUmaCategoria_Erro() {
+    void naoDeveBuscarPorCodigoCategoria_Erro() {
         Exception exception = Assertions.assertThrows(CategoriaNotFoundException.class, () -> {
            categoriaBuscarPorCodigoUseCaseImpl.buscarPorCodigo(CODIGO);
         });

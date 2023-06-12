@@ -17,8 +17,8 @@ public class ProdutoCadastrarUseCaseImpl implements ProdutoCadastrarUseCase {
     public Produto cadastrar(Produto produto) {
         Produto produtoCadastrado = produtoGateway.cadastrarOuAtualizar(produto);
 
-        if (produto == null) {
-            throw new ProdutoBadRequestException("Cadastro de cliente não foi concluído");
+        if (produtoCadastrado == null) {
+            throw new ProdutoBadRequestException("Cadastro de produto não foi concluído");
         }
 
         return produtoCadastrado;

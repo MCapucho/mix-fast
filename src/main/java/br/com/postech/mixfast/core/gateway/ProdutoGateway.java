@@ -9,6 +9,6 @@ public interface ProdutoGateway {
     Produto cadastrarOuAtualizar(Produto produto);
     List<Produto> buscarTodos();
     Produto buscarPorCodigo(String codigo);
-    void deletarPorCodigo(Produto produto);
+    void deletarPorCodigo(String codigo);
     List<Produto> buscarPorCategoria(String categoria);
 }

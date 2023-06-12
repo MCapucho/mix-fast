@@ -1,6 +1,5 @@
 package br.com.postech.mixfast.core.usecase.impl.produto;
 
-import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.produto.ProdutoBuscarPorCodigoUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.produto.ProdutoDeletarPorCodigoUseCase;
@@ -16,7 +15,7 @@ public class ProdutoDeletarPorCodigoUseCaseImpl implements ProdutoDeletarPorCodi
 
     @Override
     public void deletarPorCodigo(String codigo) {
-        Produto produto = produtoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
-        produtoGateway.deletarPorCodigo(produto);
+        produtoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
+        produtoGateway.deletarPorCodigo(codigo);
     }
 }

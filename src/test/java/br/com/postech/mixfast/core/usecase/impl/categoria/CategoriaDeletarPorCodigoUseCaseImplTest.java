@@ -38,7 +38,7 @@ class CategoriaDeletarPorCodigoUseCaseImplTest {
     }
 
     @Test
-    void deveCadastrarUmaCategoriaComSucesso() {
+    void deveDeletarUmaCategoriaComSucesso() {
         when(categoriaBuscarPorCodigoUseCase.buscarPorCodigo(anyString()))
                 .thenReturn(categoriaResponse);
 
