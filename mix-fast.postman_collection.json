@@ -1,0 +1,570 @@
+{
+	"info": {
+		"_postman_id": "224df6a9-ec28-4320-9fe0-a418a384732d",
+		"name": "Mix Fast",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19886292"
+	},
+	"item": [
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "Categoria - Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Lanches\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9080/categorias/v1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"categorias",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categoria - Buscar Todas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/categorias/v1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"categorias",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categoria - Buscar Por Código",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/categorias/v1/2250fcbf-e5a2-4b30-8f31-2a5cad044177",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"categorias",
+								"v1",
+								"2250fcbf-e5a2-4b30-8f31-2a5cad044177"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categoria - Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9080/categorias/v1/2250fcbf-e5a2-4b30-8f31-2a5cad044177",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"categorias",
+								"v1",
+								"2250fcbf-e5a2-4b30-8f31-2a5cad044177"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categoria - Deletar Por Código",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9080/categorias/v1/0526a5d9-1d0e-44b3-9a16-366bf1eda9f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"categorias",
+								"v1",
+								"0526a5d9-1d0e-44b3-9a16-366bf1eda9f4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "Produto - Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"X-Bacon\",\n    \"descricao\": \"Pão, hamburguer, bacon, tomate, alface, presunto e queijo\",\n    \"preco\": 19.90,\n    \"categoria\": {\n        \"codigo\": \"2250fcbf-e5a2-4b30-8f31-2a5cad044177\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9080/produtos/v1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"produtos",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto - Buscar Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/produtos/v1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"produtos",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto - Buscar Por Código",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/produtos/v1/39cf4621-add0-43d0-b913-a3a3d2e30f19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"produtos",
+								"v1",
+								"39cf4621-add0-43d0-b913-a3a3d2e30f19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto - Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"X-Bacon\",\n    \"descricao\": \"Pão, hamburguer, bacon, tomate, alface, presunto e queijo\",\n    \"preco\": 19.90,\n    \"categoria\": {\n        \"codigo\": \"2250fcbf-e5a2-4b30-8f31-2a5cad044177\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9080/produtos/v1/74fe2f8b-af6d-48f0-b955-efff66320e27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"produtos",
+								"v1",
+								"74fe2f8b-af6d-48f0-b955-efff66320e27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto - Deletar Por Código",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/produtos/v1/74fe2f8b-af6d-48f0-b955-efff66320e27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"produtos",
+								"v1",
+								"74fe2f8b-af6d-48f0-b955-efff66320e27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto - Buscar Por Categoria",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"X-Bacon Egg\",\n    \"descricao\": \"Pão, hamburguer, bacon, ovo, presunto e queijo\",\n    \"preco\": 23.90,\n    \"categoria\": {\n        \"codigo\": \"5c96f8ba-cbbe-41d1-932c-314b1e3e4b10\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/produtos/v1/categoria/9782ac1a-3693-42ce-b71d-cf4f38509d02",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"produtos",
+								"v1",
+								"categoria",
+								"9782ac1a-3693-42ce-b71d-cf4f38509d02"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Cliente - Cadastrar",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"function cpf() {",
+									"  const rnd = (n) => Math.round(Math.random() * n);",
+									"  const mod = (base, div) => Math.round(base - Math.floor(base / div) * div)",
+									"  const n = Array(9).fill('').map(() => rnd(9));",
+									"",
+									"  let d1 = n.reduce((total, number, index) => (total + (number * (10 - index))), 0)",
+									"  d1 = 11 - mod(d1, 11);",
+									"  if (d1 >= 10) d1 = 0;",
+									"  ",
+									"  let d2 = (d1 * 2) + n.reduce((total, number, index) => (total + (number * (11 - index))), 0)",
+									"  d2 = 11 - mod(d2, 11);",
+									"  if (d2 >= 10) d2 = 0;",
+									"",
+									"  return `${n.join('')}${d1}${d2}`",
+									"}",
+									"",
+									"// opicional para postman",
+									"pm.environment.set('cpf', cpf());",
+									"pm.environment.get(\"variable_key\");",
+									"pm.globals.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Teste Cliente {{$randomInt}}\",\n    \"cpf\": {{cpf}},\n    \"email\": \"{{$randomEmail}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9080/clientes/v1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"clientes",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cliente - Buscar Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clientes/v1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cliente - Buscar Por Código",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clientes/v1/ec0eff40-2e36-48e9-a54a-92d8ef4f8121",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"v1",
+								"ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cliente - Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Teste Cliente {{$randomInt}}\",\n    \"cpf\": \"71828415090\",\n    \"email\": \"{{$randomEmail}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clientes/v1/ec0eff40-2e36-48e9-a54a-92d8ef4f8121",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"v1",
+								"ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cliente - Deletar Por Código",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clientes/v1/4c93a381-2367-492e-81f9-95149d3218e2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"v1",
+								"4c93a381-2367-492e-81f9-95149d3218e2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cliente - Buscar Por CPF",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clientes/v1/cpf/17977662280",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clientes",
+								"v1",
+								"cpf",
+								"17977662280"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "Pedido - Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"6a018cf4-faac-42fc-aee1-b3177b3c0ed3\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"39cf4621-add0-43d0-b913-a3a3d2e30f19\",\n            \"quantidade\": 2\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9080/pedidos/v1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"pedidos",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - Buscar Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/pedidos/v1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"pedidos",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,69 @@
+version: '3.5'
+
+services:
+  mysql:
+    image: mysql:latest
+    hostname: mysql-mixfast
+    environment:
+      MYSQL_DATABASE: 'dbmixfast'
+      MYSQL_USER: 'mixfast'
+      MYSQL_PASSWORD: 'q1w2e3r4'
+      MYSQL_ROOT_PASSWORD: 'q1w2e3r4'
+    ports:
+      - '3308:3306'
+    expose:
+      - '3308'
+    volumes:
+      - my-db:/var/lib/mysql
+    networks:
+      - fiap
+
+  sonarqube:
+    image: sonarqube:latest
+    hostname: sonarqube
+    ports:
+      - '9000:9000'
+    expose:
+      - '9000'
+    networks:
+      - fiap
+    environment:
+      - sonar.jdbc.url=jdbc:mysql://{mysql}:3306/sonar
+      - sonar.jdbc.username=mixfast
+      - sonar.jdbc.password=q1w2e3r4
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    depends_on:
+      - mysql
+
+  mixfast:
+    image: mcapucho/mixfast:1.0.0
+    hostname: app-mixfast
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PASSWORD: 'q1w2e3r4'
+      MYSQL_SCHEMA: 'dbmixfast'
+      MYSQL_USER: 'mixfast'
+      MYSQL_PORT: '3306'
+    ports:
+      - '9080:9080'
+    expose:
+      - '9080'
+    networks:
+      - fiap
+    depends_on:
+      - mysql
+
+volumes:
+  my-db:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_bundled-plugins:
+
+networks:
+  fiap:
+    driver: bridge
