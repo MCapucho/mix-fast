@@ -1,6 +1,6 @@
 # Mix Fast v.1.0.0
 
-### {c:red}Sobre{/c}
+### Sobre
 
 Sistema de autoatendimento de fast food, é composto por uma série de dispositivos e interfaces que permitem aos clientes
 selecionar e fazer pedidos sem precisar interagir com um atendente.
