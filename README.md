@@ -1,5 +1,3 @@
-[![Build Status]( https://travis-ci.com/mcapucho/mix-fast.svg?branch=develop)](https://travis-ci.com/mcapucho/mix-fast )
-
 # Mix Fast v.1.0.0
 
 ### Sobre
