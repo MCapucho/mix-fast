@@ -283,12 +283,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/produtos/v1/categoria/9782ac1a-3693-42ce-b71d-cf4f38509d02",
+							"raw": "http://localhost:9080/produtos/v1/categoria/9782ac1a-3693-42ce-b71d-cf4f38509d02",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "9080",
 							"path": [
 								"produtos",
 								"v1",
@@ -378,12 +378,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/clientes/v1",
+							"raw": "http://localhost:9080/clientes/v1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "9080",
 							"path": [
 								"clientes",
 								"v1"
@@ -410,12 +410,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/clientes/v1/ec0eff40-2e36-48e9-a54a-92d8ef4f8121",
+							"raw": "http://localhost:9080/clientes/v1/ec0eff40-2e36-48e9-a54a-92d8ef4f8121",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "9080",
 							"path": [
 								"clientes",
 								"v1",
@@ -440,12 +440,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/clientes/v1/ec0eff40-2e36-48e9-a54a-92d8ef4f8121",
+							"raw": "http://localhost:9080/clientes/v1/ec0eff40-2e36-48e9-a54a-92d8ef4f8121",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "9080",
 							"path": [
 								"clientes",
 								"v1",
@@ -461,12 +461,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/clientes/v1/4c93a381-2367-492e-81f9-95149d3218e2",
+							"raw": "http://localhost:9080/clientes/v1/4c93a381-2367-492e-81f9-95149d3218e2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "9080",
 							"path": [
 								"clientes",
 								"v1",
@@ -494,12 +494,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/clientes/v1/cpf/17977662280",
+							"raw": "http://localhost:9080/clientes/v1/cpf/17977662280",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "9080",
 							"path": [
 								"clientes",
 								"v1",
@@ -522,7 +522,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"6a018cf4-faac-42fc-aee1-b3177b3c0ed3\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"39cf4621-add0-43d0-b913-a3a3d2e30f19\",\n            \"quantidade\": 2\n        }\n    ]\n}",
+							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"39cf4621-add0-43d0-b913-a3a3d2e30f19\",\n            \"quantidade\": 2\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
