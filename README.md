@@ -13,9 +13,9 @@ pasta raiz do projeto e executar o comando:
 
 ### Endpoints
 
-- Para ter acesso aos endpoints do sistema é possível utilizar o
-[Swagger-UI](http://localhost:9080/swagger-ui/index.html) - (Obs: Para utilizar o swagger, o sistema precisa estar
-executando).
+Para ter acesso aos endpoints do sistema é possível utilizar o
+[Swagger-UI](http://localhost:9080/swagger-ui/index.html) 
+- Para utilizar o swagger, executar o sistema primeiramente
 
 ### Tecnologias
 
