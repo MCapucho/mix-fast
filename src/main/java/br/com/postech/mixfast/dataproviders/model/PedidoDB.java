@@ -29,7 +29,7 @@ public class PedidoDB {
     private OffsetDateTime dataPedido;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_codigo", nullable = false)
+    @JoinColumn(name = "cliente_codigo")
     private ClienteDB cliente;
 
     @ToString.Exclude

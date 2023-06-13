@@ -16,10 +16,6 @@ public class PedidoCadastrarUseCaseImpl implements PedidoCadastrarUseCase {
 
     @Override
     public Pedido cadastrar(Pedido pedido) {
-        if (StringUtils.isBlank(pedido.getCliente().getCodigo())) {
-            pedido.getCliente().setCodigo("0000000000");
-        }
-
         Pedido pedidoCadastrado = pedidoGateway.cadastrar(pedido);
 
         if (pedidoCadastrado.getFila() == null) {
