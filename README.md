@@ -7,7 +7,7 @@ selecionar e fazer pedidos sem precisar interagir com um atendente.
 
 ### Como executar o sistema
 
-No projeto existe um arquivo chamado docker-compose.yml, para executar é necessário abrir o terminal na
+No projeto existe um arquivo docker-compose.yml, para executar é necessário abrir o terminal na
 pasta raiz do projeto e executar o comando:
 - docker-compose up -d
 
