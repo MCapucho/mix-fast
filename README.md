@@ -7,14 +7,15 @@ selecionar e fazer pedidos sem precisar interagir com um atendente.
 
 ### Como executar o sistema
 
--  No projeto existe um arquivo chamado docker-compose.yml, para executar é necessário abrir o terminal na
+No projeto existe um arquivo chamado docker-compose.yml, para executar é necessário abrir o terminal na
 pasta raiz do projeto e executar o comando:
-    - docker-compose up -d
+- docker-compose up -d
 
 ### Endpoints
 
 - Para ter acesso aos endpoints do sistema é possível utilizar o
-[Swagger-UI](http://localhost:9080/swagger-ui/index.html)
+[Swagger-UI](http://localhost:9080/swagger-ui/index.html) - (Obs: Para utilizar o swagger, o sistema precisa estar
+executando).
 
 ### Tecnologias
 
