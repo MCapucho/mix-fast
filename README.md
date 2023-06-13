@@ -22,3 +22,11 @@ executando).
 - Java (version 17)
 - Spring Boot (version 3.0.6)
 - MySQL (version 8)
+
+### Implementações do Sistema
+- [X] Cadastro de cliente
+- [X] Identificação do cliente via CPF
+- [X] Criar, editar e remover de produto
+- [X] Buscar produtos por categoria
+- [X] Fake checkout, enviar os produtos escolhidos para a fila
+- [X] Listar os pedidos
