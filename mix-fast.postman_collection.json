@@ -151,7 +151,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"X-Bacon\",\n    \"descricao\": \"Pão, hamburguer, bacon, tomate, alface, presunto e queijo\",\n    \"preco\": 19.90,\n    \"categoria\": {\n        \"codigo\": \"2250fcbf-e5a2-4b30-8f31-2a5cad044177\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"Refrigerante Coca Cola 350ml Zero\",\n    \"descricao\": \"\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"2250fcbf-e5a2-4b30-8f31-2a5cad044177\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -522,7 +522,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"39cf4621-add0-43d0-b913-a3a3d2e30f19\",\n            \"quantidade\": 2\n        }\n    ]\n}",
+							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"6a018cf4-faac-42fc-aee1-b3177b3c0ed3\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"39cf4621-add0-43d0-b913-a3a3d2e30f19\",\n            \"quantidade\": 2\n        },\n        {\n            \"produto\": \"b2b1c867-7e86-463e-8885-9f32488fcbca\",\n            \"quantidade\": 10\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
