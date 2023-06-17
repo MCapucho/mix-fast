@@ -13,11 +13,17 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
+logging:
+  level:
+    br.com.postech.mixfast.dataproviders.gateway.api: DEBUG
+
 feign:
   client:
     config:
       url: https://api.mercadopago.com/instore/orders/qr/seller/collectors/1398731230/pos/MIXFAST001/qrs
       token: TEST-1659689448850865-061320-4eabc1f0b8b9802cc2b463a1f42249ce-1398731230
+      auth:
+        logger-level: FULL
 
 springdoc:
   api-docs:
