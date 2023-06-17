@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.dataproviders.gateway;
+package br.com.postech.mixfast.dataproviders.gateway.database;
 
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;

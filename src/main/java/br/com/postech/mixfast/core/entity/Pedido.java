@@ -19,4 +19,5 @@ public class Pedido {
     private Cliente cliente;
     private BigDecimal valorTotal;
     private List<PedidoProduto> itens;
+    private String qrCode;
 }
