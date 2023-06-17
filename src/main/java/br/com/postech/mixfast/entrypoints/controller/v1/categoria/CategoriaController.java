@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.entrypoints.controller.categoria.v1;
+package br.com.postech.mixfast.entrypoints.controller.v1.categoria;
 
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.*;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Log4j2
 @RestController
-@RequestMapping(value = "/categorias/v1")
+@RequestMapping(value = "/v1/categorias")
 public class CategoriaController {
 
     private final CategoriaHttpMapper categoriaHttpMapper;

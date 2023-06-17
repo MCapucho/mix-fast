@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.entrypoints.controller.produto.v1;
+package br.com.postech.mixfast.entrypoints.controller.v1.produto;
 
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.entity.Produto;
@@ -120,7 +120,7 @@ class ProdutoControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        post("/produtos/v1")
+                        post("/v1/produtos")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jacksonTester.write(produtoHttpRequest).getJson())
                 ).andReturn().getResponse();
@@ -139,7 +139,7 @@ class ProdutoControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        get("/produtos/v1")
+                        get("/v1/produtos")
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 
@@ -157,7 +157,7 @@ class ProdutoControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        get("/produtos/v1/{codigo}", CODIGO)
+                        get("/v1/produtos/{codigo}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 
@@ -178,7 +178,7 @@ class ProdutoControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        put("/produtos/v1/{codigo}", CODIGO)
+                        put("/v1/produtos/{codigo}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jacksonTester.write(produtoHttpRequest).getJson())
                 ).andReturn().getResponse();
@@ -193,7 +193,7 @@ class ProdutoControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        delete("/produtos/v1/{codigo}", CODIGO)
+                        delete("/v1/produtos/{codigo}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 
@@ -211,7 +211,7 @@ class ProdutoControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        get("/produtos/v1/categoria/{categoria}", CODIGO)
+                        get("/v1/produtos/categoria/{categoria}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 

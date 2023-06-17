@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.entrypoints.controller.categoria.v1;
+package br.com.postech.mixfast.entrypoints.controller.v1.categoria;
 
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.*;
@@ -95,7 +95,7 @@ class CategoriaControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        post("/categorias/v1")
+                        post("/v1/categorias")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jacksonTester.write(categoriaHttpRequest).getJson())
                 ).andReturn().getResponse();
@@ -114,7 +114,7 @@ class CategoriaControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        get("/categorias/v1")
+                        get("/v1/categorias")
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 
@@ -132,7 +132,7 @@ class CategoriaControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        get("/categorias/v1/{codigo}", CODIGO)
+                        get("/v1/categorias/{codigo}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 
@@ -153,7 +153,7 @@ class CategoriaControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        put("/categorias/v1/{codigo}", CODIGO)
+                        put("/v1/categorias/{codigo}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jacksonTester.write(categoriaHttpRequest).getJson())
                 ).andReturn().getResponse();
@@ -168,7 +168,7 @@ class CategoriaControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        delete("/categorias/v1/{codigo}", CODIGO)
+                        delete("/v1/categorias/{codigo}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 

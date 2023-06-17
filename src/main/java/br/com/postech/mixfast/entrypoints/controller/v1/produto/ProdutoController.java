@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.entrypoints.controller.produto.v1;
+package br.com.postech.mixfast.entrypoints.controller.v1.produto;
 
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.usecase.interfaces.produto.*;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Log4j2
 @RestController
-@RequestMapping(value = "/produtos/v1")
+@RequestMapping(value = "/v1/produtos")
 public class ProdutoController {
 
     private final ProdutoHttpMapper produtoHttpMapper;

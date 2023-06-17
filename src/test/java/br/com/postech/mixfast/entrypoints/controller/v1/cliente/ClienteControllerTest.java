@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.entrypoints.controller.cliente.v1;
+package br.com.postech.mixfast.entrypoints.controller.v1.cliente;
 
 import br.com.postech.mixfast.core.entity.Cliente;
 import br.com.postech.mixfast.core.usecase.interfaces.cliente.*;
@@ -106,7 +106,7 @@ class ClienteControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        post("/clientes/v1")
+                        post("/v1/clientes")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jacksonTester.write(clienteHttpRequest).getJson())
                 ).andReturn().getResponse();
@@ -125,7 +125,7 @@ class ClienteControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        get("/clientes/v1")
+                        get("/v1/clientes")
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 
@@ -143,7 +143,7 @@ class ClienteControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        get("/clientes/v1/{codigo}", CODIGO)
+                        get("/v1/clientes/{codigo}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 
@@ -164,7 +164,7 @@ class ClienteControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        put("/clientes/v1/{codigo}", CODIGO)
+                        put("/v1/clientes/{codigo}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jacksonTester.write(clienteHttpRequest).getJson())
                 ).andReturn().getResponse();
@@ -179,7 +179,7 @@ class ClienteControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        delete("/clientes/v1/{codigo}", CODIGO)
+                        delete("/v1/clientes/{codigo}", CODIGO)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 
@@ -197,7 +197,7 @@ class ClienteControllerTest {
 
         MockHttpServletResponse response =
                 mvc.perform(
-                        get("/clientes/v1/cpf/{cpf}", CPF)
+                        get("/v1/clientes/cpf/{cpf}", CPF)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andReturn().getResponse();
 

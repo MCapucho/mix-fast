@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.entrypoints.controller.cliente.v1;
+package br.com.postech.mixfast.entrypoints.controller.v1.cliente;
 
 import br.com.postech.mixfast.core.entity.Cliente;
 import br.com.postech.mixfast.core.usecase.interfaces.cliente.*;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Log4j2
 @RestController
-@RequestMapping(value = "/clientes/v1")
+@RequestMapping(value = "v1/clientes")
 public class ClienteController {
 
     private final ClienteHttpMapper clienteHttpMapper;

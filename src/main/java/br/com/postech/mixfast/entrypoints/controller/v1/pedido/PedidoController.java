@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.entrypoints.controller.pedido.v1;
+package br.com.postech.mixfast.entrypoints.controller.v1.pedido;
 
 import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarTodosUseCase;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Log4j2
 @RestController
-@RequestMapping(value = "/pedidos/v1")
+@RequestMapping(value = "/v1/pedidos")
 public class PedidoController {
 
     private final PedidoHttpMapper pedidoHttpMapper;
