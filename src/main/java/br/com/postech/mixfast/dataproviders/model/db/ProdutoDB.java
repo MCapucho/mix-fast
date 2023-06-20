@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.dataproviders.model;
+package br.com.postech.mixfast.dataproviders.model.db;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_produto")
+@Table(name = "tb_produtos")
 public class ProdutoDB {
 
     @EqualsAndHashCode.Include

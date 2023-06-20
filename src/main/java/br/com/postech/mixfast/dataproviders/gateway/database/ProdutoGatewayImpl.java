@@ -3,12 +3,13 @@ package br.com.postech.mixfast.dataproviders.gateway.database;
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;
 import br.com.postech.mixfast.dataproviders.exception.ResourceFailedException;
-import br.com.postech.mixfast.dataproviders.model.ProdutoDB;
+import br.com.postech.mixfast.dataproviders.model.db.ProdutoDB;
 import br.com.postech.mixfast.dataproviders.model.mapper.ProdutoDBMapper;
 import br.com.postech.mixfast.dataproviders.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class ProdutoGatewayImpl implements ProdutoGateway {
         }
     }
 
+    @Transactional
     @Override
     public List<Produto> buscarTodos() {
         List<ProdutoDB> listaProdutosDB = produtoRepository.findAll();
@@ -64,6 +66,7 @@ public class ProdutoGatewayImpl implements ProdutoGateway {
         }
     }
 
+    @Transactional
     @Override
     public List<Produto> buscarPorCategoria(String categoria) {
         try {

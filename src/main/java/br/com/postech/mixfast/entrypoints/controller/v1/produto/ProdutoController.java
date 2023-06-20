@@ -53,7 +53,7 @@ public class ProdutoController {
     @GetMapping("/{codigo}")
     public ResponseEntity<ProdutoHttp> buscarPorCodigo(@PathVariable("codigo") String codigo) {
         Produto produto = produtoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
-        log.info("Cliente encontrado com sucesso");
+        log.info("Produto encontrado com sucesso");
         return ResponseEntity.status(HttpStatus.OK).body(produtoHttpMapper.entityToHttp(produto));
     }
 

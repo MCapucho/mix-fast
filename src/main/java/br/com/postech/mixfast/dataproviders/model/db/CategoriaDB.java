@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.dataproviders.model;
+package br.com.postech.mixfast.dataproviders.model.db;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_categoria")
+@Table(name = "tb_categorias")
 public class CategoriaDB {
 
     @EqualsAndHashCode.Include
@@ -23,6 +23,6 @@ public class CategoriaDB {
     @NotBlank(message = "O nome é um campo obrigatório, não pode ser nulo ou vazio")
     private String nome;
 
-    @OneToMany(mappedBy="categoria", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="categoria")
     private Set<ProdutoDB> produtos;
 }

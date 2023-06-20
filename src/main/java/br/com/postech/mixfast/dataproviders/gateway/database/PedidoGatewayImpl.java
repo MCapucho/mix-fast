@@ -3,8 +3,8 @@ package br.com.postech.mixfast.dataproviders.gateway.database;
 import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.gateway.PedidoGateway;
 import br.com.postech.mixfast.dataproviders.exception.ResourceFailedException;
-import br.com.postech.mixfast.dataproviders.model.PedidoDB;
-import br.com.postech.mixfast.dataproviders.model.ProdutoDB;
+import br.com.postech.mixfast.dataproviders.model.db.PedidoDB;
+import br.com.postech.mixfast.dataproviders.model.db.ProdutoDB;
 import br.com.postech.mixfast.dataproviders.model.mapper.PedidoDBMapper;
 import br.com.postech.mixfast.dataproviders.repository.PedidoRepository;
 import br.com.postech.mixfast.dataproviders.repository.ProdutoRepository;
@@ -76,11 +76,11 @@ public class PedidoGatewayImpl implements PedidoGateway {
         }
     }
 
+    @Transactional
     @Override
     public void atualizar(Pedido pedido) {
         try {
-            PedidoDB pedidoDB = pedidoRepository.save(pedidoDBMapper.entityToDB(pedido));
-            pedidoDBMapper.dbToEntity(pedidoDB);
+            pedidoRepository.atualizarStatus(String.valueOf(pedido.getStatus()), pedido.getCodigo());
         } catch (Exception e) {
             log.error("Erro ao atualizar o status de um pedido", e);
             throw new ResourceFailedException(BANCO_DE_DADOS);

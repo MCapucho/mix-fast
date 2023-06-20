@@ -1,7 +1,7 @@
 package br.com.postech.mixfast.dataproviders.model.mapper;
 
 import br.com.postech.mixfast.core.entity.Categoria;
-import br.com.postech.mixfast.dataproviders.model.CategoriaDB;
+import br.com.postech.mixfast.dataproviders.model.db.CategoriaDB;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

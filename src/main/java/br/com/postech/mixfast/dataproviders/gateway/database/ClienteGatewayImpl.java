@@ -3,12 +3,13 @@ package br.com.postech.mixfast.dataproviders.gateway.database;
 import br.com.postech.mixfast.core.entity.Cliente;
 import br.com.postech.mixfast.core.gateway.ClienteGateway;
 import br.com.postech.mixfast.dataproviders.exception.ResourceFailedException;
-import br.com.postech.mixfast.dataproviders.model.ClienteDB;
+import br.com.postech.mixfast.dataproviders.model.db.ClienteDB;
 import br.com.postech.mixfast.dataproviders.model.mapper.ClienteDBMapper;
 import br.com.postech.mixfast.dataproviders.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class ClienteGatewayImpl implements ClienteGateway {
         }
     }
 
+    @Transactional
     @Override
     public List<Cliente> buscarTodos() {
         try {

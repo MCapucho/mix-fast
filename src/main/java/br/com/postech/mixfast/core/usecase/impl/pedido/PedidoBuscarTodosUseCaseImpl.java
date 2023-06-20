@@ -1,7 +1,7 @@
 package br.com.postech.mixfast.core.usecase.impl.pedido;
 
 import br.com.postech.mixfast.core.entity.Pedido;
-import br.com.postech.mixfast.core.exception.PedidoListEmptyException;
+import br.com.postech.mixfast.core.exception.pedido.PedidoListEmptyException;
 import br.com.postech.mixfast.core.gateway.PedidoGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarTodosUseCase;
 import lombok.RequiredArgsConstructor;

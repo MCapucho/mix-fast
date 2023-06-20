@@ -1,10 +1,16 @@
 package br.com.postech.mixfast.entrypoints.handler;
 
 import br.com.postech.mixfast.core.exception.categoria.CategoriaBadRequestException;
+import br.com.postech.mixfast.core.exception.categoria.CategoriaListEmptyException;
+import br.com.postech.mixfast.core.exception.categoria.CategoriaNotFoundException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteBadRequestException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteDuplicatedException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteListEmptyException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteNotFoundException;
+import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
+import br.com.postech.mixfast.core.exception.pedido.PedidoListEmptyException;
+import br.com.postech.mixfast.core.exception.pedido.PedidoNotFoundException;
+import br.com.postech.mixfast.core.exception.pedido.PedidoStatusException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoBadRequestException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoListEmptyException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoNotFoundException;
@@ -33,8 +39,53 @@ public class RestExceptionHandler {
         return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(CategoriaListEmptyException.class)
+    public ResponseEntity<ErrorResponse> handleListEmpty(CategoriaListEmptyException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.NO_CONTENT);
+    }
+
+    @ExceptionHandler(CategoriaNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(CategoriaNotFoundException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(ClienteBadRequestException.class)
     public ResponseEntity<ErrorResponse> handleBadRequest(ClienteBadRequestException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ClienteDuplicatedException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicated(ClienteDuplicatedException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ClienteListEmptyException.class)
+    public ResponseEntity<ErrorResponse> handleListEmpty(ClienteListEmptyException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.NO_CONTENT);
+    }
+
+    @ExceptionHandler(ClienteNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(ClienteNotFoundException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(PedidoFailedException.class)
+    public ResponseEntity<ErrorResponse> handleFailed(PedidoFailedException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(PedidoListEmptyException.class)
+    public ResponseEntity<ErrorResponse> handleListEmpty(PedidoListEmptyException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.NO_CONTENT);
+    }
+
+    @ExceptionHandler(PedidoNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(PedidoNotFoundException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(PedidoStatusException.class)
+    public ResponseEntity<ErrorResponse> handleStatus(PedidoStatusException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
@@ -43,14 +94,9 @@ public class RestExceptionHandler {
         return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(ClienteDuplicatedException.class)
-    public ResponseEntity<ErrorResponse> handleNotFound(ClienteDuplicatedException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(ClienteNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNotFound(ClienteNotFoundException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
+    @ExceptionHandler(ProdutoListEmptyException.class)
+    public ResponseEntity<ErrorResponse> handleListEmpty(ProdutoListEmptyException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.NO_CONTENT);
     }
 
     @ExceptionHandler(ProdutoNotFoundException.class)
@@ -58,14 +104,9 @@ public class RestExceptionHandler {
         return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(ClienteListEmptyException.class)
-    public ResponseEntity<ErrorResponse> handleListEmpty(ClienteListEmptyException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.NO_CONTENT);
-    }
-
-    @ExceptionHandler(ProdutoListEmptyException.class)
-    public ResponseEntity<ErrorResponse> handleListEmpty(ProdutoListEmptyException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.NO_CONTENT);
+    @ExceptionHandler(ResourceApiException.class)
+    public ResponseEntity<ErrorResponse> handleClient(ResourceApiException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ResourceFailedException.class)
@@ -76,11 +117,6 @@ public class RestExceptionHandler {
     @ExceptionHandler(RetryableException.class)
     public ResponseEntity<ErrorResponse> handleClient(RetryableException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @ExceptionHandler(ResourceApiException.class)
-    public ResponseEntity<ErrorResponse> handleClient(ResourceApiException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

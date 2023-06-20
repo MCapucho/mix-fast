@@ -1,7 +1,7 @@
 package br.com.postech.mixfast.dataproviders.model.mapper;
 
 import br.com.postech.mixfast.core.entity.Produto;
-import br.com.postech.mixfast.dataproviders.model.ProdutoDB;
+import br.com.postech.mixfast.dataproviders.model.db.ProdutoDB;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

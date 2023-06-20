@@ -2,8 +2,8 @@ package br.com.postech.mixfast.dataproviders.gateway.api;
 
 import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.gateway.PagamentoGateway;
-import br.com.postech.mixfast.dataproviders.model.DadosPagamentoRequest;
-import br.com.postech.mixfast.dataproviders.model.DadosPagamentoResponse;
+import br.com.postech.mixfast.dataproviders.model.rest.DadosPagamentoRequest;
+import br.com.postech.mixfast.dataproviders.model.rest.DadosPagamentoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

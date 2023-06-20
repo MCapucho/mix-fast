@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.dataproviders.model;
+package br.com.postech.mixfast.dataproviders.model.rest;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

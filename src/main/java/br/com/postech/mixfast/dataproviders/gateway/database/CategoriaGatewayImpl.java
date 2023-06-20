@@ -3,12 +3,13 @@ package br.com.postech.mixfast.dataproviders.gateway.database;
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.gateway.CategoriaGateway;
 import br.com.postech.mixfast.dataproviders.exception.ResourceFailedException;
-import br.com.postech.mixfast.dataproviders.model.CategoriaDB;
+import br.com.postech.mixfast.dataproviders.model.db.CategoriaDB;
 import br.com.postech.mixfast.dataproviders.model.mapper.CategoriaDBMapper;
 import br.com.postech.mixfast.dataproviders.repository.CategoriaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class CategoriaGatewayImpl implements CategoriaGateway {
         }
     }
 
+    @Transactional
     @Override
     public List<Categoria> buscarTodas() {
         try {

@@ -1,16 +1,15 @@
-package br.com.postech.mixfast.dataproviders.model;
+package br.com.postech.mixfast.dataproviders.model.db;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "tb_pedido_produto")
+@Table(name = "tb_pedidos_produtos")
 public class PedidoProdutoDB {
 
     @EqualsAndHashCode.Include
@@ -26,13 +25,13 @@ public class PedidoProdutoDB {
     @JoinColumn(name = "produto_codigo")
     private ProdutoDB produto;
 
-    @Column(name = "quantidade")
+    @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
-    @Column(name = "preco_unitario")
+    @Column(name = "preco_unitario", nullable = false)
     private BigDecimal precoUnitario;
 
-    @Column(name = "preco_total")
+    @Column(name = "preco_total", nullable = false)
     private BigDecimal precoTotal;
 
     public void calcularValorTotal() {

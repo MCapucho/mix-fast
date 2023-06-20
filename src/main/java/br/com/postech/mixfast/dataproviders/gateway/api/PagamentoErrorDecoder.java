@@ -1,7 +1,7 @@
 package br.com.postech.mixfast.dataproviders.gateway.api;
 
 import br.com.postech.mixfast.dataproviders.exception.ResourceApiException;
-import br.com.postech.mixfast.dataproviders.model.MensagemException;
+import br.com.postech.mixfast.dataproviders.model.rest.MensagemException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Response;
 import feign.RetryableException;

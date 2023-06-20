@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.dataproviders.model;
+package br.com.postech.mixfast.dataproviders.model.db;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_cliente")
+@Table(name = "tb_clientes")
 public class ClienteDB {
 
     @EqualsAndHashCode.Include
@@ -31,6 +31,6 @@ public class ClienteDB {
     @NotBlank(message = "O email é um campo obrigatório, não pode ser nulo ou vazio")
     private String email;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "cliente")
     private Set<PedidoDB> pedidos;
 }
