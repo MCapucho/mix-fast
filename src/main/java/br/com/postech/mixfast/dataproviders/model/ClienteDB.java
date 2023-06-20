@@ -31,6 +31,6 @@ public class ClienteDB {
     @NotBlank(message = "O email é um campo obrigatório, não pode ser nulo ou vazio")
     private String email;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private Set<PedidoDB> pedidos;
 }

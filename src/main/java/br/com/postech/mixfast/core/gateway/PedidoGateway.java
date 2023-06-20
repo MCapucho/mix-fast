@@ -8,4 +8,6 @@ public interface PedidoGateway {
 
     Pedido enviar(Pedido pedido);
     List<Pedido> buscarTodos();
+    Pedido buscarPorCodigo(String codigo);
+    void atualizar(Pedido pedido);
 }

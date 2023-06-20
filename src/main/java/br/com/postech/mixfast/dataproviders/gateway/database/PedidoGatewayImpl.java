@@ -61,6 +61,32 @@ public class PedidoGatewayImpl implements PedidoGateway {
         }
     }
 
+    @Transactional
+    @Override
+    public Pedido buscarPorCodigo(String codigo) {
+        try {
+            return pedidoRepository.findByCodigo(codigo)
+                    .stream()
+                    .map(pedidoDBMapper::dbToEntity)
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            log.error("Erro ao buscar um pedido por código", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
+
+    @Override
+    public void atualizar(Pedido pedido) {
+        try {
+            PedidoDB pedidoDB = pedidoRepository.save(pedidoDBMapper.entityToDB(pedido));
+            pedidoDBMapper.dbToEntity(pedidoDB);
+        } catch (Exception e) {
+            log.error("Erro ao atualizar o status de um pedido", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
+
     private void validarItens(PedidoDB pedidoDB) {
         pedidoDB.getItens().forEach(element -> {
             ProdutoDB produtoDB = produtoRepository.findById(element.getProduto().getCodigo())

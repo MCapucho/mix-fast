@@ -1,6 +1,5 @@
 package br.com.postech.mixfast.dataproviders.model;
 
-import br.com.postech.mixfast.core.entity.StatusPedido;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,10 +25,10 @@ public class PedidoDB {
     private Integer fila;
 
     @CreationTimestamp
-    @Column(name = "data_pedido", nullable = false)
+    @Column(name = "data_pedido")
     private OffsetDateTime dataPedido;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "cliente_codigo")
     private ClienteDB cliente;
 
@@ -40,9 +39,8 @@ public class PedidoDB {
     @Column(name = "valor_total")
     private BigDecimal valorTotal;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private StatusPedido status = StatusPedido.RECEBIDO;
+    private String status;
 
     public void calcularValorTotal() {
         getItens().forEach(PedidoProdutoDB::calcularValorTotal);
