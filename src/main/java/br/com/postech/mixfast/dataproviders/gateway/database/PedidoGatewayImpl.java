@@ -30,7 +30,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
     @Transactional
     @Override
-    public Pedido cadastrar(Pedido pedido) {
+    public Pedido enviar(Pedido pedido) {
         try {
             PedidoDB pedidoDB = pedidoDBMapper.entityToDB(pedido);
             validarItens(pedidoDB);

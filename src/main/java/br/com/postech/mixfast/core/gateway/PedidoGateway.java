@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface PedidoGateway {
 
-    Pedido cadastrar(Pedido pedido);
+    Pedido enviar(Pedido pedido);
     List<Pedido> buscarTodos();
 }

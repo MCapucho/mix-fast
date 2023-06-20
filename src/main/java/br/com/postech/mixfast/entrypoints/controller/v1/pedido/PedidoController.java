@@ -2,7 +2,7 @@ package br.com.postech.mixfast.entrypoints.controller.v1.pedido;
 
 import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarTodosUseCase;
-import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoCadastrarUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoEnviarUseCase;
 import br.com.postech.mixfast.entrypoints.http.PedidoHttp;
 import br.com.postech.mixfast.entrypoints.http.mapper.PedidoHttpMapper;
 import jakarta.validation.Valid;
@@ -22,13 +22,13 @@ import java.util.List;
 public class PedidoController {
 
     private final PedidoHttpMapper pedidoHttpMapper;
-    private final PedidoCadastrarUseCase pedidoCadastrarUseCase;
+    private final PedidoEnviarUseCase pedidoEnviarUseCase;
     private final PedidoBuscarTodosUseCase pedidoBuscarTodosUseCase;
 
     @PostMapping
-    public ResponseEntity<PedidoHttp> cadastrar(@Valid @RequestBody PedidoHttp pedidoHttp) {
-        Pedido pedido = pedidoCadastrarUseCase.cadastrar(pedidoHttpMapper.httpToEntity(pedidoHttp));
-        log.info("Pedido cadastrado com sucesso");
+    public ResponseEntity<PedidoHttp> enviar(@Valid @RequestBody PedidoHttp pedidoHttp) {
+        Pedido pedido = pedidoEnviarUseCase.enviar(pedidoHttpMapper.httpToEntity(pedidoHttp));
+        log.info("Pedido enviado com sucesso");
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoHttpMapper.entityToHttp(pedido));
     }
 

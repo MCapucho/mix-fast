@@ -2,7 +2,7 @@ package br.com.postech.mixfast.core.usecase.interfaces.pedido;
 
 import br.com.postech.mixfast.core.entity.Pedido;
 
-public interface PedidoCadastrarUseCase {
+public interface PedidoEnviarUseCase {
 
-    Pedido cadastrar(Pedido pedido);
+    Pedido enviar(Pedido pedido);
 }

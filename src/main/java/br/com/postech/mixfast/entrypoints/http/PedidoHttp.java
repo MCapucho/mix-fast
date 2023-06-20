@@ -22,4 +22,5 @@ public class PedidoHttp {
     private BigDecimal valorTotal;
     private List<PedidoProdutoHttp> itens;
     private String qrCode;
+    private String status;
 }
