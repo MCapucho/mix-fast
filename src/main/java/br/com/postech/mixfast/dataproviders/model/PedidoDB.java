@@ -25,10 +25,10 @@ public class PedidoDB {
     private Integer fila;
 
     @CreationTimestamp
-    @Column(name = "data_pedido", nullable = false)
+    @Column(name = "data_pedido")
     private OffsetDateTime dataPedido;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "cliente_codigo")
     private ClienteDB cliente;
 
@@ -38,6 +38,9 @@ public class PedidoDB {
 
     @Column(name = "valor_total")
     private BigDecimal valorTotal;
+
+    @Column(name = "status", nullable = false)
+    private String status;
 
     public void calcularValorTotal() {
         getItens().forEach(PedidoProdutoDB::calcularValorTotal);

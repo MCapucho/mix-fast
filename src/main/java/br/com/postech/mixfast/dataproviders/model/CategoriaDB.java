@@ -23,6 +23,6 @@ public class CategoriaDB {
     @NotBlank(message = "O nome é um campo obrigatório, não pode ser nulo ou vazio")
     private String nome;
 
-    @OneToMany(mappedBy="categoria")
+    @OneToMany(mappedBy="categoria", cascade = CascadeType.ALL)
     private Set<ProdutoDB> produtos;
 }

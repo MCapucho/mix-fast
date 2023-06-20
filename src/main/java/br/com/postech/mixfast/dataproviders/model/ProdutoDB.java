@@ -30,7 +30,7 @@ public class ProdutoDB {
     @Column(name = "preco")
     private BigDecimal preco;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "categoria_codigo", nullable = false)
     private CategoriaDB categoria;
 

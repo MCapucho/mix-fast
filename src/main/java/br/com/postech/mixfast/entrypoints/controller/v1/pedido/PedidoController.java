@@ -1,0 +1,89 @@
+package br.com.postech.mixfast.entrypoints.controller.v1.pedido;
+
+import br.com.postech.mixfast.core.entity.Pedido;
+import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoAtualizarStatusUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarPorCodigoUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarTodosUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoEnviarUseCase;
+import br.com.postech.mixfast.entrypoints.http.PedidoHttp;
+import br.com.postech.mixfast.entrypoints.http.mapper.PedidoHttpMapper;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@RequiredArgsConstructor
+@Log4j2
+@RestController
+@RequestMapping(value = "/v1/pedidos")
+public class PedidoController {
+
+    private final PedidoHttpMapper pedidoHttpMapper;
+    private final PedidoEnviarUseCase pedidoEnviarUseCase;
+    private final PedidoBuscarTodosUseCase pedidoBuscarTodosUseCase;
+    private final PedidoBuscarPorCodigoUseCase pedidoBuscarPorCodigoUseCase;
+    private final PedidoAtualizarStatusUseCase pedidoAtualizarStatusUseCase;
+
+    @PostMapping
+    public ResponseEntity<PedidoHttp> enviar(@Valid @RequestBody PedidoHttp pedidoHttp) {
+        Pedido pedido = pedidoEnviarUseCase.enviar(pedidoHttpMapper.httpToEntity(pedidoHttp));
+        log.info("Pedido enviado com sucesso");
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoHttpMapper.entityToHttp(pedido));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PedidoHttp>> buscarTodos() {
+        List<Pedido> listaPedidos = pedidoBuscarTodosUseCase.buscarTodos();
+        List<PedidoHttp> listaPedidosHttp = new ArrayList<>();
+
+        listaPedidos.forEach(result -> {
+            PedidoHttp pedidoHttp = pedidoHttpMapper.entityToHttp(result);
+            listaPedidosHttp.add(pedidoHttp);
+        });
+
+        return ResponseEntity.status(HttpStatus.OK).body(listaPedidosHttp);
+    }
+
+    @GetMapping("/{codigo}")
+    public ResponseEntity<PedidoHttp> buscarPorCodigo(@PathVariable("codigo") String codigo) {
+        Pedido pedido = pedidoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
+        log.info("Pedido encontrado com sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body(pedidoHttpMapper.entityToHttp(pedido));
+    }
+
+    @PutMapping("/{codigo}/preparamento")
+    public ResponseEntity<Void> preparar(@PathVariable("codigo") String codigo) {
+        pedidoAtualizarStatusUseCase.preparar(codigo);
+        log.info("Pedido atualizado em preparamento com sucesso");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PutMapping("/{codigo}/entrega")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> entregar(@PathVariable("codigo") String codigo) {
+        pedidoAtualizarStatusUseCase.entregar(codigo);
+        log.info("Pedido atualizado em entregue com sucesso");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PutMapping("/{codigo}/finalizado")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> finalizar(@PathVariable("codigo") String codigo) {
+        pedidoAtualizarStatusUseCase.finalizar(codigo);
+        log.info("Pedido atualizado em finalizado com sucesso");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PutMapping("/{codigo}/cancelamento")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> cancelar(@PathVariable("codigo") String codigo) {
+        pedidoAtualizarStatusUseCase.cancelar(codigo);
+        log.info("Pedido atualizado em cancelado com sucesso");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+}
