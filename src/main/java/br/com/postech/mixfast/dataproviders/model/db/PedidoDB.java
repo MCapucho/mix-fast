@@ -1,9 +1,7 @@
 package br.com.postech.mixfast.dataproviders.model.db;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -12,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tb_pedidos")
 public class PedidoDB {

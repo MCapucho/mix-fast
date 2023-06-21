@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RequiredArgsConstructor
 @Log4j2
 @RestController
@@ -32,8 +35,19 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<PedidoHttp> enviar(@Valid @RequestBody PedidoHttp pedidoHttp) {
         Pedido pedido = pedidoEnviarUseCase.enviar(pedidoHttpMapper.httpToEntity(pedidoHttp));
+        PedidoHttp pedidoHttpEnviado = pedidoHttpMapper.entityToHttp(pedido);
+
+        pedidoHttpEnviado.add(linkTo(methodOn(PedidoController.class)
+                .preparar(pedidoHttpEnviado.getCodigo())).withSelfRel());
+        pedidoHttpEnviado.add(linkTo(methodOn(PedidoController.class)
+                .entregar(pedidoHttpEnviado.getCodigo())).withSelfRel());
+        pedidoHttpEnviado.add(linkTo(methodOn(PedidoController.class)
+                .finalizar(pedidoHttpEnviado.getCodigo())).withSelfRel());
+        pedidoHttpEnviado.add(linkTo(methodOn(PedidoController.class)
+                .cancelar(pedidoHttpEnviado.getCodigo())).withSelfRel());
+
         log.info("Pedido enviado com sucesso");
-        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoHttpMapper.entityToHttp(pedido));
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoHttpEnviado);
     }
 
     @GetMapping

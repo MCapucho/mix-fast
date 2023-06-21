@@ -1,13 +1,14 @@
 package br.com.postech.mixfast.dataproviders.model.db;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tb_pedidos_produtos")
 public class PedidoProdutoDB {
