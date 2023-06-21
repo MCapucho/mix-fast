@@ -32,5 +32,9 @@ springdoc:
   swagger-ui:
     path: /swagger-ui-mix-fast.html
 
+mix-fast:
+  openapi:
+    dev-url: http://localhost:${server.port}
+
 server:
   port: 9080

@@ -7,6 +7,7 @@ import br.com.postech.mixfast.entrypoints.http.mapper.ProdutoHttpMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Tag(name = "Produtos")
 @RequiredArgsConstructor
 @Log4j2
 @RestController
@@ -33,7 +35,7 @@ public class ProdutoController {
 
     @Operation(summary = "Cadastrar um novo produto")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Produto cadastrada com sucesso"),
+            @ApiResponse(responseCode = "201", description = "Produto cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Erro ao cadastrar um novo produto com os dados informados"),
             @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @PostMapping

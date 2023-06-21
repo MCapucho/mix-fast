@@ -30,7 +30,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
     @Transactional
     @Override
-    public Pedido enviar(Pedido pedido) {
+    public Pedido emitir(Pedido pedido) {
         try {
             PedidoDB pedidoDB = pedidoDBMapper.entityToDB(pedido);
             validarItens(pedidoDB);
@@ -38,7 +38,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
             geradorNumeroFila(pedidoDB);
             return pedidoDBMapper.dbToEntity(pedidoRepository.save(pedidoDB));
         } catch (Exception e) {
-            log.error("Erro ao cadastrar um pedido", e);
+            log.error("Erro ao emitir um pedido", e);
             throw new ResourceFailedException(BANCO_DE_DADOS);
         }
     }

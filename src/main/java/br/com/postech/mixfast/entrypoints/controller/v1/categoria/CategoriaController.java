@@ -2,11 +2,15 @@ package br.com.postech.mixfast.entrypoints.controller.v1.categoria;
 
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.*;
+import br.com.postech.mixfast.entrypoints.handler.ErrorResponse;
 import br.com.postech.mixfast.entrypoints.http.CategoriaHttp;
 import br.com.postech.mixfast.entrypoints.http.mapper.CategoriaHttpMapper;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Tag(name = "Categorias")
 @RequiredArgsConstructor
 @Log4j2
 @RestController
@@ -32,9 +37,15 @@ public class CategoriaController {
 
     @Operation(summary = "Cadastrar uma nova categoria")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Categoria cadastrada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Erro ao cadastrar uma nova categoria com os dados informados"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
+            @ApiResponse(responseCode = "201", description = "Categoria cadastrada com sucesso",
+                    content = { @Content(schema = @Schema(implementation = CategoriaHttp.class),
+                            mediaType = "application/json") }),
+            @ApiResponse(responseCode = "400", description = "Erro ao cadastrar uma nova categoria com os dados informados",
+                    content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
+                            mediaType = "application/json") }),
+            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados",
+                    content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
+                            mediaType = "application/json") })})
     @PostMapping
     public ResponseEntity<CategoriaHttp> cadastrar(@Valid @RequestBody CategoriaHttp categoriaHttp) {
         Categoria categoria = categoriaCadastrarUseCase.cadastrar(categoriaHttpMapper.httpToEntity(categoriaHttp));

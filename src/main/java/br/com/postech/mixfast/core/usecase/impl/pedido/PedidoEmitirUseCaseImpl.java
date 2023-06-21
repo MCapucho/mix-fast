@@ -4,28 +4,28 @@ import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import br.com.postech.mixfast.core.gateway.PagamentoGateway;
 import br.com.postech.mixfast.core.gateway.PedidoGateway;
-import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoEnviarUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoEmitirUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class PedidoEnviarUseCaseImpl implements PedidoEnviarUseCase {
+public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
 
     private final PedidoGateway pedidoGateway;
     private final PagamentoGateway pagamentoGateway;
 
     @Override
-    public Pedido enviar(Pedido pedido) {
-        Pedido pedidoEnviado = pedidoGateway.enviar(pedido);
+    public Pedido emitir(Pedido pedido) {
+        Pedido pedidoEmitido = pedidoGateway.emitir(pedido);
 
-        String qrCode = pagamentoGateway.pagarQrCode(pedidoEnviado);
-        pedidoEnviado.setQrCode(qrCode);
+        String qrCode = pagamentoGateway.pagarQrCode(pedidoEmitido);
+        pedidoEmitido.setQrCode(qrCode);
 
-        if (pedidoEnviado.getFila() == null) {
-            throw new PedidoFailedException("Erro ao cadastrar o pedido informado");
+        if (pedidoEmitido.getFila() == null) {
+            throw new PedidoFailedException("Erro ao emitir o pedido informado");
         }
 
-        return pedidoEnviado;
+        return pedidoEmitido;
     }
 }

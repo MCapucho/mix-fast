@@ -71,7 +71,7 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(PedidoFailedException.class)
     public ResponseEntity<ErrorResponse> handleFailed(PedidoFailedException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.CONFLICT);
+        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(PedidoListEmptyException.class)
