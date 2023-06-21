@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "224df6a9-ec28-4320-9fe0-a418a384732d",
+		"_postman_id": "e2235a9a-1636-4052-9531-06ca2e23f557",
 		"name": "Mix Fast",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19886292"
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Lanches\"\n}",
+							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -64,7 +64,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/v1/categorias/2250fcbf-e5a2-4b30-8f31-2a5cad044177",
+							"raw": "http://localhost:9080/v1/categorias/0b35a0db-d829-417c-9493-fa076f829967",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -73,7 +73,7 @@
 							"path": [
 								"v1",
 								"categorias",
-								"2250fcbf-e5a2-4b30-8f31-2a5cad044177"
+								"0b35a0db-d829-417c-9493-fa076f829967"
 							]
 						}
 					},
@@ -86,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
+							"raw": "{\n    \"nome\": \"Lanches\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -94,7 +94,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9080/v1/categorias/2250fcbf-e5a2-4b30-8f31-2a5cad044177",
+							"raw": "http://localhost:9080/v1/categorias/0b35a0db-d829-417c-9493-fa076f829967",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -103,7 +103,7 @@
 							"path": [
 								"v1",
 								"categorias",
-								"2250fcbf-e5a2-4b30-8f31-2a5cad044177"
+								"0b35a0db-d829-417c-9493-fa076f829967"
 							]
 						}
 					},
@@ -114,17 +114,8 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:9080/v1/categorias/0526a5d9-1d0e-44b3-9a16-366bf1eda9f4",
+							"raw": "http://localhost:9080/v1/categorias/56917890-3815-423e-9771-8cc30444ca1f",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -133,7 +124,7 @@
 							"path": [
 								"v1",
 								"categorias",
-								"0526a5d9-1d0e-44b3-9a16-366bf1eda9f4"
+								"56917890-3815-423e-9771-8cc30444ca1f"
 							]
 						}
 					},
@@ -151,7 +142,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Refrigerante Coca Cola 350ml Zero\",\n    \"descricao\": \"\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"2250fcbf-e5a2-4b30-8f31-2a5cad044177\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"Refrigerante Sprite 350ml Original\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"0df150e1-b836-476f-b012-46cea14b1104\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -199,7 +190,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/v1/produtos/39cf4621-add0-43d0-b913-a3a3d2e30f19",
+							"raw": "http://localhost:9080/v1/produtos/bba7f993-5a14-492c-b776-238c9c66987b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -208,7 +199,7 @@
 							"path": [
 								"v1",
 								"produtos",
-								"39cf4621-add0-43d0-b913-a3a3d2e30f19"
+								"bba7f993-5a14-492c-b776-238c9c66987b"
 							]
 						}
 					},
@@ -229,7 +220,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9080/v1/produtos/74fe2f8b-af6d-48f0-b955-efff66320e27",
+							"raw": "http://localhost:9080/v1/produtos/bba7f993-5a14-492c-b776-238c9c66987b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -238,7 +229,7 @@
 							"path": [
 								"v1",
 								"produtos",
-								"74fe2f8b-af6d-48f0-b955-efff66320e27"
+								"bba7f993-5a14-492c-b776-238c9c66987b"
 							]
 						}
 					},
@@ -250,7 +241,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/v1/produtos/74fe2f8b-af6d-48f0-b955-efff66320e27",
+							"raw": "http://localhost:9080/v1/produtos/bba7f993-5a14-492c-b776-238c9c66987b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -259,7 +250,7 @@
 							"path": [
 								"v1",
 								"produtos",
-								"74fe2f8b-af6d-48f0-b955-efff66320e27"
+								"bba7f993-5a14-492c-b776-238c9c66987b"
 							]
 						}
 					},
@@ -283,7 +274,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9080/v1/produtos/categoria/9782ac1a-3693-42ce-b71d-cf4f38509d02",
+							"raw": "http://localhost:9080/v1/produtos/categoria/08ec911b-66f4-402f-9b5e-8d1f0ee6a85a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -293,7 +284,7 @@
 								"v1",
 								"produtos",
 								"categoria",
-								"9782ac1a-3693-42ce-b71d-cf4f38509d02"
+								"08ec911b-66f4-402f-9b5e-8d1f0ee6a85a"
 							]
 						}
 					},
@@ -516,13 +507,13 @@
 			"name": "Pedido",
 			"item": [
 				{
-					"name": "Pedido - Cadastrar",
+					"name": "Pedido - Enviar",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"6a018cf4-faac-42fc-aee1-b3177b3c0ed3\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"39cf4621-add0-43d0-b913-a3a3d2e30f19\",\n            \"quantidade\": 2\n        },\n        {\n            \"produto\": \"b2b1c867-7e86-463e-8885-9f32488fcbca\",\n            \"quantidade\": 10\n        }\n    ]\n}",
+							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"09ac7807-f967-4514-b836-a99dd2f0a308\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"778f3c1d-a1fa-43fd-bc1d-5f658bd1011a\",\n            \"quantidade\": 3\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -559,6 +550,94 @@
 							"path": [
 								"v1",
 								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - Preparar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/preparamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"pedidos",
+								"b290d22c-65b0-4fde-8189-a4d95e017a27",
+								"preparamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - Entregar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/entrega",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"pedidos",
+								"b290d22c-65b0-4fde-8189-a4d95e017a27",
+								"entrega"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - Finalizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/finalizado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"pedidos",
+								"b290d22c-65b0-4fde-8189-a4d95e017a27",
+								"finalizado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - Cancelar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/cancelamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"pedidos",
+								"b290d22c-65b0-4fde-8189-a4d95e017a27",
+								"cancelamento"
 							]
 						}
 					},
