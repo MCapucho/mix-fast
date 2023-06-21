@@ -4,6 +4,7 @@ import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.exception.produto.ProdutoBadRequestException;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;
+import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,8 +16,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ProdutoCadastrarUseCaseImplTest {
@@ -25,6 +26,8 @@ class ProdutoCadastrarUseCaseImplTest {
     private ProdutoCadastrarUseCaseImpl produtoCadastrarUseCaseImpl;
     @Mock
     private ProdutoGateway produtoGateway;
+    @Mock
+    private CategoriaBuscarPorCodigoUseCase categoriaBuscarPorCodigoUseCase;
 
     private Produto produtoRequest;
     private Produto produtoResponse;
@@ -53,6 +56,9 @@ class ProdutoCadastrarUseCaseImplTest {
 
     @Test
     void deveCadastrarUmProdutoComSucesso() {
+        when(categoriaBuscarPorCodigoUseCase.buscarPorCodigo(anyString()))
+                .thenReturn(new Categoria());
+
         when(produtoGateway.cadastrarOuAtualizar(any()))
                 .thenReturn(produtoResponse);
 

@@ -3,6 +3,7 @@ package br.com.postech.mixfast.core.usecase.impl.produto;
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;
+import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaBuscarPorCodigoUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.produto.ProdutoBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +31,8 @@ class ProdutoAtualizarUseCaseImplTest {
     private ProdutoGateway produtoGateway;
     @Mock
     private ProdutoBuscarPorCodigoUseCase produtoBuscarPorCodigoUseCase;
+    @Mock
+    private CategoriaBuscarPorCodigoUseCase categoriaBuscarPorCodigoUseCase;
 
     private Produto produtoRequest;
     private Produto produtoResponse;
@@ -58,6 +61,9 @@ class ProdutoAtualizarUseCaseImplTest {
 
     @Test
     void deveAtualizarUmProdutoComSucesso() {
+        when(categoriaBuscarPorCodigoUseCase.buscarPorCodigo(anyString()))
+                .thenReturn(new Categoria());
+
         when(produtoBuscarPorCodigoUseCase.buscarPorCodigo(anyString()))
                 .thenReturn(produtoResponse);
 
