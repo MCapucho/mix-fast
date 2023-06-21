@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PedidoProdutoHttp {
 
-    @NotBlank
+    @NotBlank(message = "O produto é um campo obrigatório, não pode ser nulo ou vazio")
     private String produto;
 
     @Min(1)

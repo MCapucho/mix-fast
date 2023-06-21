@@ -26,7 +26,4 @@ public class ProdutoHttp {
     private BigDecimal preco;
 
     private CategoriaHttp categoria;
-
-
-    private Integer quantidade;
 }

@@ -17,6 +17,7 @@ public class PedidoEnviarUseCaseImpl implements PedidoEnviarUseCase {
 
     @Override
     public Pedido enviar(Pedido pedido) {
+        pedido.calcularValorTotal();
         Pedido pedidoEnviado = pedidoGateway.enviar(pedido);
 
         String qrCode = pagamentoGateway.pagarQrCode(pedidoEnviado);

@@ -34,7 +34,6 @@ public class PedidoGatewayImpl implements PedidoGateway {
         try {
             PedidoDB pedidoDB = pedidoDBMapper.entityToDB(pedido);
             validarItens(pedidoDB);
-            pedidoDB.calcularValorTotal();
             geradorNumeroFila(pedidoDB);
             return pedidoDBMapper.dbToEntity(pedidoRepository.save(pedidoDB));
         } catch (Exception e) {

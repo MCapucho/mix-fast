@@ -2,6 +2,7 @@ package br.com.postech.mixfast.core.entity;
 
 import br.com.postech.mixfast.core.entity.enums.StatusPedido;
 import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
+import br.com.postech.mixfast.dataproviders.model.db.PedidoProdutoDB;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,14 @@ public class Pedido {
     private List<PedidoProduto> itens;
     private String qrCode;
     private StatusPedido status = StatusPedido.RECEBIDO;
+
+    public void calcularValorTotal() {
+        getItens().forEach(PedidoProduto::calcularValorTotal);
+
+        this.valorTotal = getItens().stream()
+                .map(PedidoProduto::getPrecoTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
     public void preparar() {
         setStatus(StatusPedido.PREPARANDO);
