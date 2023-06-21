@@ -20,7 +20,7 @@ Para ter acesso aos endpoints do sistema é possível utilizar o
 ### Tecnologias
 
 - Java (version 17)
-- Spring Boot (version 3.0.6)
+- Spring Boot (version 3.1.0)
 - MySQL (version 8)
 
 ### Implementações do Sistema
