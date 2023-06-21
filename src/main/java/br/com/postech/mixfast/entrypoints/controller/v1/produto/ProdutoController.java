@@ -28,8 +28,6 @@ public class ProdutoController {
     private final ProdutoDeletarPorCodigoUseCase produtoDeletarPorCodigoUseCase;
     private final ProdutoBuscarPorCategoriaUseCase produtoBuscarPorCategoriaUseCase;
 
-    private final List<ProdutoHttp> listaProdutosHttp = new ArrayList<>();
-
     @PostMapping
     public ResponseEntity<ProdutoHttp> cadastrar(@Valid @RequestBody ProdutoHttp produtoHttp) {
         Produto produto = produtoCadastrarUseCase.cadastrar(produtoHttpMapper.httpToEntity(produtoHttp));
@@ -40,6 +38,7 @@ public class ProdutoController {
     @GetMapping
     public ResponseEntity<List<ProdutoHttp>> buscarTodos() {
         List<Produto> listaProdutos = produtoBuscarTodosUseCase.buscarTodos();
+        List<ProdutoHttp> listaProdutosHttp = new ArrayList<>();
 
         listaProdutos.forEach(result -> {
             ProdutoHttp produtoHttp = produtoHttpMapper.entityToHttp(result);
@@ -75,6 +74,7 @@ public class ProdutoController {
     @GetMapping("/categoria/{categoria_codigo}")
     public ResponseEntity<List<ProdutoHttp>> buscarPorCategoria(@PathVariable("categoria_codigo") String categoria) {
         List<Produto> listaProdutos = produtoBuscarPorCategoriaUseCase.buscarPorCategoria(categoria);
+        List<ProdutoHttp> listaProdutosHttp = new ArrayList<>();
 
         listaProdutos.forEach(result -> {
             ProdutoHttp produtoHttp = produtoHttpMapper.entityToHttp(result);
