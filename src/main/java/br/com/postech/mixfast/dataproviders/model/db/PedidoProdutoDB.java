@@ -37,4 +37,19 @@ public class PedidoProdutoDB {
 
     @Column(name = "preco_total", nullable = false)
     private BigDecimal precoTotal;
+
+    public void calcularValorTotal() {
+        BigDecimal valorUnitario = this.precoUnitario;
+        Integer quantidadeProduto = this.getQuantidade();
+
+        if (valorUnitario == null) {
+            valorUnitario = BigDecimal.ZERO;
+        }
+
+        if (quantidadeProduto == null) {
+            quantidadeProduto = 0;
+        }
+
+        this.setPrecoTotal(valorUnitario.multiply(new BigDecimal(quantidadeProduto)));
+    }
 }

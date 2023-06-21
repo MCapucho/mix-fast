@@ -42,4 +42,12 @@ public class PedidoDB {
 
     @Column(name = "status", length = 20, nullable = false)
     private String status;
+
+    public void calcularValorTotal() {
+        getItens().forEach(PedidoProdutoDB::calcularValorTotal);
+
+        this.valorTotal = getItens().stream()
+                .map(PedidoProdutoDB::getPrecoTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 }
