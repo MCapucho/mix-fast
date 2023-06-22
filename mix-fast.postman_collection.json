@@ -142,7 +142,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Refrigerante Sprite 350ml Original\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"0df150e1-b836-476f-b012-46cea14b1104\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"Refrigerante Sprite 350ml Original\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"cf644f94-5239-4b44-af14-d53b190ccecd\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -504,6 +504,132 @@
 			]
 		},
 		{
+			"name": "Forma Pagamento",
+			"item": [
+				{
+					"name": "Forma Pagamento - Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descricao\": \"Dinheiro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9080/v1/formas_pagamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"formas_pagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forma Pagamento - Buscar Todas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/v1/formas_pagamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"formas_pagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forma Pagamento - Buscar Por Código",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/v1/formas_pagamento/d8dcd127-4320-49b5-805e-fe6fcbf2022d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"formas_pagamento",
+								"d8dcd127-4320-49b5-805e-fe6fcbf2022d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forma Pagamento - Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descricao\": \"Cartão de Crédito\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9080/v1/formas_pagamento/d8dcd127-4320-49b5-805e-fe6fcbf2022d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"formas_pagamento",
+								"d8dcd127-4320-49b5-805e-fe6fcbf2022d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forma Pagamento - Deletar Por Código",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/v1/formas_pagamento/ce089d5b-07e9-45e1-8bb1-e15d194c8cf8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"formas_pagamento",
+								"ce089d5b-07e9-45e1-8bb1-e15d194c8cf8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Pedido",
 			"item": [
 				{
@@ -513,7 +639,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"09ac7807-f967-4514-b836-a99dd2f0a308\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"778f3c1d-a1fa-43fd-bc1d-5f658bd1011a\",\n            \"quantidade\": 3\n        }\n    ]\n}",
+							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"6c5d8656-7282-4cd8-9c3d-664f5e90227e\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"77728332-c15a-4d8e-840a-1cf41e6884e2\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": {\n        \"codigo\": \"70c3df8d-a6a0-41bc-8a3f-6570cf45f5b1\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -638,6 +764,49 @@
 								"pedidos",
 								"b290d22c-65b0-4fde-8189-a4d95e017a27",
 								"cancelamento"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actuator",
+			"item": [
+				{
+					"name": "Métricas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/actuator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hostcheck",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/hostcheck",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"hostcheck"
 							]
 						}
 					},
