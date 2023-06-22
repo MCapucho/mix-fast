@@ -22,13 +22,6 @@ public class PedidoDB {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String codigo;
 
-    @Column(name = "fila", nullable = false, unique = true)
-    private Integer fila;
-
-    @CreationTimestamp
-    @Column(name = "data_pedido", nullable = false)
-    private OffsetDateTime dataPedido;
-
     @ManyToOne
     @JoinColumn(name = "cliente_codigo")
     private ClienteDB cliente;
@@ -37,11 +30,22 @@ public class PedidoDB {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<PedidoProdutoDB> itens = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "forma_pagamento_codigo")
+    private FormaPagamentoDB formaPagamento;
+
+    @Column(name = "fila", nullable = false, unique = true)
+    private Integer fila;
+
     @Column(name = "valor_total", nullable = false)
     private BigDecimal valorTotal;
 
     @Column(name = "status", length = 20, nullable = false)
     private String status;
+
+    @CreationTimestamp
+    @Column(name = "data_pedido", nullable = false)
+    private OffsetDateTime dataPedido;
 
     public void calcularValorTotal() {
         getItens().forEach(PedidoProdutoDB::calcularValorTotal);

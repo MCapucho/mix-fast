@@ -1,6 +1,8 @@
 package br.com.postech.mixfast.entrypoints.http;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,11 +21,22 @@ import java.util.List;
 public class PedidoHttp extends RepresentationModel<PedidoHttp> {
 
     private String codigo;
-    private Integer fila;
+
     private ClienteHttp cliente;
-    private BigDecimal valorTotal;
+
     @NotEmpty(message = "A lista de produto está vazia")
     private List<PedidoProdutoHttp> itens;
-    private String qrCode;
+
+    @JsonProperty(value = "forma_pagamento")
+    private FormaPagamentoHttp formaPagamento;
+
+    private Integer fila;
+
+    @JsonProperty(value = "valor_total")
+    private BigDecimal valorTotal;
+
     private String status;
+
+    @JsonProperty(value = "qr_code")
+    private String qrCode;
 }

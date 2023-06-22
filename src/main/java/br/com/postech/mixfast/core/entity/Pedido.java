@@ -17,12 +17,13 @@ import java.util.List;
 public class Pedido {
 
     private String codigo;
-    private Integer fila;
     private Cliente cliente;
-    private BigDecimal valorTotal;
     private List<PedidoProduto> itens;
-    private String qrCode;
+    private FormaPagamento formaPagamento;
+    private Integer fila;
+    private BigDecimal valorTotal;
     private StatusPedido status = StatusPedido.RECEBIDO;
+    private String qrCode;
 
     public void preparar() {
         setStatus(StatusPedido.PREPARANDO);
