@@ -43,6 +43,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
         }
     }
 
+    @Transactional
     @Override
     public List<Pedido> buscarTodos() {
         try {
