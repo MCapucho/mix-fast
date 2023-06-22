@@ -93,7 +93,7 @@ public class CategoriaController {
     public ResponseEntity<CategoriaHttp> atualizar(@PathVariable("codigo") String codigo,
                                                    @Valid @RequestBody CategoriaHttp categoriaHttp) {
         Categoria categoria = categoriaAtualizarUseCase.atualizar(codigo, categoriaHttpMapper.httpToEntity(categoriaHttp));
-        log.info("Categoria atualizado com sucesso");
+        log.info("Categoria atualizada com sucesso");
         return ResponseEntity.status(HttpStatus.OK).body(categoriaHttpMapper.entityToHttp(categoria));
     }
 

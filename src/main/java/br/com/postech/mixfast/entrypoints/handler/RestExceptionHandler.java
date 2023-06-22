@@ -7,6 +7,9 @@ import br.com.postech.mixfast.core.exception.cliente.ClienteBadRequestException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteDuplicatedException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteListEmptyException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteNotFoundException;
+import br.com.postech.mixfast.core.exception.formaPagamento.FormaPagamentoBadRequestException;
+import br.com.postech.mixfast.core.exception.formaPagamento.FormaPagamentoDuplicatedException;
+import br.com.postech.mixfast.core.exception.formaPagamento.FormaPagamentoNotFoundException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoListEmptyException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoNotFoundException;
@@ -66,6 +69,21 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(ClienteNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(ClienteNotFoundException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(FormaPagamentoBadRequestException.class)
+    public ResponseEntity<ErrorResponse> handleBadRequest(FormaPagamentoBadRequestException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FormaPagamentoDuplicatedException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicated(FormaPagamentoDuplicatedException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(FormaPagamentoNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(FormaPagamentoNotFoundException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 

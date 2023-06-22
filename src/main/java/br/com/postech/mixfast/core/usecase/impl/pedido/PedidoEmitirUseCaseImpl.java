@@ -19,8 +19,8 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
     public Pedido emitir(Pedido pedido) {
         Pedido pedidoEmitido = pedidoGateway.emitir(pedido);
 
-        String qrCode = pagamentoGateway.pagarQrCode(pedidoEmitido);
-        pedidoEmitido.setQrCode(qrCode);
+//        String qrCode = pagamentoGateway.pagarQrCode(pedidoEmitido);
+//        pedidoEmitido.setQrCode(qrCode);
 
         if (pedidoEmitido.getFila() == null) {
             throw new PedidoFailedException("Erro ao emitir o pedido informado");
