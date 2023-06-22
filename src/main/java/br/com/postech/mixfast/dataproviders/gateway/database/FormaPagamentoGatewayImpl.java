@@ -9,6 +9,10 @@ import br.com.postech.mixfast.dataproviders.repository.FormaPagamentoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -21,12 +25,55 @@ public class FormaPagamentoGatewayImpl implements FormaPagamentoGateway {
     private final FormaPagamentoRepository formaPagamentoRepository;
 
     @Override
-    public FormaPagamento cadastrar(FormaPagamento formaPagamento) {
+    public FormaPagamento cadastrarOuAtualizar(FormaPagamento formaPagamento) {
         try {
             FormaPagamentoDB formaPagamentoDB = formaPagamentoRepository.save(formaPagamentoDBMapper.entityToDB(formaPagamento));
             return formaPagamentoDBMapper.dbToEntity(formaPagamentoDB);
         } catch (Exception e) {
             log.error("Erro ao cadastrar/atualizar uma forma de pagamento", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
+
+    @Transactional
+    @Override
+    public List<FormaPagamento> buscarTodas() {
+        try {
+            List<FormaPagamentoDB> listaFormasPagamentoDB = formaPagamentoRepository.findAll();
+            List<FormaPagamento> listaFormasPagamento = new ArrayList<>();
+
+            listaFormasPagamentoDB.forEach(result -> {
+                FormaPagamento formaPagamento = formaPagamentoDBMapper.dbToEntity(result);
+                listaFormasPagamento.add(formaPagamento);
+            });
+
+            return listaFormasPagamento;
+        } catch (Exception e) {
+            log.error("Erro ao buscar todas formas de pagamento", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
+
+    @Override
+    public FormaPagamento buscarPorCodigo(String codigo) {
+        try {
+            return formaPagamentoRepository.findById(codigo)
+                    .stream()
+                    .map(formaPagamentoDBMapper::dbToEntity)
+                    .findAny()
+                    .orElse(null);
+        } catch (Exception e) {
+            log.error("Erro ao buscar uma forma de pagamento por código", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
+
+    @Override
+    public void deletarPorCodigo(String codigo) {
+        try {
+            formaPagamentoRepository.deleteById(codigo);
+        } catch (Exception e) {
+            log.error("Erro ao deletar uma forma de pagamento por código", e);
             throw new ResourceFailedException(BANCO_DE_DADOS);
         }
     }
