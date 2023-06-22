@@ -20,7 +20,7 @@ public class FormaPagamentoCadastrarUseCaseImpl implements FormaPagamentoCadastr
             throw new FormaPagamentoDuplicatedException("Forma de Pagamento informada já cadastrada");
         }
 
-        FormaPagamento formaPagamentoCadastrada = formaPagamentoGateway.cadastrar(formaPagamento);
+        FormaPagamento formaPagamentoCadastrada = formaPagamentoGateway.cadastrarOuAtualizar(formaPagamento);
 
         if (formaPagamentoCadastrada == null) {
             throw new FormaPagamentoBadRequestException("Cadastro de forma de pagamento não foi concluído");
