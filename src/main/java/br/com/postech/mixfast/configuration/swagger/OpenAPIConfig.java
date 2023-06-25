@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.configuration;
+package br.com.postech.mixfast.configuration.swagger;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;

@@ -1,6 +1,7 @@
 package br.com.postech.mixfast.entrypoints.handler;
 
 import br.com.postech.mixfast.core.exception.categoria.CategoriaBadRequestException;
+import br.com.postech.mixfast.core.exception.categoria.CategoriaDuplicatedException;
 import br.com.postech.mixfast.core.exception.categoria.CategoriaListEmptyException;
 import br.com.postech.mixfast.core.exception.categoria.CategoriaNotFoundException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteBadRequestException;
@@ -39,6 +40,11 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(CategoriaBadRequestException.class)
     public ResponseEntity<ErrorResponse> handleBadRequest(CategoriaBadRequestException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CategoriaDuplicatedException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicatec(CategoriaDuplicatedException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 

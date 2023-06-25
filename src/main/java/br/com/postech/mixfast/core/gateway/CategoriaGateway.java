@@ -10,4 +10,5 @@ public interface CategoriaGateway {
     List<Categoria> buscarTodas();
     Categoria buscarPorCodigo(String codigo);
     void deletarPorCodigo(String codigo);
+    Boolean encontrarPorNome(String nome);
 }

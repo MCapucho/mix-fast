@@ -77,4 +77,14 @@ public class CategoriaGatewayImpl implements CategoriaGateway {
             throw new ResourceFailedException(BANCO_DE_DADOS);
         }
     }
+
+    @Override
+    public Boolean encontrarPorNome(String nome) {
+        try {
+            return categoriaRepository.existsByNome(nome);
+        } catch (Exception e) {
+            log.error("Erro ao encontrar uma categoria por nome", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
 }
