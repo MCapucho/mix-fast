@@ -18,7 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name = "Categorias")
@@ -61,15 +60,8 @@ public class CategoriaController {
     @GetMapping
     public ResponseEntity<List<CategoriaHttp>> buscarTodas() {
         List<Categoria> listaCategoria = categoriaBuscarTodasUseCase.buscarTodas();
-        List<CategoriaHttp> listaCategoriasHttp = new ArrayList<>();
-
-        listaCategoria.forEach(result -> {
-            CategoriaHttp categoriaHttp = categoriaHttpMapper.entityToHttp(result);
-            listaCategoriasHttp.add(categoriaHttp);
-        });
-
         log.info("Lista de categorias preenchida com sucesso");
-        return ResponseEntity.status(HttpStatus.OK).body(listaCategoriasHttp);
+        return ResponseEntity.status(HttpStatus.OK).body(categoriaHttpMapper.entityListToHttpList(listaCategoria));
     }
 
     @Operation(summary = "Buscar uma categoria cadastrada por código")

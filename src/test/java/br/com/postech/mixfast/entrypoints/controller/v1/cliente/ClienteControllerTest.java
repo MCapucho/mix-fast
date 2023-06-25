@@ -117,11 +117,11 @@ class ClienteControllerTest {
     @SneakyThrows
     @Test
     void buscarTodas() {
-        when(clienteHttpMapper.entityToHttp(any(Cliente.class)))
-                .thenReturn(clienteHttpResponse);
-
         when(clienteBuscarTodosUseCase.buscarTodos())
                 .thenReturn(List.of(clienteResponse));
+
+        when(clienteHttpMapper.entityListToHttpList(anyList()))
+                .thenReturn(List.of(clienteHttpResponse));
 
         MockHttpServletResponse response =
                 mvc.perform(

@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name = "Clientes")
@@ -53,15 +52,8 @@ public class ClienteController {
     @GetMapping
     public ResponseEntity<List<ClienteHttp>> buscarTodos() {
         List<Cliente> listaClientes = clienteBuscarTodosUseCase.buscarTodos();
-        List<ClienteHttp> listaClientesHttp = new ArrayList<>();
-
-        listaClientes.forEach(result -> {
-            ClienteHttp clienteHttp = clienteHttpMapper.entityToHttp(result);
-            listaClientesHttp.add(clienteHttp);
-        });
-
         log.info("Lista de cliente preenchida com sucesso");
-        return ResponseEntity.status(HttpStatus.OK).body(listaClientesHttp);
+        return ResponseEntity.status(HttpStatus.OK).body(clienteHttpMapper.entityListToHttpList(listaClientes));
     }
 
     @Operation(summary = "Buscar um cliente cadastrado por código")

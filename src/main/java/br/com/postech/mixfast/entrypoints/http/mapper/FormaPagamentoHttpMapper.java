@@ -4,15 +4,20 @@ import br.com.postech.mixfast.core.entity.FormaPagamento;
 import br.com.postech.mixfast.entrypoints.http.FormaPagamentoHttp;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 @Mapper(componentModel="spring")
 public interface FormaPagamentoHttpMapper {
 
-    @Mapping(target = "codigo", source = "codigo")
-    @Mapping(target = "descricao", source = "descricao")
+    ClienteHttpMapper INSTANCE = Mappers.getMapper( ClienteHttpMapper.class );
+
     FormaPagamentoHttp entityToHttp(FormaPagamento formaPagamento);
 
     @Mapping(target = "codigo", ignore = true)
-    @Mapping(target = "descricao", source = "descricao")
     FormaPagamento httpToEntity(FormaPagamentoHttp formaPagamentoHttp);
+
+    List<FormaPagamentoHttp> entityListToHttpList(List<FormaPagamento> formaPagamentoList);
+    List<FormaPagamento> httpListToEntityList(List<FormaPagamentoHttp> formaPagamentoHttpList);
 }

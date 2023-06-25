@@ -131,11 +131,11 @@ class ProdutoControllerTest {
     @SneakyThrows
     @Test
     void buscarTodas() {
-        when(produtoHttpMapper.entityToHttp(any(Produto.class)))
-                .thenReturn(produtoHttpResponse);
-
         when(produtoBuscarTodosUseCase.buscarTodos())
                 .thenReturn(List.of(produtoResponse));
+
+        when(produtoHttpMapper.entityListToHttpList(anyList()))
+                .thenReturn(List.of(produtoHttpResponse));
 
         MockHttpServletResponse response =
                 mvc.perform(
@@ -203,11 +203,11 @@ class ProdutoControllerTest {
     @SneakyThrows
     @Test
     void buscarPorCategoria() {
-        when(produtoHttpMapper.entityToHttp(any(Produto.class)))
-                .thenReturn(produtoHttpResponse);
-
         when(produtoBuscarPorCategoriaUseCase.buscarPorCategoria(anyString()))
                 .thenReturn(List.of(produtoResponse));
+
+        when(produtoHttpMapper.entityListToHttpList(anyList()))
+                .thenReturn(List.of(produtoHttpResponse));
 
         MockHttpServletResponse response =
                 mvc.perform(

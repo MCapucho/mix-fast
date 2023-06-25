@@ -106,11 +106,11 @@ class CategoriaControllerTest {
     @SneakyThrows
     @Test
     void buscarTodas() {
-        when(categoriaHttpMapper.entityToHttp(any(Categoria.class)))
-                .thenReturn(categoriaHttpResponse);
-
         when(categoriaBuscarTodasUseCase.buscarTodas())
                 .thenReturn(List.of(categoriaResponse));
+
+        when(categoriaHttpMapper.entityListToHttpList(anyList()))
+                .thenReturn(List.of(categoriaHttpResponse));
 
         MockHttpServletResponse response =
                 mvc.perform(

@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name = "Produtos")
@@ -53,15 +52,8 @@ public class ProdutoController {
     @GetMapping
     public ResponseEntity<List<ProdutoHttp>> buscarTodos() {
         List<Produto> listaProdutos = produtoBuscarTodosUseCase.buscarTodos();
-        List<ProdutoHttp> listaProdutosHttp = new ArrayList<>();
-
-        listaProdutos.forEach(result -> {
-            ProdutoHttp produtoHttp = produtoHttpMapper.entityToHttp(result);
-            listaProdutosHttp.add(produtoHttp);
-        });
-
         log.info("Lista de produtos preenchida com sucesso");
-        return ResponseEntity.status(HttpStatus.OK).body(listaProdutosHttp);
+        return ResponseEntity.status(HttpStatus.OK).body(produtoHttpMapper.entityListToHttpList(listaProdutos));
     }
 
     @Operation(summary = "Buscar um produto cadastrado por código")
@@ -109,14 +101,7 @@ public class ProdutoController {
     @GetMapping("/categoria/{categoria_codigo}")
     public ResponseEntity<List<ProdutoHttp>> buscarPorCategoria(@PathVariable("categoria_codigo") String categoria) {
         List<Produto> listaProdutos = produtoBuscarPorCategoriaUseCase.buscarPorCategoria(categoria);
-        List<ProdutoHttp> listaProdutosHttp = new ArrayList<>();
-
-        listaProdutos.forEach(result -> {
-            ProdutoHttp produtoHttp = produtoHttpMapper.entityToHttp(result);
-            listaProdutosHttp.add(produtoHttp);
-        });
-
         log.info("Lista de produtos preenchida com sucesso");
-        return ResponseEntity.status(HttpStatus.OK).body(listaProdutosHttp);
+        return ResponseEntity.status(HttpStatus.OK).body(produtoHttpMapper.entityListToHttpList(listaProdutos));
     }
 }

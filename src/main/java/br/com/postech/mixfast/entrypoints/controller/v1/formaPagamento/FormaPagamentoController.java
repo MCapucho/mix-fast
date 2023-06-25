@@ -18,7 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name = "Formas de Pagamento")
@@ -61,15 +60,8 @@ public class FormaPagamentoController {
     @GetMapping
     public ResponseEntity<List<FormaPagamentoHttp>> buscarTodas() {
         List<FormaPagamento> listaFormaPagamento = formaPagamentoBuscarTodasUseCase.buscarTodas();
-        List<FormaPagamentoHttp> listaFormasPagamentoHttp = new ArrayList<>();
-
-        listaFormaPagamento.forEach(result -> {
-            FormaPagamentoHttp formaPagamentoHttp = formaPagamentoHttpMapper.entityToHttp(result);
-            listaFormasPagamentoHttp.add(formaPagamentoHttp);
-        });
-
         log.info("Lista de formas de pagamento preenchida com sucesso");
-        return ResponseEntity.status(HttpStatus.OK).body(listaFormasPagamentoHttp);
+        return ResponseEntity.status(HttpStatus.OK).body(formaPagamentoHttpMapper.entityListToHttpList(listaFormaPagamento));
     }
 
     @Operation(summary = "Buscar uma forma de pagamento cadastrada por código")
