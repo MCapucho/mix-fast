@@ -5,12 +5,9 @@ import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoAtualizarStat
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarPorCodigoUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarTodosUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoEmitirUseCase;
+import br.com.postech.mixfast.entrypoints.docs.PedidoDocumentable;
 import br.com.postech.mixfast.entrypoints.http.PedidoHttp;
 import br.com.postech.mixfast.entrypoints.http.mapper.PedidoHttpMapper;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -24,12 +21,11 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@Tag(name = "Pedidos")
 @RequiredArgsConstructor
 @Log4j2
 @RestController
 @RequestMapping(value = "/v1/pedidos")
-public class PedidoController {
+public class PedidoController implements PedidoDocumentable {
 
     private final PedidoHttpMapper pedidoHttpMapper;
     private final PedidoEmitirUseCase pedidoEmitirUseCase;
@@ -37,11 +33,6 @@ public class PedidoController {
     private final PedidoBuscarPorCodigoUseCase pedidoBuscarPorCodigoUseCase;
     private final PedidoAtualizarStatusUseCase pedidoAtualizarStatusUseCase;
 
-    @Operation(summary = "Emitir um novo pedido")
-    @ApiResponses(value = {
-                @ApiResponse(responseCode = "201", description = "Pedido emitido com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Erro ao emitir o pedido informado"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @PostMapping
     public ResponseEntity<PedidoHttp> emitir(@Valid @RequestBody PedidoHttp pedidoHttp) {
         Pedido pedido = pedidoEmitirUseCase.emitir(pedidoHttpMapper.httpToEntity(pedidoHttp));
@@ -60,11 +51,6 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoHttpEmitido);
     }
 
-    @Operation(summary = "Buscar todos pedidos emitidos")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Lista de pedidos preenchida com sucesso"),
-            @ApiResponse(responseCode = "204", description = "Lista de produtos em branco"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @GetMapping
     public ResponseEntity<List<PedidoHttp>> buscarTodos() {
         List<Pedido> listaPedidos = pedidoBuscarTodosUseCase.buscarTodos();
@@ -79,11 +65,6 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.OK).body(listaPedidosHttp);
     }
 
-    @Operation(summary = "Buscar um pedido emitido por código")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Pedido encontrado com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Pedido não encontrado com o código informado"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @GetMapping("/{codigo}")
     public ResponseEntity<PedidoHttp> buscarPorCodigo(@PathVariable("codigo") String codigo) {
         Pedido pedido = pedidoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
@@ -91,12 +72,6 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.OK).body(pedidoHttpMapper.entityToHttp(pedido));
     }
 
-    @Operation(summary = "Atualizar status do pedido em preparação por código")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Pedido atualizado em preparamento com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Status do pedido não pode ser alterado"),
-            @ApiResponse(responseCode = "404", description = "Pedido não encontrado com o código informado"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @PutMapping("/{codigo}/preparamento")
     public ResponseEntity<Void> preparar(@PathVariable("codigo") String codigo) {
         pedidoAtualizarStatusUseCase.preparar(codigo);
@@ -104,12 +79,6 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @Operation(summary = "Atualizar status do pedido para entregue por código")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Pedido atualizado para entregue com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Status do pedido não pode ser alterado"),
-            @ApiResponse(responseCode = "404", description = "Pedido não encontrado com o código informado"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @PutMapping("/{codigo}/entrega")
     public ResponseEntity<Void> entregar(@PathVariable("codigo") String codigo) {
         pedidoAtualizarStatusUseCase.entregar(codigo);
@@ -117,12 +86,6 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @Operation(summary = "Atualizar status do pedido para finalizado por código")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Pedido atualizado para finalizado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Status do pedido não pode ser alterado"),
-            @ApiResponse(responseCode = "404", description = "Pedido não encontrado com o código informado"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @PutMapping("/{codigo}/finalizado")
     public ResponseEntity<Void> finalizar(@PathVariable("codigo") String codigo) {
         pedidoAtualizarStatusUseCase.finalizar(codigo);
@@ -130,12 +93,6 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @Operation(summary = "Atualizar status do pedido para cancelado por código")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Pedido atualizado para cancelado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Status do pedido não pode ser alterado"),
-            @ApiResponse(responseCode = "404", description = "Pedido não encontrado com o código informado"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @PutMapping("/{codigo}/cancelamento")
     public ResponseEntity<Void> cancelar(@PathVariable("codigo") String codigo) {
         pedidoAtualizarStatusUseCase.cancelar(codigo);
