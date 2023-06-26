@@ -1,7 +1,7 @@
 package br.com.postech.mixfast.entrypoints.docs;
 
 import br.com.postech.mixfast.entrypoints.handler.ErrorResponse;
-import br.com.postech.mixfast.entrypoints.http.CategoriaHttp;
+import br.com.postech.mixfast.entrypoints.http.FormaPagamentoHttp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -14,74 +14,74 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-@Tag(name = "Categorias")
-public interface CategoriaDocumentable {
+@Tag(name = "Formas de Pagamento")
+public interface FormaPagamentoDocumentable {
 
-    @Operation(summary = "Cadastrar uma nova categoria")
+    @Operation(summary = "Cadastrar uma nova forma de pagamento")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Categoria cadastrada com sucesso",
-                    content = { @Content(schema = @Schema(implementation = CategoriaHttp.class),
+            @ApiResponse(responseCode = "201", description = "Forma de Pagamento cadastrada com sucesso",
+                    content = { @Content(schema = @Schema(implementation = FormaPagamentoHttp.class),
                             mediaType = "application/json") }),
-            @ApiResponse(responseCode = "400", description = "Erro ao cadastrar uma nova categoria com os dados informados",
+            @ApiResponse(responseCode = "400", description = "Erro ao cadastrar uma nova forma de pagamento com os dados informados",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") }),
             @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") })})
-    ResponseEntity<CategoriaHttp> cadastrar(@Parameter CategoriaHttp categoriaHttp);
+    ResponseEntity<FormaPagamentoHttp> cadastrar(@Parameter FormaPagamentoHttp formaPagamentoHttp);
 
-    @Operation(summary = "Buscar todas categorias cadastradas")
+    @Operation(summary = "Buscar todas formas de pagamento cadastradas")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Lista de categorias preenchida com sucesso",
-                    content = { @Content(array = @ArraySchema(schema = @Schema(implementation = CategoriaHttp.class)),
+            @ApiResponse(responseCode = "200", description = "Lista de formas de pagamento preenchida com sucesso",
+                    content = { @Content(array = @ArraySchema(schema = @Schema(implementation = FormaPagamentoHttp.class)),
                             mediaType = "application/json") }),
-            @ApiResponse(responseCode = "204", description = "Lista de categorias em branco",
+            @ApiResponse(responseCode = "204", description = "Lista de formas de pagamento em branco",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") }),
             @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") })})
-    ResponseEntity<List<CategoriaHttp>> buscarTodas();
+    ResponseEntity<List<FormaPagamentoHttp>> buscarTodas();
 
-    @Operation(summary = "Buscar uma categoria cadastrada por código")
+    @Operation(summary = "Buscar uma forma de pagamento cadastrada por código")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Categoria encontrada com sucesso",
-                    content = { @Content(schema = @Schema(implementation = CategoriaHttp.class),
+            @ApiResponse(responseCode = "200", description = "Forma de Pagamento encontrada com sucesso",
+                    content = { @Content(schema = @Schema(implementation = FormaPagamentoHttp.class),
                             mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "Categoria não encontrada com o código informado",
+            @ApiResponse(responseCode = "404", description = "Forma de Pagamento não encontrada com o código informado",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") }),
             @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") })})
-    ResponseEntity<CategoriaHttp> buscarPorCodigo(@Parameter(name = "codigo", description = "Código da Categoria",
+    ResponseEntity<FormaPagamentoHttp> buscarPorCodigo(@Parameter(name = "codigo", description = "Código da Forma de Pagamento",
             example = "77b36beb-68cd-4939-9911-fe92a79cff99") String codigo);
 
-    @Operation(summary = "Atualizar uma categoria cadastrada por código")
+    @Operation(summary = "Atualizar uma forma de pagamento cadastrada por código")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Categoria atualizada com sucesso",
-                    content = { @Content(schema = @Schema(implementation = CategoriaHttp.class),
+            @ApiResponse(responseCode = "200", description = "Forma de Pagamento atualizada com sucesso",
+                    content = { @Content(schema = @Schema(implementation = FormaPagamentoHttp.class),
                             mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "Categoria não encontrada com o código informado",
+            @ApiResponse(responseCode = "404", description = "Forma de Pagamento não encontrada com o código informado",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") }),
             @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") })})
-    ResponseEntity<CategoriaHttp> atualizar(@Parameter(name = "codigo", description = "Código da Categoria",
-            example = "77b36beb-68cd-4939-9911-fe92a79cff99") String codigo, @Parameter CategoriaHttp categoriaHttp);
+    ResponseEntity<FormaPagamentoHttp> atualizar(@Parameter(name = "codigo", description = "Código da Forma de Pagamento",
+            example = "77b36beb-68cd-4939-9911-fe92a79cff99") String codigo, @Parameter FormaPagamentoHttp formaPagamentoHttp);
 
-    @Operation(summary = "Deletar uma categoria cadastrada por código")
+    @Operation(summary = "Deletar uma forma de pagamento cadastrada por código")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Categoria deletada com sucesso",
+            @ApiResponse(responseCode = "204", description = "Forma de Pagamento deletada com sucesso",
                     content = { @Content(schema = @Schema(),
                             mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", description = "Categoria não encontrada com o código informado",
+            @ApiResponse(responseCode = "404", description = "Forma de Pagamento não encontrada com o código informado",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") }),
             @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") })})
-    ResponseEntity<Void> deletarPorCodigo(@Parameter(name = "codigo", description = "Código da Categoria",
+    ResponseEntity<Void> deletarPorCodigo(@Parameter(name = "codigo", description = "Código da Forma de Pagamento",
             example = "77b36beb-68cd-4939-9911-fe92a79cff99") String codigo);
 }

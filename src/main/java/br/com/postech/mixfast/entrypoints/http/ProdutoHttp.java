@@ -2,6 +2,7 @@ package br.com.postech.mixfast.entrypoints.http;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class ProdutoHttp {
 
     private String descricao;
 
+    @PositiveOrZero(message = "O preço não pode ser do valor negativo")
     private BigDecimal preco;
 
     private CategoriaHttp categoria;
