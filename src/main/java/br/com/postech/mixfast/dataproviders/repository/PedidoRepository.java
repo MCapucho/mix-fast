@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,4 +20,6 @@ public interface PedidoRepository extends JpaRepository<PedidoDB, String> {
     @Modifying
     @Query("update PedidoDB p set p.status = ?1 where p.codigo = ?2")
     void atualizarStatus(String status, String codigo);
+
+    List<PedidoDB> findByStatus(String status);
 }

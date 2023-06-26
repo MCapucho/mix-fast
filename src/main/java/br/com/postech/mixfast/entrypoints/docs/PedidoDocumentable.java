@@ -70,4 +70,7 @@ public interface PedidoDocumentable {
             @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     ResponseEntity<Void> cancelar(@Parameter(name = "codigo", description = "Código do Pedido",
             example = "77b36beb-68cd-4939-9911-fe92a79cff99") String codigo);
+
+    @Operation(summary = "Buscar todos pedidos emitidos por status")
+    ResponseEntity<List<PedidoHttp>> buscarPorStatus(@Parameter(name = "status") String status);
 }

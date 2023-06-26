@@ -1,10 +1,7 @@
 package br.com.postech.mixfast.entrypoints.controller.v1.pedido;
 
 import br.com.postech.mixfast.core.entity.Pedido;
-import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoAtualizarStatusUseCase;
-import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarPorCodigoUseCase;
-import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarTodosUseCase;
-import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoEmitirUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.pedido.*;
 import br.com.postech.mixfast.entrypoints.docs.PedidoDocumentable;
 import br.com.postech.mixfast.entrypoints.http.PedidoHttp;
 import br.com.postech.mixfast.entrypoints.http.mapper.PedidoHttpMapper;
@@ -32,6 +29,7 @@ public class PedidoController implements PedidoDocumentable {
     private final PedidoBuscarTodosUseCase pedidoBuscarTodosUseCase;
     private final PedidoBuscarPorCodigoUseCase pedidoBuscarPorCodigoUseCase;
     private final PedidoAtualizarStatusUseCase pedidoAtualizarStatusUseCase;
+    private final PedidoBuscarPorStatusUseCase pedidoBuscarPorStatusUseCase;
 
     @PostMapping
     public ResponseEntity<PedidoHttp> emitir(@Valid @RequestBody PedidoHttp pedidoHttp) {
@@ -70,6 +68,20 @@ public class PedidoController implements PedidoDocumentable {
         Pedido pedido = pedidoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
         log.info("Pedido encontrado com sucesso");
         return ResponseEntity.status(HttpStatus.OK).body(pedidoHttpMapper.entityToHttp(pedido));
+    }
+
+    @GetMapping("/status")
+    public ResponseEntity<List<PedidoHttp>> buscarPorStatus(@RequestParam("status") String status) {
+        List<Pedido> listaPedidos = pedidoBuscarPorStatusUseCase.buscarPorStatus(status);
+        List<PedidoHttp> listaPedidosHttp = new ArrayList<>();
+
+        listaPedidos.forEach(result -> {
+            PedidoHttp pedidoHttp = pedidoHttpMapper.entityToHttp(result);
+            listaPedidosHttp.add(pedidoHttp);
+        });
+
+        log.info("Lista de pedidos preenchida com sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body(listaPedidosHttp);
     }
 
     @PutMapping("/{codigo}/preparamento")

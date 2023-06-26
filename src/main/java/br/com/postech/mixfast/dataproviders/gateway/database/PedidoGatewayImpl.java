@@ -88,6 +88,25 @@ public class PedidoGatewayImpl implements PedidoGateway {
         }
     }
 
+    @Transactional
+    @Override
+    public List<Pedido> buscarPorStatus(String status) {
+        try {
+            List<PedidoDB> listaPedidosDB = pedidoRepository.findByStatus(status);
+            List<Pedido> listaPedidos = new ArrayList<>();
+
+            listaPedidosDB.forEach(result -> {
+                Pedido pedido = pedidoDBMapper.dbToEntity(result);
+                listaPedidos.add(pedido);
+            });
+
+            return listaPedidos;
+        } catch (Exception e) {
+            log.error(String.format("Erro ao buscar os pedidosc por status %s", status), e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
+
     private void validarItens(PedidoDB pedidoDB) {
         pedidoDB.getItens().forEach(element -> {
             ProdutoDB produtoDB = produtoRepository.findById(element.getProduto().getCodigo())
