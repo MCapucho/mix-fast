@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
+							"raw": "{\n    \"nome\": \"Acompanhamentos\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -676,6 +676,54 @@
 							"path": [
 								"v1",
 								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - Buscar Por Código",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/v1/pedidos/c000f17a-dc83-4d9f-93d7-195c04d10f89",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"pedidos",
+								"c000f17a-dc83-4d9f-93d7-195c04d10f89"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - Buscar Por Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9080/v1/pedidos/status?status=recebido",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"v1",
+								"pedidos",
+								"status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "recebido"
+								}
 							]
 						}
 					},
