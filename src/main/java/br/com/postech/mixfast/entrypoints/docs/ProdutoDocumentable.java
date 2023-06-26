@@ -86,7 +86,7 @@ public interface ProdutoDocumentable {
     ResponseEntity<Void> deletarPorCodigo(@Parameter(name = "codigo", description = "Código do Produto",
             example = "77b36beb-68cd-4939-9911-fe92a79cff99") String codigo);
 
-    @Operation(summary = "Buscar todos produtos por categoria cadastrados")
+    @Operation(summary = "Buscar todos produtos cadastrados por categoria")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Lista de produtos por categoria preenchida com sucesso",
                     content = { @Content(array = @ArraySchema(schema = @Schema(implementation = ProdutoHttp.class)),
