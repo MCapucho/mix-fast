@@ -2,12 +2,9 @@ package br.com.postech.mixfast.entrypoints.controller.v1.produto;
 
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.usecase.interfaces.produto.*;
+import br.com.postech.mixfast.entrypoints.docs.ProdutoDocumentable;
 import br.com.postech.mixfast.entrypoints.http.ProdutoHttp;
 import br.com.postech.mixfast.entrypoints.http.mapper.ProdutoHttpMapper;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,12 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "Produtos")
 @RequiredArgsConstructor
 @Log4j2
 @RestController
 @RequestMapping(value = "/v1/produtos")
-public class ProdutoController {
+public class ProdutoController implements ProdutoDocumentable {
 
     private final ProdutoHttpMapper produtoHttpMapper;
     private final ProdutoCadastrarUseCase produtoCadastrarUseCase;
@@ -32,11 +28,6 @@ public class ProdutoController {
     private final ProdutoDeletarPorCodigoUseCase produtoDeletarPorCodigoUseCase;
     private final ProdutoBuscarPorCategoriaUseCase produtoBuscarPorCategoriaUseCase;
 
-    @Operation(summary = "Cadastrar um novo produto")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Produto cadastrado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Erro ao cadastrar um novo produto com os dados informados"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @PostMapping
     public ResponseEntity<ProdutoHttp> cadastrar(@Valid @RequestBody ProdutoHttp produtoHttp) {
         Produto produto = produtoCadastrarUseCase.cadastrar(produtoHttpMapper.httpToEntity(produtoHttp));
@@ -44,11 +35,6 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoHttpMapper.entityToHttp(produto));
     }
 
-    @Operation(summary = "Buscar todos produtos cadastrados")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Lista de produtos preenchida com sucesso"),
-            @ApiResponse(responseCode = "204", description = "Lista de produtos em branco"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @GetMapping
     public ResponseEntity<List<ProdutoHttp>> buscarTodos() {
         List<Produto> listaProdutos = produtoBuscarTodosUseCase.buscarTodos();
@@ -56,11 +42,6 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.OK).body(produtoHttpMapper.entityListToHttpList(listaProdutos));
     }
 
-    @Operation(summary = "Buscar um produto cadastrado por código")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Produto encontrado com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Produto não encontrado com o código informado"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @GetMapping("/{codigo}")
     public ResponseEntity<ProdutoHttp> buscarPorCodigo(@PathVariable("codigo") String codigo) {
         Produto produto = produtoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
@@ -68,11 +49,6 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.OK).body(produtoHttpMapper.entityToHttp(produto));
     }
 
-    @Operation(summary = "Atualizar um produto cadastrado por código")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Produto não encontrado com o código informado"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @PutMapping("/{codigo}")
     public ResponseEntity<ProdutoHttp> atualizar(@PathVariable("codigo") String codigo,
                                                  @Valid @RequestBody ProdutoHttp produtoHttp) {
@@ -81,11 +57,6 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.OK).body(produtoHttpMapper.entityToHttp(produto));
     }
 
-    @Operation(summary = "Deletar um produto cadastrado por código")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Produto deletado com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Produto não encontrado com o código informado"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     @DeleteMapping("/{codigo}")
     public ResponseEntity<Void> deletarPorCodigo(@PathVariable("codigo") String codigo) {
         produtoDeletarPorCodigoUseCase.deletarPorCodigo(codigo);
@@ -93,13 +64,8 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @Operation(summary = "Buscar todos produtos por categoria cadastrados")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Lista de produtos por categoria preenchida com sucesso"),
-            @ApiResponse(responseCode = "204", description = "Lista de produtos por categoria em branco"),
-            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
-    @GetMapping("/categoria/{categoria_codigo}")
-    public ResponseEntity<List<ProdutoHttp>> buscarPorCategoria(@PathVariable("categoria_codigo") String categoria) {
+    @GetMapping("/categoria/{categoriaCodigo}")
+    public ResponseEntity<List<ProdutoHttp>> buscarPorCategoria(@PathVariable("categoriaCodigo") String categoria) {
         List<Produto> listaProdutos = produtoBuscarPorCategoriaUseCase.buscarPorCategoria(categoria);
         log.info("Lista de produtos preenchida com sucesso");
         return ResponseEntity.status(HttpStatus.OK).body(produtoHttpMapper.entityListToHttpList(listaProdutos));
