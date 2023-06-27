@@ -1,5 +1,6 @@
 package br.com.postech.mixfast.core.usecase.impl.produto;
 
+import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaBuscarPorCodigoUseCase;
@@ -18,15 +19,22 @@ public class ProdutoAtualizarUseCaseImpl implements ProdutoAtualizarUseCase {
 
     @Override
     public Produto atualizar(String codigo, Produto produto) {
-        categoriaBuscarPorCodigoUseCase.buscarPorCodigo(produto.getCategoria().getCodigo());
-
         Produto produtoEncontrado = produtoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
+
+        Categoria categoria = null;
+
+        if (produto.getCategoria() != null) {
+            categoria = categoriaBuscarPorCodigoUseCase.buscarPorCodigo(produto.getCategoria().getCodigo());
+        }
+
         produtoEncontrado.setNome(produto.getNome() != null ?
                 produto.getNome() : produtoEncontrado.getNome());
         produtoEncontrado.setDescricao(produto.getDescricao() != null ?
                 produto.getDescricao() : produtoEncontrado.getDescricao());
         produtoEncontrado.setPreco(produto.getPreco() != null ?
                 produto.getPreco() : produtoEncontrado.getPreco());
+        produtoEncontrado.setCategoria(produto.getCategoria() != null ?
+                categoria : produtoEncontrado.getCategoria());
 
         return produtoGateway.cadastrarOuAtualizar(produtoEncontrado);
     }

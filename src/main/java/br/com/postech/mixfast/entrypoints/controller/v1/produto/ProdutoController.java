@@ -4,12 +4,14 @@ import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.usecase.interfaces.produto.*;
 import br.com.postech.mixfast.entrypoints.docs.ProdutoDocumentable;
 import br.com.postech.mixfast.entrypoints.http.ProdutoHttp;
+import br.com.postech.mixfast.entrypoints.http.interfaces.PostValidation;
 import br.com.postech.mixfast.entrypoints.http.mapper.ProdutoHttpMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class ProdutoController implements ProdutoDocumentable {
     private final ProdutoBuscarPorCategoriaUseCase produtoBuscarPorCategoriaUseCase;
 
     @PostMapping
-    public ResponseEntity<ProdutoHttp> cadastrar(@Valid @RequestBody ProdutoHttp produtoHttp) {
+    public ResponseEntity<ProdutoHttp> cadastrar(@Validated(PostValidation.class) @RequestBody ProdutoHttp produtoHttp) {
         Produto produto = produtoCadastrarUseCase.cadastrar(produtoHttpMapper.httpToEntity(produtoHttp));
         log.info("Produto cadastrado com sucesso");
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoHttpMapper.entityToHttp(produto));
@@ -51,7 +53,7 @@ public class ProdutoController implements ProdutoDocumentable {
 
     @PutMapping("/{codigo}")
     public ResponseEntity<ProdutoHttp> atualizar(@PathVariable("codigo") String codigo,
-                                                 @Valid @RequestBody ProdutoHttp produtoHttp) {
+                                                 @Validated(PutMapping.class) @RequestBody ProdutoHttp produtoHttp) {
         Produto produto = produtoAtualizarUseCase.atualizar(codigo, produtoHttpMapper.httpToEntity(produtoHttp));
         log.info("Produto atualizado com sucesso");
         return ResponseEntity.status(HttpStatus.OK).body(produtoHttpMapper.entityToHttp(produto));
