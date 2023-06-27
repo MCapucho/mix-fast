@@ -18,27 +18,6 @@ services:
     networks:
       - fiap
 
-  sonarqube:
-    image: sonarqube:latest
-    hostname: sonarqube
-    ports:
-      - '9000:9000'
-    expose:
-      - '9000'
-    networks:
-      - fiap
-    environment:
-      - sonar.jdbc.url=jdbc:mysql://{mysql}:3306/sonar
-      - sonar.jdbc.username=mixfast
-      - sonar.jdbc.password=q1w2e3r4
-    volumes:
-      - sonarqube_conf:/opt/sonarqube/conf
-      - sonarqube_data:/opt/sonarqube/data
-      - sonarqube_extensions:/opt/sonarqube/extensions
-      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
-    depends_on:
-      - mysql
-
   mixfast:
     image: mcapucho/mixfast:1.0.0
     hostname: app-mixfast
@@ -59,10 +38,6 @@ services:
 
 volumes:
   my-db:
-  sonarqube_conf:
-  sonarqube_data:
-  sonarqube_extensions:
-  sonarqube_bundled-plugins:
 
 networks:
   fiap:
