@@ -20,7 +20,6 @@ import br.com.postech.mixfast.core.exception.produto.ProdutoListEmptyException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoNotFoundException;
 import br.com.postech.mixfast.dataproviders.exception.ResourceApiException;
 import br.com.postech.mixfast.dataproviders.exception.ResourceFailedException;
-import feign.RetryableException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -136,11 +135,6 @@ public class RestExceptionHandler {
     @ExceptionHandler(ResourceFailedException.class)
     public ResponseEntity<ErrorResponse> handleFailed(ResourceFailedException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(RetryableException.class)
-    public ResponseEntity<ErrorResponse> handleClient(RetryableException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
