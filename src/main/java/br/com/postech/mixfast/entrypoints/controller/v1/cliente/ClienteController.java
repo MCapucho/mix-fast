@@ -4,12 +4,14 @@ import br.com.postech.mixfast.core.entity.Cliente;
 import br.com.postech.mixfast.core.usecase.interfaces.cliente.*;
 import br.com.postech.mixfast.entrypoints.docs.ClienteDocumentable;
 import br.com.postech.mixfast.entrypoints.http.ClienteHttp;
+import br.com.postech.mixfast.entrypoints.http.interfaces.PostValidation;
+import br.com.postech.mixfast.entrypoints.http.interfaces.PutValidation;
 import br.com.postech.mixfast.entrypoints.http.mapper.ClienteHttpMapper;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class ClienteController implements ClienteDocumentable {
     private final ClienteBuscarPorCpfUseCase clienteBuscarPorCpfUseCase;
 
     @PostMapping
-    public ResponseEntity<ClienteHttp> cadastrar(@Valid @RequestBody ClienteHttp clienteHttp) {
+    public ResponseEntity<ClienteHttp> cadastrar(@Validated(PostValidation.class) @RequestBody ClienteHttp clienteHttp) {
         Cliente cliente = clienteCadastrarUseCase.cadastrar(clienteHttpMapper.httpToEntity(clienteHttp));
         log.info("Cliente cadastrado com sucesso");
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteHttpMapper.entityToHttp(cliente));
@@ -51,7 +53,7 @@ public class ClienteController implements ClienteDocumentable {
 
     @PutMapping("/{codigo}")
     public ResponseEntity<ClienteHttp> atualizar(@PathVariable("codigo") String codigo,
-                                                 @Valid @RequestBody ClienteHttp clienteHttp) {
+                                                 @Validated(PutValidation.class) @RequestBody ClienteHttp clienteHttp) {
         Cliente cliente = clienteAtualizarUseCase.atualizar(codigo, clienteHttpMapper.httpToEntity(clienteHttp));
         log.info("Cliente atualizado com sucesso");
         return ResponseEntity.status(HttpStatus.OK).body(clienteHttpMapper.entityToHttp(cliente));

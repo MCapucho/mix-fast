@@ -6,7 +6,6 @@ import br.com.postech.mixfast.entrypoints.docs.ProdutoDocumentable;
 import br.com.postech.mixfast.entrypoints.http.ProdutoHttp;
 import br.com.postech.mixfast.entrypoints.http.interfaces.PostValidation;
 import br.com.postech.mixfast.entrypoints.http.mapper.ProdutoHttpMapper;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
