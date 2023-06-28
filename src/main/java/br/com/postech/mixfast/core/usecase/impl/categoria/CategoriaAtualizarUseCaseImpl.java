@@ -1,6 +1,7 @@
 package br.com.postech.mixfast.core.usecase.impl.categoria;
 
 import br.com.postech.mixfast.core.entity.Categoria;
+import br.com.postech.mixfast.core.exception.categoria.CategoriaDuplicatedException;
 import br.com.postech.mixfast.core.gateway.CategoriaGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaAtualizarUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaBuscarPorCodigoUseCase;
@@ -17,6 +18,10 @@ public class CategoriaAtualizarUseCaseImpl implements CategoriaAtualizarUseCase 
     @Override
     public Categoria atualizar(String codigo, Categoria categoria) {
         Categoria categoriaEncontrada = categoriaBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
+
+        if (categoriaGateway.encontrarPorNome(categoria.getNome())) {
+            throw new CategoriaDuplicatedException("Categoria informada já cadastrada");
+        }
 
         categoriaEncontrada.setNome(categoria.getNome() != null ? categoria.getNome() : categoriaEncontrada.getNome());
 
