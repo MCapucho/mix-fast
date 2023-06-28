@@ -16,6 +16,7 @@ import br.com.postech.mixfast.core.exception.pedido.PedidoListEmptyException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoNotFoundException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoStatusException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoBadRequestException;
+import br.com.postech.mixfast.core.exception.produto.ProdutoDuplicatedException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoListEmptyException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoNotFoundException;
 import br.com.postech.mixfast.dataproviders.exception.ResourceApiException;
@@ -43,7 +44,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(CategoriaDuplicatedException.class)
-    public ResponseEntity<ErrorResponse> handleDuplicatec(CategoriaDuplicatedException ex) {
+    public ResponseEntity<ErrorResponse> handleDuplicated(CategoriaDuplicatedException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
@@ -114,6 +115,11 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(ProdutoBadRequestException.class)
     public ResponseEntity<ErrorResponse> handleBadRequest(ProdutoBadRequestException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ProdutoDuplicatedException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicated(ProdutoDuplicatedException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
