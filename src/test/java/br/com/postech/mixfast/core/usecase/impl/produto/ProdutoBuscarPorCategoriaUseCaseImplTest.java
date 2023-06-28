@@ -4,6 +4,7 @@ import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.exception.produto.ProdutoListEmptyException;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;
+import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,8 @@ class ProdutoBuscarPorCategoriaUseCaseImplTest {
     private ProdutoBuscarPorCategoriaUseCaseImpl produtoBuscarPorCategoriaUseCaseImpl;
     @Mock
     private ProdutoGateway produtoGateway;
+    @Mock
+    private CategoriaBuscarPorCodigoUseCase categoriaBuscarPorCodigoUseCase;
 
     private Produto produtoRequest;
     private Produto produtoResponse;
@@ -56,6 +59,9 @@ class ProdutoBuscarPorCategoriaUseCaseImplTest {
 
     @Test
     void deveBuscarPorCategoriaProdutoComSucesso() {
+        when(categoriaBuscarPorCodigoUseCase.buscarPorCodigo(anyString()))
+                .thenReturn(new Categoria());
+
         when(produtoGateway.buscarPorCategoria(anyString()))
                 .thenReturn(List.of(produtoResponse));
 
