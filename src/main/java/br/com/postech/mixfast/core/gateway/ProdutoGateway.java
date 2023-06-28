@@ -11,4 +11,5 @@ public interface ProdutoGateway {
     Produto buscarPorCodigo(String codigo);
     void deletarPorCodigo(String codigo);
     List<Produto> buscarPorCategoria(String categoria);
+    Boolean encontrarPorNome(String nome);
 }

@@ -84,4 +84,14 @@ public class ProdutoGatewayImpl implements ProdutoGateway {
             throw new ResourceFailedException(BANCO_DE_DADOS);
         }
     }
+
+    @Override
+    public Boolean encontrarPorNome(String nome) {
+        try {
+            return produtoRepository.existsByNome(nome);
+        } catch (Exception e) {
+            log.error("Erro ao encontrar um produto por nome", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
 }

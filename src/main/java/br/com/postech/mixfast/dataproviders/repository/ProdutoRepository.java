@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProdutoRepository extends JpaRepository<ProdutoDB, String> {
 
     List<ProdutoDB> findByCategoriaCodigo(String categoria);
+    Boolean existsByNome(String nome);
 }

@@ -2,6 +2,7 @@ package br.com.postech.mixfast.core.usecase.impl.produto;
 
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.entity.Produto;
+import br.com.postech.mixfast.core.exception.produto.ProdutoDuplicatedException;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaBuscarPorCodigoUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.produto.ProdutoAtualizarUseCase;
@@ -20,6 +21,10 @@ public class ProdutoAtualizarUseCaseImpl implements ProdutoAtualizarUseCase {
     @Override
     public Produto atualizar(String codigo, Produto produto) {
         Produto produtoEncontrado = produtoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
+
+        if (produtoGateway.encontrarPorNome(produto.getNome())) {
+            throw new ProdutoDuplicatedException("Produto informado já cadastrado");
+        }
 
         Categoria categoria = null;
 
