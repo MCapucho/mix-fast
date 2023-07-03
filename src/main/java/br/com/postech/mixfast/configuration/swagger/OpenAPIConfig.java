@@ -23,9 +23,7 @@ public class OpenAPIConfig {
         devServer.setDescription("URL do servidor local");
 
         Contact contact = new Contact();
-        contact.setEmail("murylo_capucho@outlook.com");
-        contact.setName("Murylo Capucho Ribeiro");
-        contact.setUrl("https://www.linkedin.com/in/murylo-capucho-ribeiro-b185b6a3/");
+        contact.setName("Grupo 36 - FIAP");
 
         Info info = new Info()
                 .title("API Mix Fast")
