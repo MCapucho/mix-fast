@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Acompanhamentos\"\n}",
+							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -64,7 +64,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/v1/categorias/0b35a0db-d829-417c-9493-fa076f829967",
+							"raw": "http://localhost:9080/v1/categorias/081d1ae9-5be1-4b4e-a053-6211b7878ca0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -73,7 +73,7 @@
 							"path": [
 								"v1",
 								"categorias",
-								"0b35a0db-d829-417c-9493-fa076f829967"
+								"081d1ae9-5be1-4b4e-a053-6211b7878ca0"
 							]
 						}
 					},
@@ -86,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Lanches\"\n}",
+							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -94,7 +94,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9080/v1/categorias/0b35a0db-d829-417c-9493-fa076f829967",
+							"raw": "http://localhost:9080/v1/categorias/6dde1cca-c543-409f-84f7-d0ea8fea742e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -103,7 +103,7 @@
 							"path": [
 								"v1",
 								"categorias",
-								"0b35a0db-d829-417c-9493-fa076f829967"
+								"6dde1cca-c543-409f-84f7-d0ea8fea742e"
 							]
 						}
 					},
@@ -115,7 +115,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/v1/categorias/56917890-3815-423e-9771-8cc30444ca1f",
+							"raw": "http://localhost:9080/v1/categorias/8961d46c-bd81-4d0d-9185-4d0c5ba63c03",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -124,7 +124,7 @@
 							"path": [
 								"v1",
 								"categorias",
-								"56917890-3815-423e-9771-8cc30444ca1f"
+								"8961d46c-bd81-4d0d-9185-4d0c5ba63c03"
 							]
 						}
 					},
@@ -142,7 +142,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Refrigerante Sprite 350ml Original\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"cf644f94-5239-4b44-af14-d53b190ccecd\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"Refrigerante Coca Cola 350ml Zero\",\n    \"descricao\": \"\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"081d1ae9-5be1-4b4e-a053-6211b7878ca0\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -190,7 +190,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9080/v1/produtos/bba7f993-5a14-492c-b776-238c9c66987b",
+							"raw": "http://localhost:9080/v1/produtos/3d95fccd-d45a-4ded-9ca5-5dce77363ff5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -199,7 +199,7 @@
 							"path": [
 								"v1",
 								"produtos",
-								"bba7f993-5a14-492c-b776-238c9c66987b"
+								"3d95fccd-d45a-4ded-9ca5-5dce77363ff5"
 							]
 						}
 					},
@@ -212,7 +212,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"X-Bacon\",\n    \"descricao\": \"Pão, hamburguer, bacon, tomate, alface, presunto e queijo\",\n    \"preco\": 19.90,\n    \"categoria\": {\n        \"codigo\": \"2250fcbf-e5a2-4b30-8f31-2a5cad044177\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"X-Bacon\",\n    \"descricao\": \"Pão, hamburguer, frango, bacon, tomate, alface, presunto e queijo\",\n    \"preco\": 19.90,\n    \"categoria\": {\n        \"codigo\": \"2250fcbf-e5a2-4b30-8f31-2a5cad044177\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -220,7 +220,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9080/v1/produtos/bba7f993-5a14-492c-b776-238c9c66987b",
+							"raw": "http://localhost:9080/v1/produtos/3d95fccd-d45a-4ded-9ca5-5dce77363ff5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -229,7 +229,7 @@
 							"path": [
 								"v1",
 								"produtos",
-								"bba7f993-5a14-492c-b776-238c9c66987b"
+								"3d95fccd-d45a-4ded-9ca5-5dce77363ff5"
 							]
 						}
 					},
@@ -274,7 +274,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:9080/v1/produtos/categoria/08ec911b-66f4-402f-9b5e-8d1f0ee6a85a",
+							"raw": "http://localhost:9080/v1/produtos/categoria/081d1ae9-5be1-4b4e-a053-6211b7878ca0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -284,7 +284,7 @@
 								"v1",
 								"produtos",
 								"categoria",
-								"08ec911b-66f4-402f-9b5e-8d1f0ee6a85a"
+								"081d1ae9-5be1-4b4e-a053-6211b7878ca0"
 							]
 						}
 					},
