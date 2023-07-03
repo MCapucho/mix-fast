@@ -21,7 +21,6 @@ services:
   mixfast:
     image: mcapucho/mixfast:1.0.0
     hostname: app-mixfast
-    platform: linux/amd64
     environment:
       MYSQL_HOST: mysql
       MYSQL_PASSWORD: 'q1w2e3r4'
