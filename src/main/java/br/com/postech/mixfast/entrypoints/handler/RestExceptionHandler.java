@@ -148,6 +148,11 @@ public class RestExceptionHandler {
         return handleGeneric(getErrors(ex), null, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     private ResponseEntity<ErrorResponse> handleGeneric(List<String> errors, String error, HttpStatus httpStatus) {
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .dateTime(LocalDateTime.now().format(formatter))
