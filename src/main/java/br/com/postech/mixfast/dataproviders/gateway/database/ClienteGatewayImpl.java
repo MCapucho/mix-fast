@@ -27,6 +27,7 @@ public class ClienteGatewayImpl implements ClienteGateway {
     @Override
     public Cliente cadastrarOuAtualizar(Cliente cliente) {
         try {
+            cliente.setCpf(cliente.getCpf().replace("-", "").replace(".", ""));
             ClienteDB clienteDB = clienteRepository.save(clienteDBMapper.entityToDB(cliente));
             return clienteDBMapper.dbToEntity(clienteDB);
         } catch (Exception e) {
