@@ -2,7 +2,9 @@ package br.com.postech.mixfast.entrypoints.http;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,10 +25,12 @@ public class PedidoHttp extends RepresentationModel<PedidoHttp> {
 
     private ClienteHttp cliente;
 
+    @Valid
     @NotEmpty(message = "A lista de produto está vazia")
     private List<PedidoProdutoHttp> itens;
 
     @JsonProperty(value = "forma_pagamento")
+    @NotNull(message = "A forma de pagamento é obrigatório, não pode ser nulo ou vazio")
     private FormaPagamentoHttp formaPagamento;
 
     private Integer fila;

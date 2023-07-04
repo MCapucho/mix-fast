@@ -19,7 +19,7 @@ public class PedidoProdutoHttp {
     @NotBlank(message = "O produto é um campo obrigatório, não pode ser nulo ou vazio")
     private String produto;
 
-    @Min(1)
+    @Min(value = 1, message = "A quantidade mínima do produto é igual a 1")
     @NotNull
     private Integer quantidade;
 
