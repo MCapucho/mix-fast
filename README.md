@@ -49,13 +49,13 @@ Para ter acesso aos endpoints do sistema é possível utilizar o
 - http://localhost:9080/v1/pedidos
 
 #### 6) Pedido
-- http://localhost:9080/v1/pedidos/<codigo-do-pedido>/preparamento
-- http://localhost:9080/v1/pedidos/<codigo-do-pedido>/entrega
-- http://localhost:9080/v1/pedidos/<codigo-do-pedido>/finalizado
+- http://localhost:9080/v1/pedidos/{codigo-do-pedido}/preparamento
+- http://localhost:9080/v1/pedidos/{codigo-do-pedido}/entrega
+- http://localhost:9080/v1/pedidos/{codigo-do-pedido}/finalizado
 
 #### Opcional (Somente quando o status for *RECEBIDO*)
 * Cancelamento
-  - http://localhost:9080/v1/pedidos/<codigo-do-pedido>/cancelamento
+  - http://localhost:9080/v1/pedidos/{codigo-do-pedido}/cancelamento
 
 
 
