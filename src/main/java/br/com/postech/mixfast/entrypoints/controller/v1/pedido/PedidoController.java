@@ -76,6 +76,7 @@ public class PedidoController implements PedidoDocumentable {
 
         PedidoHttp pedidoHttp = PedidoHttp.builder()
                 .codigo(pedido.getCodigo())
+                .statusPagamento(pedido.getStatusPagamento().getDescricao())
                 .build();
 
         log.info("Pedido encontrado com sucesso para exibição de status de pagamento");

@@ -24,8 +24,8 @@ public class Pedido {
     private Integer fila;
     private BigDecimal valorTotal;
     private StatusPedido statusPedido = StatusPedido.RECEBIDO;
-    private String qrCode;
     private StatusPagamento statusPagamento = StatusPagamento.AGUARDANDO;
+    private String qrCode;
 
     public void preparar() {
         setStatusPedido(StatusPedido.PREPARANDO);
