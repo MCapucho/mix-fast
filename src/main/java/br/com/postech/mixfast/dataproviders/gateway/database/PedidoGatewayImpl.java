@@ -102,7 +102,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
             return listaPedidos;
         } catch (Exception e) {
-            log.error(String.format("Erro ao buscar os pedidosc por statusPedido %s", statusPedido), e);
+            log.error(String.format("Erro ao buscar os pedidos por status %s", statusPedido), e);
             throw new ResourceFailedException(BANCO_DE_DADOS);
         }
     }
