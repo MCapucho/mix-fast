@@ -1,0 +1,1 @@
+ALTER TABLE tb_pedidos RENAME COLUMN status TO status_pedido;

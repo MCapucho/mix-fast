@@ -70,9 +70,21 @@ public class PedidoController implements PedidoDocumentable {
         return ResponseEntity.status(HttpStatus.OK).body(pedidoHttpMapper.entityToHttp(pedido));
     }
 
+    @GetMapping("/{codigo}/pagamento")
+    public ResponseEntity<PedidoHttp> buscarPorCodigoStatusPagamento(@PathVariable("codigo") String codigo) {
+        Pedido pedido = pedidoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
+
+        PedidoHttp pedidoHttp = PedidoHttp.builder()
+                .codigo(pedido.getCodigo())
+                .build();
+
+        log.info("Pedido encontrado com sucesso para exibição de status de pagamento");
+        return ResponseEntity.status(HttpStatus.OK).body(pedidoHttp);
+    }
+
     @GetMapping("/status")
     public ResponseEntity<List<PedidoHttp>> buscarPorStatus(@RequestParam("status") String status) {
-        List<Pedido> listaPedidos = pedidoBuscarPorStatusUseCase.buscarPorStatus(status);
+        List<Pedido> listaPedidos = pedidoBuscarPorStatusUseCase.buscarPorStatusPedido(status);
         List<PedidoHttp> listaPedidosHttp = new ArrayList<>();
 
         listaPedidos.forEach(result -> {

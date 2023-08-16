@@ -1,5 +1,6 @@
 package br.com.postech.mixfast.core.entity;
 
+import br.com.postech.mixfast.core.entity.enums.StatusPagamento;
 import br.com.postech.mixfast.core.entity.enums.StatusPedido;
 import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import lombok.AllArgsConstructor;
@@ -22,33 +23,34 @@ public class Pedido {
     private FormaPagamento formaPagamento;
     private Integer fila;
     private BigDecimal valorTotal;
-    private StatusPedido status = StatusPedido.RECEBIDO;
+    private StatusPedido statusPedido = StatusPedido.RECEBIDO;
     private String qrCode;
+    private StatusPagamento statusPagamento = StatusPagamento.AGUARDANDO;
 
     public void preparar() {
-        setStatus(StatusPedido.PREPARANDO);
+        setStatusPedido(StatusPedido.PREPARANDO);
     }
 
     public void entregar() {
-        setStatus(StatusPedido.ENTREGUE);
+        setStatusPedido(StatusPedido.ENTREGUE);
     }
 
     public void finalizar() {
-        setStatus(StatusPedido.FINALIZADO);
+        setStatusPedido(StatusPedido.FINALIZADO);
     }
 
     public void cancelar() {
-        setStatus(StatusPedido.CANCELADO);
+        setStatusPedido(StatusPedido.CANCELADO);
     }
 
-    private void setStatus(StatusPedido novoStatus) {
-        if (getStatus().naoPodeAlterarPara(novoStatus)) {
+    private void setStatusPedido(StatusPedido novoStatus) {
+        if (getStatusPedido().naoPodeAlterarPara(novoStatus)) {
             throw new PedidoFailedException(
                     String.format("Status do pedido %s não pode ser alterado de %s para %s",
-                            getCodigo(), getStatus().getDescricao(),
+                            getCodigo(), getStatusPedido().getDescricao(),
                             novoStatus.getDescricao()));
         }
 
-        this.status = novoStatus;
+        this.statusPedido = novoStatus;
     }
 }
