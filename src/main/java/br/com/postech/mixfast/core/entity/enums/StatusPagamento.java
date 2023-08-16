@@ -4,7 +4,7 @@ public enum StatusPagamento {
 
     AGUARDANDO("Aguardando"),
     APROVADO("Aprovado"),
-    REPROVADO("REPROVADO");
+    REPROVADO("Reprovado");
 
     private final String descricao;
 
