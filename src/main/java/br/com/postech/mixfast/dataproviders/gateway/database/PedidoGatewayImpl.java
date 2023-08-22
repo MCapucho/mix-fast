@@ -10,10 +10,12 @@ import br.com.postech.mixfast.dataproviders.repository.PedidoRepository;
 import br.com.postech.mixfast.dataproviders.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -47,7 +49,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
     @Override
     public List<Pedido> buscarTodos() {
         try {
-            List<PedidoDB> listaPedidosDB = pedidoRepository.findAll();
+            List<PedidoDB> listaPedidosDB = pedidoRepository.findAll(Sort.by(Sort.Direction.ASC, "fila"));
             List<Pedido> listaPedidos = new ArrayList<>();
 
             listaPedidosDB.forEach(result -> {
