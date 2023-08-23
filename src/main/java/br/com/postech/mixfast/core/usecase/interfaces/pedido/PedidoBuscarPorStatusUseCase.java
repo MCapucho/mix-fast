@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PedidoBuscarPorStatusUseCase {
 
-    List<Pedido> buscarPorStatus(String status);
+    List<Pedido> buscarPorStatusPedido(String status);
 }

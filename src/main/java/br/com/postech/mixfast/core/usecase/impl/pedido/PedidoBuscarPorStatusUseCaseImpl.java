@@ -16,11 +16,11 @@ public class PedidoBuscarPorStatusUseCaseImpl implements PedidoBuscarPorStatusUs
     private final PedidoGateway pedidoGateway;
 
     @Override
-    public List<Pedido> buscarPorStatus(String status) {
-        List<Pedido> listaPedido = pedidoGateway.buscarPorStatus(status);
+    public List<Pedido> buscarPorStatusPedido(String statusPedido) {
+        List<Pedido> listaPedido = pedidoGateway.buscarPorStatusPedido(statusPedido);
 
         if (listaPedido.isEmpty()) {
-            throw new PedidoListEmptyException(String.format("Lista de pedidos por status %s em branco", status));
+            throw new PedidoListEmptyException(String.format("Lista de pedidos por status %s em branco", statusPedido));
         }
 
         return listaPedido;

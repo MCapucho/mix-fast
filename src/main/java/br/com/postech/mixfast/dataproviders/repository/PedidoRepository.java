@@ -18,8 +18,8 @@ public interface PedidoRepository extends JpaRepository<PedidoDB, String> {
     Optional<PedidoDB> findByCodigo(String codigo);
 
     @Modifying
-    @Query("update PedidoDB p set p.status = ?1 where p.codigo = ?2")
+    @Query("update PedidoDB p set p.statusPedido = ?1 where p.codigo = ?2")
     void atualizarStatus(String status, String codigo);
 
-    List<PedidoDB> findByStatus(String status);
+    List<PedidoDB> findByStatusPedido(String statusPedido);
 }

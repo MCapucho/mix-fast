@@ -10,5 +10,5 @@ public interface PedidoGateway {
     List<Pedido> buscarTodos();
     Pedido buscarPorCodigo(String codigo);
     void atualizar(Pedido pedido);
-    List<Pedido> buscarPorStatus(String status);
+    List<Pedido> buscarPorStatusPedido(String status);
 }

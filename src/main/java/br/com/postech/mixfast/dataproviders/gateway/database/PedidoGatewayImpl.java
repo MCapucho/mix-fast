@@ -10,6 +10,7 @@ import br.com.postech.mixfast.dataproviders.repository.PedidoRepository;
 import br.com.postech.mixfast.dataproviders.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,7 +48,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
     @Override
     public List<Pedido> buscarTodos() {
         try {
-            List<PedidoDB> listaPedidosDB = pedidoRepository.findAll();
+            List<PedidoDB> listaPedidosDB = pedidoRepository.findAll(Sort.by(Sort.Direction.ASC, "fila"));
             List<Pedido> listaPedidos = new ArrayList<>();
 
             listaPedidosDB.forEach(result -> {
@@ -81,7 +82,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
     @Override
     public void atualizar(Pedido pedido) {
         try {
-            pedidoRepository.atualizarStatus(String.valueOf(pedido.getStatus()), pedido.getCodigo());
+            pedidoRepository.atualizarStatus(String.valueOf(pedido.getStatusPedido()), pedido.getCodigo());
         } catch (Exception e) {
             log.error("Erro ao atualizar o status de um pedido", e);
             throw new ResourceFailedException(BANCO_DE_DADOS);
@@ -90,9 +91,9 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
     @Transactional
     @Override
-    public List<Pedido> buscarPorStatus(String status) {
+    public List<Pedido> buscarPorStatusPedido(String statusPedido) {
         try {
-            List<PedidoDB> listaPedidosDB = pedidoRepository.findByStatus(status);
+            List<PedidoDB> listaPedidosDB = pedidoRepository.findByStatusPedido(statusPedido);
             List<Pedido> listaPedidos = new ArrayList<>();
 
             listaPedidosDB.forEach(result -> {
@@ -102,7 +103,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
             return listaPedidos;
         } catch (Exception e) {
-            log.error(String.format("Erro ao buscar os pedidosc por status %s", status), e);
+            log.error(String.format("Erro ao buscar os pedidos por status %s", statusPedido), e);
             throw new ResourceFailedException(BANCO_DE_DADOS);
         }
     }

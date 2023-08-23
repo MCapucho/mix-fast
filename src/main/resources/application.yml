@@ -20,6 +20,18 @@ springdoc:
   swagger-ui:
     path: /swagger-ui-mix-fast.html
 
+logging:
+  level:
+    br.com.postech.mixfast.dataproviders.gateway.api: DEBUG
+
+feign:
+  client:
+    config:
+      url: https://api.mercadopago.com/instore/orders/qr/seller/collectors/1398731230/pos/MIXFAST001/qrs
+      token: ${MERCADO_PAGO_TOKEN}
+      auth:
+        logger-level: FULL
+
 mix-fast:
   openapi:
     dev-url: http://localhost:${server.port}
