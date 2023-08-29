@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mixfast-backend
+  labels: 
+    app: mixfast
+    tier: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mixfast
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: mixfast
+        tier: backend
+    spec:
+      containers:
+        - name: mixfast-backend
+          image: mcapucho/mixfast:2.0.0
+          env:
+            - name: MYSQL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-configmap 
+                  key: host
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_SCHEMA
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-configmap 
+                  key: name
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials-secrets
+                  key: username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials-secrets
+                  key: password
+            - name: MERCADO_PAGO_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials-secrets
+                  key: tokenMercadoPago
+          ports:
+            - containerPort: 9080
