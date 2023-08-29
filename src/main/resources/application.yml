@@ -32,6 +32,17 @@ feign:
       auth:
         logger-level: FULL
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true
+
 mix-fast:
   openapi:
     dev-url: http://localhost:${server.port}
