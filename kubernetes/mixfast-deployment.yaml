@@ -50,3 +50,7 @@ spec:
                   key: tokenMercadoPago
           ports:
             - containerPort: 9080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 500Mi

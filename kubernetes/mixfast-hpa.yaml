@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: mixfast-hpa
@@ -8,5 +8,17 @@ spec:
     kind: Deployment
     name: mixfast-backend
   minReplicas: 2
-  maxReplicas: 5
-  targetCPUUtilizationPercentage: 50
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: AverageValue
+          averageValue: 1024Mi
