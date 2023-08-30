@@ -8,7 +8,7 @@ spec:
     kind: Deployment
     name: mixfast-backend
   minReplicas: 2
-  maxReplicas: 10
+  maxReplicas: 5
   metrics:
     - type: Resource
       resource:
@@ -16,9 +16,3 @@ spec:
         target:
           type: Utilization
           averageUtilization: 70
-    - type: Resource
-      resource:
-        name: memory
-        target:
-          type: AverageValue
-          averageValue: 1024Mi
