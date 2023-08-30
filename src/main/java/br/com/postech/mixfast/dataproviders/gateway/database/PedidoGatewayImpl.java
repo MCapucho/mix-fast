@@ -23,6 +23,7 @@ import java.util.List;
 public class PedidoGatewayImpl implements PedidoGateway {
 
     private static final String BANCO_DE_DADOS = "Erro na comunicação com o banco de dados";
+    private static final String FINALIZADO = "FINALIZADO";
 
     private final PedidoDBMapper pedidoDBMapper;
     private final PedidoRepository pedidoRepository;
@@ -52,8 +53,10 @@ public class PedidoGatewayImpl implements PedidoGateway {
             List<Pedido> listaPedidos = new ArrayList<>();
 
             listaPedidosDB.forEach(result -> {
-                Pedido pedido = pedidoDBMapper.dbToEntity(result);
-                listaPedidos.add(pedido);
+                if (!result.getStatusPedido().equals(FINALIZADO)) {
+                    Pedido pedido = pedidoDBMapper.dbToEntity(result);
+                    listaPedidos.add(pedido);
+                }
             });
 
             return listaPedidos;
