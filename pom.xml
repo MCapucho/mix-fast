@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.postech</groupId>
 	<artifactId>mix-fast</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<name>mix-fast</name>
 	<description>Aplicação de um fast food para controle de pedidos</description>
 
