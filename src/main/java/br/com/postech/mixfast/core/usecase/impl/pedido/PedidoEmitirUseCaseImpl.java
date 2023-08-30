@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
 
-    private static final String QR_CODE = "QRCode";
+    private static final String QR_CODE = "Code";
 
     private final PedidoGateway pedidoGateway;
     private final PagamentoGateway pagamentoGateway;
@@ -33,7 +33,7 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
 
         Pedido pedidoEmitido = pedidoGateway.emitir(pedido);
 
-        if (formaPagamento.getDescricao().equals(QR_CODE)) {
+        if (formaPagamento.getDescricao().contains(QR_CODE)) {
             String qrCode = pagamentoGateway.gerarQrCode(pedidoEmitido);
             pedidoEmitido.setQrCode(qrCode);
         }
