@@ -83,11 +83,22 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
     @Transactional
     @Override
-    public void atualizar(Pedido pedido) {
+    public void atualizarStatusPedido(Pedido pedido) {
         try {
-            pedidoRepository.atualizarStatus(String.valueOf(pedido.getStatusPedido()), pedido.getCodigo());
+            pedidoRepository.atualizarStatusPedido(String.valueOf(pedido.getStatusPedido()), pedido.getCodigo());
         } catch (Exception e) {
             log.error("Erro ao atualizar o status de um pedido", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
+
+    @Transactional
+    @Override
+    public void atualizarStatusPagamento(Pedido pedido) {
+        try {
+            pedidoRepository.atualizarStatusPagamento(String.valueOf(pedido.getStatusPagamento()), pedido.getCodigo());
+        } catch (Exception e) {
+            log.error("Erro ao atualizar o status de pagamento de um pedido", e);
             throw new ResourceFailedException(BANCO_DE_DADOS);
         }
     }

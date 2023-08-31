@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WebhookHttp {
 
+    @JsonProperty(value = "codigo_pedido")
+    private String codigoPedido;
+
     @JsonProperty(value = "status_pagamento")
     private String statusPagamento;
 }
