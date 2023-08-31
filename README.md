@@ -11,6 +11,10 @@ No projeto existe um arquivo docker-compose.yml, para executar é necessário ab
 pasta raiz do projeto e executar o comando:
 - docker-compose up -d
 
+### Kubernetes
+Os manifest.yml está na pasta kubernetes dentro do repositório e na própria pasta existe um arquivo de 
+como rodar em sequência.
+
 ### Endpoints
 
 Para ter acesso aos endpoints do sistema é possível utilizar o
@@ -22,14 +26,6 @@ Para ter acesso aos endpoints do sistema é possível utilizar o
 - Java (version 17)
 - Spring Boot (version 3.1.0)
 - MySQL (version 8)
-
-### Implementações do Sistema
-- [X] Cadastro de cliente
-- [X] Identificação do cliente via CPF
-- [X] Criar, editar e remover de produto
-- [X] Buscar produtos por categoria
-- [X] Fake checkout, enviar os produtos escolhidos para a fila
-- [X] Listar os pedidos
 
 ### Passos para utilização do sistema - Fluxo de pedido
 
@@ -49,6 +45,9 @@ Para ter acesso aos endpoints do sistema é possível utilizar o
 - http://localhost:9080/v1/pedidos
 
 #### 6) Pedido
+-> Obs: Todos os pedidos são emitidos com o status "RECEBIDO"
+
+- Endpoints para atualizar os status do pedido
 - http://localhost:9080/v1/pedidos/{codigo-do-pedido}/preparamento
 - http://localhost:9080/v1/pedidos/{codigo-do-pedido}/entrega
 - http://localhost:9080/v1/pedidos/{codigo-do-pedido}/finalizado

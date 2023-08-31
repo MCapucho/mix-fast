@@ -35,6 +35,22 @@ public interface PedidoDocumentable {
     ResponseEntity<PedidoHttp> buscarPorCodigo(@Parameter(name = "codigo", description = "Código do Pedido",
             example = "77b36beb-68cd-4939-9911-fe92a79cff99") String codigo);
 
+    @Operation(summary = "Buscar um pedido emitido por código obtendo o status do pagamento")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Pedido encontrado com sucesso para exibição de status de pagamento"),
+            @ApiResponse(responseCode = "404", description = "Pedido não encontrado com o código informado"),
+            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
+    ResponseEntity<PedidoHttp> buscarPorCodigoStatusPagamento(@Parameter(name = "codigo", description = "Código do Pedido",
+            example = "77b36beb-68cd-4939-9911-fe92a79cff99") String codigo);
+
+    @Operation(summary = "Buscar todos pedidos emitidos por status")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de pedidos preenchida com sucesso"),
+            @ApiResponse(responseCode = "204", description = "Lista de produtos em branco"),
+            @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
+    ResponseEntity<List<PedidoHttp>> buscarPorStatus(@Parameter(name = "status", description = "Status do Pedido",
+            example = "RECEBIDO") String status);
+
     @Operation(summary = "Atualizar status do pedido em preparação por código")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Pedido atualizado em preparamento com sucesso"),
@@ -70,7 +86,4 @@ public interface PedidoDocumentable {
             @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados")})
     ResponseEntity<Void> cancelar(@Parameter(name = "codigo", description = "Código do Pedido",
             example = "77b36beb-68cd-4939-9911-fe92a79cff99") String codigo);
-
-    @Operation(summary = "Buscar todos pedidos emitidos por status")
-    ResponseEntity<List<PedidoHttp>> buscarPorStatus(@Parameter(name = "status") String status);
 }
