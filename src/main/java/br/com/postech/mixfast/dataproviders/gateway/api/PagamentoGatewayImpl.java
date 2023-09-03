@@ -18,6 +18,7 @@ public class PagamentoGatewayImpl implements PagamentoGateway {
 
     private static final String PREFIX_TOKEN = "Bearer ";
     private static final String UNIDADE = "un";
+    private static final String URL_NOTIFICACAO = "https://webhook.site/8a357810-a318-40b0-9fb4-71ee1cf1f27e";
 
     @Value("${spring.application.name}")
     private String aplicacao;
@@ -47,18 +48,13 @@ public class PagamentoGatewayImpl implements PagamentoGateway {
             listaDadosPagamentoItensRequest.add(dadosPagamentoItensRequest);
         });
 
-        DadosPagamentoRequest.DadosPagamentoResponsavelRequest dadosPagamentoResponsavelRequest =
-                DadosPagamentoRequest.DadosPagamentoResponsavelRequest.builder()
-                        .codigo(6179356)
-                        .build();
-
         DadosPagamentoRequest dadosPagamentoRequest = DadosPagamentoRequest.builder()
                 .referenciaExterna(pedido.getCodigo())
                 .descricao(aplicacao)
                 .titulo(aplicacao)
+                .urlNotificacao(URL_NOTIFICACAO)
                 .valorTotal(pedido.getValorTotal())
                 .itens(listaDadosPagamentoItensRequest)
-                .responsavel(dadosPagamentoResponsavelRequest)
                 .build();
 
         String accessToken = PREFIX_TOKEN + token;

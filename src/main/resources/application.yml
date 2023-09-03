@@ -27,7 +27,7 @@ logging:
 feign:
   client:
     config:
-      url: https://api.mercadopago.com/instore/orders/qr/seller/collectors/1398731230/pos/MIXFAST001/qrs
+      url: https://api.mercadopago.com/instore/orders/qr/seller/collectors/${MERCADO_PAGO_USER_ID}/pos/${MERCADO_PAGO_POS}/qrs
       token: ${MERCADO_PAGO_TOKEN}
       auth:
         logger-level: FULL

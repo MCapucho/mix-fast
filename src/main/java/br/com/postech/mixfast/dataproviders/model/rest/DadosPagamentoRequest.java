@@ -24,14 +24,14 @@ public class DadosPagamentoRequest {
     @JsonProperty("title")
     private String titulo;
 
+    @JsonProperty("notification_url")
+    private String urlNotificacao;
+
     @JsonProperty("total_amount")
     private BigDecimal valorTotal;
 
     @JsonProperty("items")
     private List<DadosPagamentoItensRequest> itens;
-
-    @JsonProperty("sponsor")
-    private DadosPagamentoResponsavelRequest responsavel;
 
     @Data
     @Builder
@@ -60,13 +60,5 @@ public class DadosPagamentoRequest {
 
         @JsonProperty("total_amount")
         private BigDecimal valorTotal;
-    }
-
-    @Data
-    @Builder
-    public static class DadosPagamentoResponsavelRequest {
-
-        @JsonProperty("id")
-        private Integer codigo;
     }
 }
