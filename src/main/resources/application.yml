@@ -2,9 +2,9 @@ spring:
   application:
     name: mix-fast
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_SCHEMA}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: ${MYSQL_USER}
-    password: ${MYSQL_PASSWORD}
+    url: jdbc:DB://${DB_HOST}:${DB_PORT}/${DB_SCHEMA}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     open-in-view: false

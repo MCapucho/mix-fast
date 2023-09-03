@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: mix-fast
 data:
-  MYSQL_HOST: mysql
-  MYSQL_PORT: '3308'
-  MYSQL_SCHEMA: dbmixfast
+  DB_HOST: mysql
+  DB_PORT: '3308'
+  DB_SCHEMA: dbmixfast
   
