@@ -38,7 +38,11 @@ public class PedidoHttp extends RepresentationModel<PedidoHttp> {
     @JsonProperty(value = "valor_total")
     private BigDecimal valorTotal;
 
-    private String status;
+    @JsonProperty(value = "status_pedido")
+    private String statusPedido;
+
+    @JsonProperty(value = "status_pagamento")
+    private String statusPagamento;
 
     @JsonProperty(value = "qr_code")
     private String qrCode;

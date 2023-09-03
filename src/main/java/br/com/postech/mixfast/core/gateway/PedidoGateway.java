@@ -9,6 +9,7 @@ public interface PedidoGateway {
     Pedido emitir(Pedido pedido);
     List<Pedido> buscarTodos();
     Pedido buscarPorCodigo(String codigo);
-    void atualizar(Pedido pedido);
-    List<Pedido> buscarPorStatus(String status);
+    void atualizarStatusPedido(Pedido pedido);
+    void atualizarStatusPagamento(Pedido pedido);
+    List<Pedido> buscarPorStatusPedido(String status);
 }

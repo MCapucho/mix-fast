@@ -18,27 +18,27 @@ public class PedidoAtualizarStatusUseCaseImpl implements PedidoAtualizarStatusUs
     public void preparar(String codigo) {
         Pedido pedido = pedidoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
         pedido.preparar();
-        pedidoGateway.atualizar(pedido);
+        pedidoGateway.atualizarStatusPedido(pedido);
     }
 
     @Override
     public void entregar(String codigo) {
         Pedido pedido = pedidoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
         pedido.entregar();
-        pedidoGateway.atualizar(pedido);
+        pedidoGateway.atualizarStatusPedido(pedido);
     }
 
     @Override
     public void finalizar(String codigo) {
         Pedido pedido = pedidoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
         pedido.finalizar();
-        pedidoGateway.atualizar(pedido);
+        pedidoGateway.atualizarStatusPedido(pedido);
     }
 
     @Override
     public void cancelar(String codigo) {
         Pedido pedido = pedidoBuscarPorCodigoUseCase.buscarPorCodigo(codigo);
         pedido.cancelar();
-        pedidoGateway.atualizar(pedido);
+        pedidoGateway.atualizarStatusPedido(pedido);
     }
 }

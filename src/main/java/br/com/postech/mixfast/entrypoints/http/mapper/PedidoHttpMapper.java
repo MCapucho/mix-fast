@@ -20,7 +20,8 @@ public interface PedidoHttpMapper {
     PedidoHttp entityToHttp(Pedido pedido);
 
     @Mapping(target = "itens", source = "pedidoHttp.itens", qualifiedByName = "convertHttpToEntity")
-    @Mapping(target = "status", defaultValue = "RECEBIDO")
+    @Mapping(target = "statusPedido", defaultValue = "RECEBIDO")
+    @Mapping(target = "statusPagamento", defaultValue = "AGUARDANDO")
     Pedido httpToEntity(PedidoHttp pedidoHttp);
 
     @Named("convertHttpToEntity")

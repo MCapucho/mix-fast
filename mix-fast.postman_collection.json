@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "e2235a9a-1636-4052-9531-06ca2e23f557",
 		"name": "Mix Fast",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "19886292"
 	},
 	"item": [
@@ -16,25 +16,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
+							"raw": "{\n    \"nome\": \"Lanches\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/categorias",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"categorias"
-							]
-						}
+						"url": "http://localhost:9080/v1/categorias"
 					},
 					"response": []
 				},
@@ -43,18 +32,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/categorias",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"categorias"
-							]
-						}
+						"url": "http://localhost:9080/v1/categorias"
 					},
 					"response": []
 				},
@@ -63,19 +41,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/categorias/081d1ae9-5be1-4b4e-a053-6211b7878ca0",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"categorias",
-								"081d1ae9-5be1-4b4e-a053-6211b7878ca0"
-							]
-						}
+						"url": "http://localhost:9080/v1/categorias/e6e5fc2a-2884-4c17-886d-b495c3eec1a8"
 					},
 					"response": []
 				},
@@ -93,19 +59,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/categorias/6dde1cca-c543-409f-84f7-d0ea8fea742e",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"categorias",
-								"6dde1cca-c543-409f-84f7-d0ea8fea742e"
-							]
-						}
+						"url": "http://localhost:9080/v1/categorias/89e04f96-2303-4f37-ac29-0b9cc992d733"
 					},
 					"response": []
 				},
@@ -114,19 +68,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/categorias/8961d46c-bd81-4d0d-9185-4d0c5ba63c03",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"categorias",
-								"8961d46c-bd81-4d0d-9185-4d0c5ba63c03"
-							]
-						}
+						"url": "http://localhost:9080/v1/categorias/e6e5fc2a-2884-4c17-886d-b495c3eec1a8"
 					},
 					"response": []
 				}
@@ -142,25 +84,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Refrigerante Coca Cola 350ml Zero\",\n    \"descricao\": \"\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"081d1ae9-5be1-4b4e-a053-6211b7878ca0\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"Refrigerante Coca Cola 350ml\",\n    \"descricao\": \"\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"89e04f96-2303-4f37-ac29-0b9cc992d733\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/produtos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"produtos"
-							]
-						}
+						"url": "http://localhost:9080/v1/produtos"
 					},
 					"response": []
 				},
@@ -169,18 +100,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/produtos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"produtos"
-							]
-						}
+						"url": "http://localhost:9080/v1/produtos"
 					},
 					"response": []
 				},
@@ -189,19 +109,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/produtos/3d95fccd-d45a-4ded-9ca5-5dce77363ff5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"produtos",
-								"3d95fccd-d45a-4ded-9ca5-5dce77363ff5"
-							]
-						}
+						"url": "http://localhost:9080/v1/produtos/adcca1d5-9519-46dc-a4c4-0e853194b428"
 					},
 					"response": []
 				},
@@ -212,26 +120,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"X-Bacon\",\n    \"descricao\": \"Pão, hamburguer, frango, bacon, tomate, alface, presunto e queijo\",\n    \"preco\": 19.90,\n    \"categoria\": {\n        \"codigo\": \"2250fcbf-e5a2-4b30-8f31-2a5cad044177\"\n    }\n}",
+							"raw": "{\n    \"descricao\": \"Sem descrição\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/produtos/3d95fccd-d45a-4ded-9ca5-5dce77363ff5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"produtos",
-								"3d95fccd-d45a-4ded-9ca5-5dce77363ff5"
-							]
-						}
+						"url": "http://localhost:9080/v1/produtos/adcca1d5-9519-46dc-a4c4-0e853194b428"
 					},
 					"response": []
 				},
@@ -240,19 +136,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/produtos/bba7f993-5a14-492c-b776-238c9c66987b",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"produtos",
-								"bba7f993-5a14-492c-b776-238c9c66987b"
-							]
-						}
+						"url": "http://localhost:9080/v1/produtos/bba7f993-5a14-492c-b776-238c9c66987b"
 					},
 					"response": []
 				},
@@ -273,20 +157,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/produtos/categoria/081d1ae9-5be1-4b4e-a053-6211b7878ca0",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"produtos",
-								"categoria",
-								"081d1ae9-5be1-4b4e-a053-6211b7878ca0"
-							]
-						}
+						"url": "http://localhost:9080/v1/produtos/categoria/58d88ac6-6af6-4aec-b277-296ce79efc34"
 					},
 					"response": []
 				}
@@ -348,18 +219,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/clientes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"clientes"
-							]
-						}
+						"url": "http://localhost:9080/v1/clientes"
 					},
 					"response": []
 				},
@@ -368,18 +228,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/clientes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"clientes"
-							]
-						}
+						"url": "http://localhost:9080/v1/clientes"
 					},
 					"response": []
 				},
@@ -400,19 +249,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/clientes/ec0eff40-2e36-48e9-a54a-92d8ef4f8121",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"clientes",
-								"ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
-							]
-						}
+						"url": "http://localhost:9080/v1/clientes/ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
 					},
 					"response": []
 				},
@@ -430,19 +267,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/clientes/ec0eff40-2e36-48e9-a54a-92d8ef4f8121",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"clientes",
-								"ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
-							]
-						}
+						"url": "http://localhost:9080/v1/clientes/ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
 					},
 					"response": []
 				},
@@ -451,19 +276,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/clientes/4c93a381-2367-492e-81f9-95149d3218e2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"clientes",
-								"4c93a381-2367-492e-81f9-95149d3218e2"
-							]
-						}
+						"url": "http://localhost:9080/v1/clientes/4c93a381-2367-492e-81f9-95149d3218e2"
 					},
 					"response": []
 				},
@@ -484,20 +297,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/clientes/cpf/17977662280",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"clientes",
-								"cpf",
-								"17977662280"
-							]
-						}
+						"url": "http://localhost:9080/v1/clientes/cpf/17977662280"
 					},
 					"response": []
 				}
@@ -513,25 +313,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descricao\": \"Dinheiro\"\n}",
+							"raw": "{\n    \"descricao\": \"QRCode\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/formas_pagamento",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"formas_pagamento"
-							]
-						}
+						"url": "http://localhost:9080/v1/formas_pagamento"
 					},
 					"response": []
 				},
@@ -540,18 +329,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/formas_pagamento",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"formas_pagamento"
-							]
-						}
+						"url": "http://localhost:9080/v1/formas_pagamento"
 					},
 					"response": []
 				},
@@ -560,19 +338,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/formas_pagamento/d8dcd127-4320-49b5-805e-fe6fcbf2022d",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"formas_pagamento",
-								"d8dcd127-4320-49b5-805e-fe6fcbf2022d"
-							]
-						}
+						"url": "http://localhost:9080/v1/formas_pagamento/d8dcd127-4320-49b5-805e-fe6fcbf2022d"
 					},
 					"response": []
 				},
@@ -583,26 +349,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descricao\": \"Cartão de Crédito\"\n}",
+							"raw": "{\n    \"descricao\": \"QRCode\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/formas_pagamento/d8dcd127-4320-49b5-805e-fe6fcbf2022d",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"formas_pagamento",
-								"d8dcd127-4320-49b5-805e-fe6fcbf2022d"
-							]
-						}
+						"url": "http://localhost:9080/v1/formas_pagamento/e77c466d-6356-4a39-89ba-38cba52807c3"
 					},
 					"response": []
 				},
@@ -611,19 +365,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/formas_pagamento/ce089d5b-07e9-45e1-8bb1-e15d194c8cf8",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"formas_pagamento",
-								"ce089d5b-07e9-45e1-8bb1-e15d194c8cf8"
-							]
-						}
+						"url": "http://localhost:9080/v1/formas_pagamento/ce089d5b-07e9-45e1-8bb1-e15d194c8cf8"
 					},
 					"response": []
 				}
@@ -639,25 +381,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"4bbc9eab-8f49-4d5d-8b9e-06513b4a7a46\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"9d003507-91e9-45e8-be43-ea3d2cd6ae7f\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": {\n        \"codigo\": \"5fc2bd49-a7d2-4f32-a8a8-a4827a2275b1\"\n    }\n}",
+							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"1ba23864-10ac-4cdc-bd27-7d21b3ef1541\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"9ed3fce0-bc9f-44ed-89e5-47fcb7008505\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": {\n        \"codigo\": \"d6d20636-572e-4118-9771-2fd6ce8ace44\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/pedidos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"pedidos"
-							]
-						}
+						"url": "http://localhost:9080/v1/pedidos"
 					},
 					"response": []
 				},
@@ -668,25 +399,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"itens\": [\n        {\n            \"produto\": \"77728332-c15a-4d8e-840a-1cf41e6884e2\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": {\n        \"codigo\": \"70c3df8d-a6a0-41bc-8a3f-6570cf45f5b1\"\n    }\n}",
+							"raw": "{\n    \"itens\": [\n        {\n            \"produto\": \"bb440cf1-0ac2-472f-8375-e9c1f2bc5619\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": {\n        \"codigo\": \"83a5d0d1-1856-4b35-b5d7-a48bc0482335\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9080/v1/pedidos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"pedidos"
-							]
-						}
+						"url": "http://localhost:9080/v1/pedidos"
 					},
 					"response": []
 				},
@@ -695,18 +415,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/pedidos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"pedidos"
-							]
-						}
+						"url": "http://localhost:9080/v1/pedidos"
 					},
 					"response": []
 				},
@@ -715,19 +424,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/pedidos/c000f17a-dc83-4d9f-93d7-195c04d10f89",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"pedidos",
-								"c000f17a-dc83-4d9f-93d7-195c04d10f89"
-							]
-						}
+						"url": "http://localhost:9080/v1/pedidos/f3af42ab-a820-4ca7-8eec-6346cd78b6f6"
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - Buscar Por Código Status Pagamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9080/v1/pedidos/6501af99-049f-4ec3-9edf-9fb99ae7536c/pagamento"
 					},
 					"response": []
 				},
@@ -763,20 +469,7 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/preparamento",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"pedidos",
-								"b290d22c-65b0-4fde-8189-a4d95e017a27",
-								"preparamento"
-							]
-						}
+						"url": "http://localhost:9080/v1/pedidos/7042b3ef-3621-425a-ab29-31814eaff60b/preparamento"
 					},
 					"response": []
 				},
@@ -785,20 +478,7 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/entrega",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"pedidos",
-								"b290d22c-65b0-4fde-8189-a4d95e017a27",
-								"entrega"
-							]
-						}
+						"url": "http://localhost:9080/v1/pedidos/7042b3ef-3621-425a-ab29-31814eaff60b/entrega"
 					},
 					"response": []
 				},
@@ -807,20 +487,7 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/finalizado",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"pedidos",
-								"b290d22c-65b0-4fde-8189-a4d95e017a27",
-								"finalizado"
-							]
-						}
+						"url": "http://localhost:9080/v1/pedidos/7042b3ef-3621-425a-ab29-31814eaff60b/finalizado"
 					},
 					"response": []
 				},
@@ -829,20 +496,7 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/cancelamento",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"v1",
-								"pedidos",
-								"b290d22c-65b0-4fde-8189-a4d95e017a27",
-								"cancelamento"
-							]
-						}
+						"url": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/cancelamento"
 					},
 					"response": []
 				}
@@ -856,17 +510,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/actuator",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"actuator"
-							]
-						}
+						"url": "http://localhost:9080/actuator"
 					},
 					"response": []
 				},
@@ -875,17 +519,30 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:9080/hostcheck",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9080",
-							"path": [
-								"hostcheck"
-							]
-						}
+						"url": "http://localhost:9080/hostcheck"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Webhook",
+			"item": [
+				{
+					"name": "Webhook - Atualizar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo_pedido\": \"6501af99-049f-4ec3-9edf-9fb99ae7536c\",\n    \"status_pagamento\": \"aprovado\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9080/v1/webhooks"
 					},
 					"response": []
 				}

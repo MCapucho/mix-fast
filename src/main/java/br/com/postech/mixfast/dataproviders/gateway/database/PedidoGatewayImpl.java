@@ -10,6 +10,7 @@ import br.com.postech.mixfast.dataproviders.repository.PedidoRepository;
 import br.com.postech.mixfast.dataproviders.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ import java.util.List;
 public class PedidoGatewayImpl implements PedidoGateway {
 
     private static final String BANCO_DE_DADOS = "Erro na comunicação com o banco de dados";
+    private static final String FINALIZADO = "FINALIZADO";
 
     private final PedidoDBMapper pedidoDBMapper;
     private final PedidoRepository pedidoRepository;
@@ -47,12 +49,14 @@ public class PedidoGatewayImpl implements PedidoGateway {
     @Override
     public List<Pedido> buscarTodos() {
         try {
-            List<PedidoDB> listaPedidosDB = pedidoRepository.findAll();
+            List<PedidoDB> listaPedidosDB = pedidoRepository.findAll(Sort.by(Sort.Direction.ASC, "fila"));
             List<Pedido> listaPedidos = new ArrayList<>();
 
             listaPedidosDB.forEach(result -> {
-                Pedido pedido = pedidoDBMapper.dbToEntity(result);
-                listaPedidos.add(pedido);
+                if (!result.getStatusPedido().equals(FINALIZADO)) {
+                    Pedido pedido = pedidoDBMapper.dbToEntity(result);
+                    listaPedidos.add(pedido);
+                }
             });
 
             return listaPedidos;
@@ -79,9 +83,9 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
     @Transactional
     @Override
-    public void atualizar(Pedido pedido) {
+    public void atualizarStatusPedido(Pedido pedido) {
         try {
-            pedidoRepository.atualizarStatus(String.valueOf(pedido.getStatus()), pedido.getCodigo());
+            pedidoRepository.atualizarStatusPedido(String.valueOf(pedido.getStatusPedido()), pedido.getCodigo());
         } catch (Exception e) {
             log.error("Erro ao atualizar o status de um pedido", e);
             throw new ResourceFailedException(BANCO_DE_DADOS);
@@ -90,9 +94,20 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
     @Transactional
     @Override
-    public List<Pedido> buscarPorStatus(String status) {
+    public void atualizarStatusPagamento(Pedido pedido) {
         try {
-            List<PedidoDB> listaPedidosDB = pedidoRepository.findByStatus(status);
+            pedidoRepository.atualizarStatusPagamento(String.valueOf(pedido.getStatusPagamento()), pedido.getCodigo());
+        } catch (Exception e) {
+            log.error("Erro ao atualizar o status de pagamento de um pedido", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
+    }
+
+    @Transactional
+    @Override
+    public List<Pedido> buscarPorStatusPedido(String statusPedido) {
+        try {
+            List<PedidoDB> listaPedidosDB = pedidoRepository.findByStatusPedido(statusPedido);
             List<Pedido> listaPedidos = new ArrayList<>();
 
             listaPedidosDB.forEach(result -> {
@@ -102,7 +117,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
 
             return listaPedidos;
         } catch (Exception e) {
-            log.error(String.format("Erro ao buscar os pedidosc por status %s", status), e);
+            log.error(String.format("Erro ao buscar os pedidos por status %s", statusPedido), e);
             throw new ResourceFailedException(BANCO_DE_DADOS);
         }
     }

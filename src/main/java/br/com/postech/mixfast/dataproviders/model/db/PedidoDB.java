@@ -40,8 +40,11 @@ public class PedidoDB {
     @Column(name = "valor_total", nullable = false)
     private BigDecimal valorTotal;
 
-    @Column(name = "status", length = 20, nullable = false)
-    private String status;
+    @Column(name = "status_pedido", length = 20, nullable = false)
+    private String statusPedido;
+
+    @Column(name = "status_pagamento", length = 20, nullable = false)
+    private String statusPagamento;
 
     @CreationTimestamp
     @Column(name = "data_pedido", nullable = false)
