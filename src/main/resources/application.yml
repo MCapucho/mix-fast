@@ -2,7 +2,7 @@ spring:
   application:
     name: mix-fast
   datasource:
-    url: jdbc:DB://${DB_HOST}:${DB_PORT}/${DB_SCHEMA}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_SCHEMA}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driverClassName: com.mysql.cj.jdbc.Driver
