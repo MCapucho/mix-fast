@@ -56,5 +56,8 @@ Para ter acesso aos endpoints do sistema é possível utilizar o
 * Cancelamento
   - http://localhost:9080/v1/pedidos/{codigo-do-pedido}/cancelamento
 
+#### 7) Notificação de Pagamento
+- http://localhost:9080/v1/webhooks
+
 
 
