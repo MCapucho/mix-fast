@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mix-fast
+  labels:
+    app: mix-fast
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mix-fast
+  template:
+    metadata:
+      name: mix-fast
+      labels:
+        app: mix-fast
+    spec:
+      containers:
+      - name: mix-fast
+        image: mcapucho/mixfast:2.0.0
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: mix-fast
+        - secretRef:
+            name: mix-fast
+      restartPolicy: Always

@@ -1,0 +1,6 @@
+— Como rodar os arquivos:
+
+01 - minikube start
+02 - cd k8s
+03 - kubectl apply -f mysql
+04 - kubectl apply -f mix-fast
