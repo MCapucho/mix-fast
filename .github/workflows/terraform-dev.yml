@@ -43,16 +43,34 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
 
-  build_ecr:
-    name: Push to ECR
-    run: docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag 022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast-ecr:2.0.0 .
-    id: ecr
-    uses: jwalton/gh-ecr-push@v1
-    with:
-      access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      region: us-east-2
-      image: mixfast-ecr:2.0.0
+  build:
+
+    name: 'Build Image'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: mixfast-ecr
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   create_pull_request:
     name: 'Open PR to Main'

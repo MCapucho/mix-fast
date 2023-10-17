@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
   [
     {
       "name": "container-${var.name}",
-      "image": "022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast-ecr:2.0.0",
+      "image": "022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast-ecr:latest",
       "essential": true,
       "portMappings": [
         {
