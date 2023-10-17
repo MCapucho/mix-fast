@@ -1,6 +1,6 @@
 FROM openjdk:17-jdk-slim
 
-ADD mixfast.jar mixfast.jar
+COPY target/mixfast.jar mixfast.jar
 
 EXPOSE 9080
 
