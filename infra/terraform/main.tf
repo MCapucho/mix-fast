@@ -96,7 +96,7 @@ resource "aws_ecs_service" "mixfast_ecs_service" {
   health_check_grace_period_seconds = 300
 
   load_balancer {
-    target_group_arn = "arn:aws:elasticloadbalancing:us-east-2:022874923015:loadbalancer/net/mixfast-nlb/79b5d90a8a26c65f"
+    target_group_arn = "arn:aws:elasticloadbalancing:us-east-2:022874923015:targetgroup/mixfast-tg/9981259887d959b4"
     container_name   = "container-${var.name}"
     container_port   = var.port
   }
