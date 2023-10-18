@@ -65,7 +65,7 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
 
-  build:
+  build-and-push:
     name: 'Build Image - Docker'
     runs-on: ubuntu-latest
     needs:
@@ -73,24 +73,17 @@ jobs:
       - terraform
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - uses: actions/checkout@v2
+      - uses: docker://ghcr.io/kciter/aws-ecr-action:latest
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: Build, tag, and push image to Amazon ECR
-        run: |
-          docker build . --file Dockerfile --tag mixfast:latest
-          docker push 022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast:latest
+          access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          account_id: 022874923015
+          repo: mixfast
+          region: us-east-2
+          tags: latest,${{ github.sha }}
+          create_repo: true
+          image_scanning_configuration: true
 
   create_pull_request:
     name: 'Open PR to Main'
