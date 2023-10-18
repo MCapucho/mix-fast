@@ -1,6 +1,6 @@
 FROM openjdk:17-jdk-slim
 
-CMD ["ls -a"]
+CMD ls -a
 
 COPY ./target/mixfast.jar mixfast.jar
 
