@@ -74,7 +74,10 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+
+      - name: Build with Maven
+        run: mvn clean install
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -88,10 +91,13 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: mixfast
+          IMAGE_TAG: latest
         run: |
-          docker build --no-cache -t mixfast .
-          docker tag 022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast:latest mixfast
-          docker push 022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast:latest
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   create_pull_request:
     name: 'Open PR to Main'
