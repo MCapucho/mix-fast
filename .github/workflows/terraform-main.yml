@@ -58,6 +58,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: 'infra/terraform'
+    needs:
+      - build
 
     defaults:
       run:
