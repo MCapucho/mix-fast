@@ -89,7 +89,9 @@ jobs:
 
       - name: Build, tag, and push image to Amazon ECR
         run: |
-          docker buildx build --no-cache --push --platform linux/arm64/v8,linux/amd64 --tag 022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast:latest .
+          docker build --no-cache -t mixfast .
+          docker tag 022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast:latest
+          docker push 022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast:latest
 
   create_pull_request:
     name: 'Open PR to Main'
