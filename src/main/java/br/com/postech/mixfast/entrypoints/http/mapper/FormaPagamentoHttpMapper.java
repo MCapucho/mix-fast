@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel="spring")
 public interface FormaPagamentoHttpMapper {
 
-    ClienteHttpMapper INSTANCE = Mappers.getMapper( ClienteHttpMapper.class );
+    FormaPagamentoHttpMapper INSTANCE = Mappers.getMapper( FormaPagamentoHttpMapper.class );
 
     FormaPagamentoHttp entityToHttp(FormaPagamento formaPagamento);
 
