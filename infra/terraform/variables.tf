@@ -17,11 +17,11 @@ variable "name" {
 
 variable "vpc_id" {
   type = string
-  default = "vpc-0cefae0a895536e11"
+  default = "vpc-0181acb94f226ea16"
 }
 variable "subnet_ids" {
   type = list
-  default = ["subnet-0153366087b2b87cf", "subnet-041626c494ced434c", "subnet-0752e39645ab26607"]
+  default = ["subnet-0f1de9542af720987", "subnet-074e436514027d8b1", "subnet-00490b577f79a6477"]
 }
 variable "cpu" {
   type = string
