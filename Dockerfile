@@ -1,8 +1,8 @@
 FROM openjdk:17-jdk-slim
 
-RUN ["ls -a"]
+CMD ["ls -a"]
 
-COPY mixfast.jar mixfast.jar
+COPY ./target/mixfast.jar mixfast.jar
 
 EXPOSE 9080
 
