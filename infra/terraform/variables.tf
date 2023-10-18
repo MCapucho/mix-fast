@@ -21,7 +21,7 @@ variable "vpc_id" {
 }
 variable "subnet_ids" {
   type = list
-  default = ["subnet-0f1de9542af720987", "subnet-074e436514027d8b1", "subnet-00490b577f79a6477"]
+  default = ["subnet-047e1b47592e49bba", "subnet-025586a415b8313b0", "subnet-0348cbb959217c711"]
 }
 variable "cpu" {
   type = string
