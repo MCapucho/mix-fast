@@ -33,7 +33,8 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
         "options": {
           "awslogs-group": "mixfast-cloudwatch-log-group",
           "awslogs-region": "us-east-2",
-          "awslogs-stream-prefix": "mixfast"
+          "awslogs-stream-prefix": "mixfast",
+          "awslogs-create-group": "true"
         }
       },
       "environment": [
@@ -96,7 +97,7 @@ resource "aws_ecs_service" "mixfast_ecs_service" {
   health_check_grace_period_seconds = 300
 
   load_balancer {
-    target_group_arn = "arn:aws:elasticloadbalancing:us-east-2:022874923015:targetgroup/mixfast-tg/9981259887d959b4"
+    target_group_arn = "arn:aws:elasticloadbalancing:us-east-2:022874923015:targetgroup/mixfast-tg/2ca276babf442124"
     container_name   = "container-${var.name}"
     container_port   = var.port
   }
