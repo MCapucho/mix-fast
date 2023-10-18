@@ -93,6 +93,7 @@ jobs:
           ECR_REPOSITORY: mixfast
           IMAGE_TAG: latest
         run: |
+          mvn clean install
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
