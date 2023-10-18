@@ -78,7 +78,7 @@ jobs:
         with:
           access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          account_id: 022874923015
+          account_id: "022874923015"
           repo: mixfast
           region: us-east-2
           tags: latest,${{ github.sha }}
