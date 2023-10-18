@@ -87,7 +87,7 @@ resource "aws_ecs_service" "mixfast_ecs_service" {
   network_configuration {
     security_groups  = [aws_security_group.mixfast_security_group.id]
     subnets          = var.subnet_ids
-    assign_public_ip = "DISABLED"
+    assign_public_ip = false
   }
 
   depends_on = [
