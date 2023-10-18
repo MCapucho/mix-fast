@@ -1,8 +1,8 @@
 FROM amazoncorretto:17
 
-RUN echo $(ls)
+RUN ls
 
-ADD /home/runner/work/mix-fast/mix-fast/target/mixfast.jar mixfast.jar
+ADD target/mixfast.jar mixfast.jar
 
 EXPOSE 9080
 
