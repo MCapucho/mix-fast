@@ -4,8 +4,8 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
   network_mode             = "awsvpc"
   cpu                      = var.cpu
   memory                   = var.memory
-  execution_role_arn       = "arn:aws:iam::022874923015:role/mixfast_ecs_execution_role"
-  task_role_arn            = "arn:aws:iam::022874923015:role/mixfast_ecs_service_role"
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  task_role_arn            = aws_iam_role.ecs_task_role.arn
   tags                     = var.tags
 
   runtime_platform {
@@ -120,7 +120,7 @@ resource "aws_appautoscaling_target" "mixfast_appautoscaling_target" {
 }
 
 resource "aws_appautoscaling_policy" "mixfast_appautoscaling_policy" {
-  name               = "mixfast_appautoscaling_scale_down"
+  name               = "${var.name}_appautoscaling_scale_down"
   policy_type        = "StepScaling"
   resource_id        = aws_appautoscaling_target.mixfast_appautoscaling_target.resource_id
   scalable_dimension = aws_appautoscaling_target.mixfast_appautoscaling_target.scalable_dimension
