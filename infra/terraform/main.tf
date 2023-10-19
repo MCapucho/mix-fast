@@ -31,7 +31,7 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "mixfast-cloudwatch-log-group",
+          "awslogs-group": "/aws/ecs/mixfast-ecs-cluster/cloudwatch/mixfast",
           "awslogs-region": "us-east-2",
           "awslogs-stream-prefix": "mixfast",
           "awslogs-create-group": "true"
