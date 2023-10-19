@@ -45,7 +45,7 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
         {
           "name": "DB_PASSWORD",
           "value": "q1w2e3r4"
-        }
+        },
         {
           "name": "DB_SCHEMA",
           "value": "dbmixfast"
