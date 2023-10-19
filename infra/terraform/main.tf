@@ -43,6 +43,10 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
           "value": "dbmixfast.ct05vyvkxmk9.us-east-1.rds.amazonaws.com"
         },
         {
+          "name": "DB_PASSWORD",
+          "value": "q1w2e3r4"
+        }
+        {
           "name": "DB_SCHEMA",
           "value": "dbmixfast"
         },
@@ -68,10 +72,7 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
         }
       ],
       "secrets": [
-        {
-          "name": "DB_PASSWORD",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:022874923015:secret:mixfast_secrets_manager-so2ypw::dbpassword:"
-        }
+
       ]
     }
   ]
