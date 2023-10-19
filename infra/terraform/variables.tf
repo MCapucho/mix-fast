@@ -1,5 +1,5 @@
 variable "region" {
-  default = "us-east-2"
+  default = "us-east-1"
 }
 
 variable "tags" {
@@ -16,12 +16,15 @@ variable "name" {
 }
 
 variable "vpc_id" {
-  type = string
-  default = "vpc-0181acb94f226ea16"
+  default = "vpc-0a435ade90a13efbd"
 }
 variable "subnet_ids" {
   type = list
-  default = ["subnet-047e1b47592e49bba", "subnet-025586a415b8313b0", "subnet-0348cbb959217c711"]
+  default = ["subnet-0406a873952617bd6", "subnet-071f09ce851e88eee", "subnet-08f89a38c4c56076f"]
+}
+variable "network_mode" {
+  type = string
+  default = "awsvpc"
 }
 variable "cpu" {
   type = string
@@ -31,13 +34,17 @@ variable "memory" {
   type = string
   default = "512"
 }
+variable "target_group_arn" {
+  type = string
+  default = "arn:aws:elasticloadbalancing:us-east-1:022874923015:targetgroup/mixfast-target-group/1ddef52a6b3e5427"
+}
 variable "port" {
   type = number
   default = 9080
 }
 variable "ecs_cluster_name" {
   type = string
-  default = "mixfast-ecs-cluster"
+  default = "mixfast_ecs_cluster"
 }
 variable "from_port_ingress" {
   type = number

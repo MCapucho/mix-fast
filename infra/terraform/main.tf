@@ -1,7 +1,7 @@
 resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
-  family                   = "family-${var.name}"
+  family                   = "family_${var.name}"
   requires_compatibilities = ["FARGATE"]
-  network_mode             = "awsvpc"
+  network_mode             = var.network_mode
   cpu                      = var.cpu
   memory                   = var.memory
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
@@ -16,8 +16,8 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
   container_definitions    = <<DEFINITION
   [
     {
-      "name": "container-${var.name}",
-      "image": "022874923015.dkr.ecr.us-east-2.amazonaws.com/mixfast:latest",
+      "name": "container_${var.name}",
+      "image": "022874923015.dkr.ecr.us-east-1.amazonaws.com/mixfast:latest",
       "essential": true,
       "portMappings": [
         {
@@ -31,20 +31,16 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "mixfast-cloudwatch-log-group",
-          "awslogs-region": "us-east-2",
-          "awslogs-stream-prefix": "mixfast",
+          "awslogs-group": "/aws/ecs/${var.name}_ecs_cluster/cloudwatch/${var.name}",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "${var.name}",
           "awslogs-create-group": "true"
         }
       },
       "environment": [
         {
           "name": "DB_HOST",
-          "value": "dbmixfast.cszhpmnoblh4.us-east-2.rds.amazonaws.com"
-        },
-        {
-          "name": "DB_PASSWORD",
-          "value": "q1w2e3r4"
+          "value": "dbmixfast.ct05vyvkxmk9.us-east-1.rds.amazonaws.com"
         },
         {
           "name": "DB_SCHEMA",
@@ -70,6 +66,12 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
           "name": "MERCADO_PAGO_POS",
           "value": "MIXFASTCX01"
         }
+      ],
+      "secrets": [
+        {
+          "name": "DB_PASSWORD",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:022874923015:secret:mixfast_secrets_manager-so2ypw:dbpassword::"
+        }
       ]
     }
   ]
@@ -77,7 +79,7 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
 }
 
 resource "aws_ecs_service" "mixfast_ecs_service" {
-  name                 = "service-${var.name}"
+  name                 = "service_${var.name}"
   cluster              = var.ecs_cluster_name
   task_definition      = aws_ecs_task_definition.mixfast_ecs_task_definition.arn
   desired_count        = 1
@@ -97,8 +99,8 @@ resource "aws_ecs_service" "mixfast_ecs_service" {
   health_check_grace_period_seconds = 300
 
   load_balancer {
-    target_group_arn = "arn:aws:elasticloadbalancing:us-east-2:022874923015:targetgroup/mixfast-tg/2ca276babf442124"
-    container_name   = "container-${var.name}"
+    target_group_arn = var.target_group_arn
+    container_name   = "container_${var.name}"
     container_port   = var.port
   }
 
@@ -109,31 +111,4 @@ resource "aws_ecs_service" "mixfast_ecs_service" {
   }
 
   tags = var.tags
-}
-
-resource "aws_appautoscaling_target" "mixfast_appautoscaling_target" {
-  max_capacity       = 3
-  min_capacity       = 1
-  resource_id        = "service/${var.ecs_cluster_name}/${aws_ecs_service.mixfast_ecs_service.name}"
-  scalable_dimension = "ecs:service:DesiredCount"
-  service_namespace  = "ecs"
-}
-
-resource "aws_appautoscaling_policy" "mixfast_appautoscaling_policy" {
-  name               = "${var.name}_appautoscaling_scale_down"
-  policy_type        = "StepScaling"
-  resource_id        = aws_appautoscaling_target.mixfast_appautoscaling_target.resource_id
-  scalable_dimension = aws_appautoscaling_target.mixfast_appautoscaling_target.scalable_dimension
-  service_namespace  = aws_appautoscaling_target.mixfast_appautoscaling_target.service_namespace
-
-  step_scaling_policy_configuration {
-    adjustment_type         = "ChangeInCapacity"
-    cooldown                = 60
-    metric_aggregation_type = "Maximum"
-
-    step_adjustment {
-      metric_interval_upper_bound = 0
-      scaling_adjustment          = -1
-    }
-  }
 }
