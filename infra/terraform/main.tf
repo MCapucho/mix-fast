@@ -70,7 +70,7 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
       "secrets": [
         {
           "name": "DB_PASSWORD",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:022874923015:secret:mixfast_secrets_manager-so2ypw:dbpassword::"
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:022874923015:secret:mixfast_secrets_manager-so2ypw::dbpassword:"
         }
       ]
     }
