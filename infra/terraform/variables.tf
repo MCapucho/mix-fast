@@ -20,7 +20,7 @@ variable "vpc_id" {
 }
 variable "subnet_ids" {
   type = list
-  default = ["subnet-0406a873952617bd6", "subnet-071f09ce851e88eee", "subnet-08f89a38c4c56076f"]
+  default = ["subnet-069bde9a468e75c4a", "subnet-0ae7248a7d2f5f3f2", "subnet-06259e94cf81f6d06"]
 }
 variable "network_mode" {
   type = string
