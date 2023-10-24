@@ -15,6 +15,13 @@ jobs:
   build:
     name: 'Build Image - Docker'
     runs-on: ubuntu-latest
+    env:
+      APP_WORKING_DIR: 'app/mix-fast'
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.APP_WORKING_DIR }}
 
     steps:
       - name: Check out code
