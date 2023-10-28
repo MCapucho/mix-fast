@@ -16,11 +16,11 @@ variable "name" {
 }
 
 variable "vpc_id" {
-  default = "vpc-0a435ade90a13efbd"
+  default = "vpc-0a928f18f52e3f526"
 }
 variable "subnet_ids" {
   type = list
-  default = ["subnet-069bde9a468e75c4a", "subnet-0ae7248a7d2f5f3f2", "subnet-06259e94cf81f6d06"]
+  default = ["subnet-0f1c1df7d6204cd14", "subnet-02360cad76c9230ab", "subnet-055459a695e1caddb"]
 }
 variable "network_mode" {
   type = string
@@ -36,7 +36,7 @@ variable "memory" {
 }
 variable "target_group_arn" {
   type = string
-  default = "arn:aws:elasticloadbalancing:us-east-1:022874923015:targetgroup/mixfast-target-group/1ddef52a6b3e5427"
+  default = "arn:aws:elasticloadbalancing:us-east-1:022874923015:targetgroup/mixfast-target-group/2a102fd3fd0daa69"
 }
 variable "port" {
   type = number
