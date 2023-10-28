@@ -19,9 +19,16 @@ jobs:
   maven:
     name: 'Maven Build'
     runs-on: ubuntu-latest
+    env:
+      APP_WORKING_DIR: 'app/mix-fast'
     permissions:
       contents: read
       packages: write
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.APP_WORKING_DIR }}
 
     steps:
       - uses: actions/checkout@v3
