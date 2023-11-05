@@ -10,6 +10,13 @@ resource "aws_security_group" "mixfast_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = var.from_port_egress
     to_port     = var.to_port_egress
