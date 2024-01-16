@@ -1,6 +1,7 @@
 package br.com.postech.mixfast.core.usecase.impl.categoria;
 
 import br.com.postech.mixfast.core.entity.Categoria;
+import br.com.postech.mixfast.core.exception.categoria.CategoriaDuplicatedException;
 import br.com.postech.mixfast.core.gateway.CategoriaGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.Assertions;
@@ -71,5 +72,19 @@ class CategoriaAtualizarUseCaseImplTest {
         Categoria categoriaAtualizada = categoriaAtualizarUseCaseImpl.atualizar(CODIGO, categoriaRequest);
 
         Assertions.assertNotNull(categoriaAtualizada);
+    }
+
+    @Test
+    void naoDeveAtualizarUmaCategoria_Erro_CategoriaExistente() {
+        when(categoriaGateway.encontrarPorNome(anyString()))
+                .thenReturn(Boolean.TRUE);
+
+        Exception exception = Assertions.assertThrows(CategoriaDuplicatedException.class, () ->
+                categoriaAtualizarUseCaseImpl.atualizar(CODIGO, categoriaRequest));
+
+        String mensagemEsperada = "Categoria informada já cadastrada";
+        String mensagemAtual = exception.getMessage();
+
+        Assertions.assertTrue(mensagemAtual.contains(mensagemEsperada));
     }
 }

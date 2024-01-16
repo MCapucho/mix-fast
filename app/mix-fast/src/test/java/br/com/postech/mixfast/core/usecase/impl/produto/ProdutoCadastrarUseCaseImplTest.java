@@ -3,6 +3,7 @@ package br.com.postech.mixfast.core.usecase.impl.produto;
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.entity.Produto;
 import br.com.postech.mixfast.core.exception.produto.ProdutoBadRequestException;
+import br.com.postech.mixfast.core.exception.produto.ProdutoDuplicatedException;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.Assertions;
@@ -77,6 +78,20 @@ class ProdutoCadastrarUseCaseImplTest {
                 produtoCadastrarUseCaseImpl.cadastrar(produtoRequest));
 
         String mensagemEsperada = "Cadastro de produto não foi concluído";
+        String mensagemAtual = exception.getMessage();
+
+        Assertions.assertTrue(mensagemAtual.contains(mensagemEsperada));
+    }
+
+    @Test
+    void naoDeveCadastrarUmProduto_Erro_ProdutoExistente() {
+        when(produtoGateway.encontrarPorNome(anyString()))
+                .thenReturn(Boolean.TRUE);
+
+        Exception exception = Assertions.assertThrows(ProdutoDuplicatedException.class, () ->
+                produtoCadastrarUseCaseImpl.cadastrar(produtoRequest));
+
+        String mensagemEsperada = "Produto informado já cadastrado";
         String mensagemAtual = exception.getMessage();
 
         Assertions.assertTrue(mensagemAtual.contains(mensagemEsperada));

@@ -2,6 +2,7 @@ package br.com.postech.mixfast.core.usecase.impl.categoria;
 
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.exception.categoria.CategoriaBadRequestException;
+import br.com.postech.mixfast.core.exception.categoria.CategoriaDuplicatedException;
 import br.com.postech.mixfast.core.gateway.CategoriaGateway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 
@@ -56,6 +58,20 @@ class CategoriaCadastrarUseCaseImplTest {
                 categoriaCadastrarUseCaseImpl.cadastrar(categoriaRequest));
 
         String mensagemEsperada = "Cadastro de categoria não foi concluído";
+        String mensagemAtual = exception.getMessage();
+
+        Assertions.assertTrue(mensagemAtual.contains(mensagemEsperada));
+    }
+
+    @Test
+    void naoDeveCadastrarUmaCategoria_Erro_CategoriaExistente() {
+        when(categoriaGateway.encontrarPorNome(anyString()))
+                .thenReturn(Boolean.TRUE);
+
+        Exception exception = Assertions.assertThrows(CategoriaDuplicatedException.class, () ->
+                categoriaCadastrarUseCaseImpl.cadastrar(categoriaRequest));
+
+        String mensagemEsperada = "Categoria informada já cadastrada";
         String mensagemAtual = exception.getMessage();
 
         Assertions.assertTrue(mensagemAtual.contains(mensagemEsperada));
