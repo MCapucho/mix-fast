@@ -14,7 +14,6 @@ import br.com.postech.mixfast.core.exception.formaPagamento.FormaPagamentoNotFou
 import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoListEmptyException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoNotFoundException;
-import br.com.postech.mixfast.core.exception.pedido.PedidoStatusException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoBadRequestException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoDuplicatedException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoListEmptyException;
@@ -106,11 +105,6 @@ public class RestExceptionHandler {
     @ExceptionHandler(PedidoNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(PedidoNotFoundException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(PedidoStatusException.class)
-    public ResponseEntity<ErrorResponse> handleStatus(PedidoStatusException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ProdutoBadRequestException.class)
