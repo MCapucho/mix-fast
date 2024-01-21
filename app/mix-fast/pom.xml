@@ -33,6 +33,7 @@
 		<sonar.coverage.jacoco.xmlReportPaths>${project.test.result.directory}/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 		<sonar.coverage.exclusions>
 			**/*Handler.*,
+			**/*Decoder.*,
 			**/*Exception.*,
 			**/*DB.*,
 			**/*Http.*,

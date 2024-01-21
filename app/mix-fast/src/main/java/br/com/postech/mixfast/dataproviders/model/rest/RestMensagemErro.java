@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MensagemException {
+public class RestMensagemErro {
 
     private String timestamp;
     private int status;
