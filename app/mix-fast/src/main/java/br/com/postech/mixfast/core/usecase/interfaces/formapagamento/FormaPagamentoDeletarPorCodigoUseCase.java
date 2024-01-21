@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.core.usecase.interfaces.formaPagamento;
+package br.com.postech.mixfast.core.usecase.interfaces.formapagamento;
 
 public interface FormaPagamentoDeletarPorCodigoUseCase {
 

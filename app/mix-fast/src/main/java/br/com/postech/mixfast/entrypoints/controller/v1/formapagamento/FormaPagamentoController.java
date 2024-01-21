@@ -1,7 +1,7 @@
-package br.com.postech.mixfast.entrypoints.controller.v1.formaPagamento;
+package br.com.postech.mixfast.entrypoints.controller.v1.formapagamento;
 
 import br.com.postech.mixfast.core.entity.FormaPagamento;
-import br.com.postech.mixfast.core.usecase.interfaces.formaPagamento.*;
+import br.com.postech.mixfast.core.usecase.interfaces.formapagamento.*;
 import br.com.postech.mixfast.entrypoints.docs.FormaPagamentoDocumentable;
 import br.com.postech.mixfast.entrypoints.http.FormaPagamentoHttp;
 import br.com.postech.mixfast.entrypoints.http.mapper.FormaPagamentoHttpMapper;

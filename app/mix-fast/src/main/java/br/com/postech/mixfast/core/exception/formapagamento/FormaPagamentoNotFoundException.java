@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.core.exception.formaPagamento;
+package br.com.postech.mixfast.core.exception.formapagamento;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

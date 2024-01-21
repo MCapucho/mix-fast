@@ -1,8 +1,8 @@
-package br.com.postech.mixfast.core.usecase.impl.formaPagamento;
+package br.com.postech.mixfast.core.usecase.impl.formapagamento;
 
 import br.com.postech.mixfast.core.entity.FormaPagamento;
 import br.com.postech.mixfast.core.gateway.FormaPagamentoGateway;
-import br.com.postech.mixfast.core.usecase.interfaces.formaPagamento.FormaPagamentoBuscarPorCodigoUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.formapagamento.FormaPagamentoBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

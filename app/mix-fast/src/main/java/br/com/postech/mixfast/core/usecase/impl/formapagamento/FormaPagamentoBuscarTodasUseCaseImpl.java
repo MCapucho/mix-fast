@@ -1,9 +1,9 @@
-package br.com.postech.mixfast.core.usecase.impl.formaPagamento;
+package br.com.postech.mixfast.core.usecase.impl.formapagamento;
 
 import br.com.postech.mixfast.core.entity.FormaPagamento;
-import br.com.postech.mixfast.core.exception.formaPagamento.FormaPagamentoListEmptyException;
+import br.com.postech.mixfast.core.exception.formapagamento.FormaPagamentoListEmptyException;
 import br.com.postech.mixfast.core.gateway.FormaPagamentoGateway;
-import br.com.postech.mixfast.core.usecase.interfaces.formaPagamento.FormaPagamentoBuscarTodasUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.formapagamento.FormaPagamentoBuscarTodasUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package br.com.postech.mixfast.core.usecase.impl.formaPagamento;
+package br.com.postech.mixfast.core.usecase.impl.formapagamento;
 
 import br.com.postech.mixfast.core.entity.FormaPagamento;
-import br.com.postech.mixfast.core.exception.formaPagamento.FormaPagamentoListEmptyException;
+import br.com.postech.mixfast.core.exception.formapagamento.FormaPagamentoListEmptyException;
 import br.com.postech.mixfast.core.gateway.FormaPagamentoGateway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

@@ -7,7 +7,7 @@ import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import br.com.postech.mixfast.core.gateway.PagamentoGateway;
 import br.com.postech.mixfast.core.gateway.PedidoGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.cliente.ClienteBuscarPorCodigoUseCase;
-import br.com.postech.mixfast.core.usecase.interfaces.formaPagamento.FormaPagamentoBuscarPorCodigoUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.formapagamento.FormaPagamentoBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

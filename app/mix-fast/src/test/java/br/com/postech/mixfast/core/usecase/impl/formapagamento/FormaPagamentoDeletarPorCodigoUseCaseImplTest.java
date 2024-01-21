@@ -1,8 +1,8 @@
-package br.com.postech.mixfast.core.usecase.impl.formaPagamento;
+package br.com.postech.mixfast.core.usecase.impl.formapagamento;
 
 import br.com.postech.mixfast.core.entity.FormaPagamento;
 import br.com.postech.mixfast.core.gateway.FormaPagamentoGateway;
-import br.com.postech.mixfast.core.usecase.interfaces.formaPagamento.FormaPagamentoBuscarPorCodigoUseCase;
+import br.com.postech.mixfast.core.usecase.interfaces.formapagamento.FormaPagamentoBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,15 +27,10 @@ class FormaPagamentoDeletarPorCodigoUseCaseImplTest {
     @Mock
     private FormaPagamentoBuscarPorCodigoUseCase formaPagamentoBuscarPorCodigoUseCase;
 
-    private FormaPagamento formaPagamentoRequest;
     private FormaPagamento formaPagamentoResponse;
 
     @BeforeEach
     void setUp() {
-        formaPagamentoRequest = FormaPagamento.builder()
-                .descricao("Forma Pagamento Teste")
-                .build();
-
         formaPagamentoResponse = FormaPagamento.builder()
                 .codigo(UUID.randomUUID().toString())
                 .descricao("Forma Pagamento Teste")
