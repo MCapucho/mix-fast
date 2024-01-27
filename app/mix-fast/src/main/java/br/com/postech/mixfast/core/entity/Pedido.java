@@ -20,7 +20,7 @@ public class Pedido {
     private String codigo;
     private Cliente cliente;
     private List<PedidoProduto> itens;
-    private FormaPagamento formaPagamento;
+    private String formaPagamento;
     private Integer fila;
     private BigDecimal valorTotal;
     private StatusPedido statusPedido = StatusPedido.RECEBIDO;

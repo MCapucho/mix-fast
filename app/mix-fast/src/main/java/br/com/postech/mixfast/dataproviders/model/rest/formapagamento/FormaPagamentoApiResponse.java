@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.core.entity;
+package br.com.postech.mixfast.dataproviders.model.rest.formapagamento;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FormaPagamento {
+public class FormaPagamentoApiResponse {
 
     private String codigo;
     private String descricao;

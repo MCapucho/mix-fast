@@ -27,10 +27,10 @@ logging:
 feign:
   client:
     config:
-      url: https://api.mercadopago.com/instore/orders/qr/seller/collectors/${MERCADO_PAGO_USER_ID}/pos/${MERCADO_PAGO_POS}/qrs
-      token: ${MERCADO_PAGO_TOKEN}
-      auth:
-        logger-level: FULL
+      formapagamento:
+        url: http://localhost:9081/v1/formas_pagamento
+      pagamento:
+        url: http://localhost:9081/v1/pagamentos
 
 management:
   endpoints:

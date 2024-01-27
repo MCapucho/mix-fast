@@ -1,4 +1,4 @@
-package br.com.postech.mixfast.dataproviders.gateway.api;
+package br.com.postech.mixfast.dataproviders.gateway.api.formapagamento;
 
 import br.com.postech.mixfast.dataproviders.exception.ResourceApiException;
 import br.com.postech.mixfast.dataproviders.model.rest.RestMensagemErro;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 
-public class PagamentoErrorDecoder implements ErrorDecoder {
+public class FormaPagamentoErrorDecoder implements ErrorDecoder {
 
     private final ErrorDecoder errorDecoder = new Default();
 
