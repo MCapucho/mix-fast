@@ -8,13 +8,9 @@ import br.com.postech.mixfast.core.exception.cliente.ClienteBadRequestException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteDuplicatedException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteListEmptyException;
 import br.com.postech.mixfast.core.exception.cliente.ClienteNotFoundException;
-import br.com.postech.mixfast.core.exception.formaPagamento.FormaPagamentoBadRequestException;
-import br.com.postech.mixfast.core.exception.formaPagamento.FormaPagamentoDuplicatedException;
-import br.com.postech.mixfast.core.exception.formaPagamento.FormaPagamentoNotFoundException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoListEmptyException;
 import br.com.postech.mixfast.core.exception.pedido.PedidoNotFoundException;
-import br.com.postech.mixfast.core.exception.pedido.PedidoStatusException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoBadRequestException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoDuplicatedException;
 import br.com.postech.mixfast.core.exception.produto.ProdutoListEmptyException;
@@ -31,7 +27,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class RestExceptionHandler {
@@ -78,21 +73,6 @@ public class RestExceptionHandler {
         return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(FormaPagamentoBadRequestException.class)
-    public ResponseEntity<ErrorResponse> handleBadRequest(FormaPagamentoBadRequestException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(FormaPagamentoDuplicatedException.class)
-    public ResponseEntity<ErrorResponse> handleDuplicated(FormaPagamentoDuplicatedException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(FormaPagamentoNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNotFound(FormaPagamentoNotFoundException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
     @ExceptionHandler(PedidoFailedException.class)
     public ResponseEntity<ErrorResponse> handleFailed(PedidoFailedException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -106,11 +86,6 @@ public class RestExceptionHandler {
     @ExceptionHandler(PedidoNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(PedidoNotFoundException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(PedidoStatusException.class)
-    public ResponseEntity<ErrorResponse> handleStatus(PedidoStatusException ex) {
-        return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ProdutoBadRequestException.class)
@@ -167,6 +142,6 @@ public class RestExceptionHandler {
     private List<String> getErrors(MethodArgumentNotValidException ex) {
         return ex.getBindingResult().getFieldErrors().stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

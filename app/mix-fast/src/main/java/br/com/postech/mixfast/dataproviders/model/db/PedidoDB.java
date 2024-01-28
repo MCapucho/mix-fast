@@ -30,9 +30,8 @@ public class PedidoDB {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<PedidoProdutoDB> itens = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "forma_pagamento_codigo")
-    private FormaPagamentoDB formaPagamento;
+    @Column(name = "forma_pagamento_codigo", nullable = false)
+    private String formaPagamento;
 
     @Column(name = "fila", nullable = false, unique = true)
     private Integer fila;

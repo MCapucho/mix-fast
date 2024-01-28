@@ -1,12 +1,11 @@
 package br.com.postech.mixfast.core.usecase.impl.pedido;
 
-import br.com.postech.mixfast.core.entity.FormaPagamento;
 import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
+import br.com.postech.mixfast.core.gateway.FormaPagamentoGateway;
 import br.com.postech.mixfast.core.gateway.PagamentoGateway;
 import br.com.postech.mixfast.core.gateway.PedidoGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.cliente.ClienteBuscarPorCodigoUseCase;
-import br.com.postech.mixfast.core.usecase.interfaces.formaPagamento.FormaPagamentoBuscarPorCodigoUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoEmitirUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,8 +18,9 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
 
     private final PedidoGateway pedidoGateway;
     private final PagamentoGateway pagamentoGateway;
+
+    private final FormaPagamentoGateway formaPagamentoGateway;
     private final ClienteBuscarPorCodigoUseCase clienteBuscarPorCodigoUseCase;
-    private final FormaPagamentoBuscarPorCodigoUseCase formaPagamentoBuscarPorCodigoUseCase;
 
     @Override
     public Pedido emitir(Pedido pedido) {
@@ -28,12 +28,12 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
             clienteBuscarPorCodigoUseCase.buscarPorCodigo(pedido.getCliente().getCodigo());
         }
 
-        FormaPagamento formaPagamento =
-                formaPagamentoBuscarPorCodigoUseCase.buscarPorCodigo(pedido.getFormaPagamento().getCodigo());
+        String formaPagamentoDescricao =
+                formaPagamentoGateway.buscarPorCodigo(pedido.getFormaPagamento());
 
         Pedido pedidoEmitido = pedidoGateway.emitir(pedido);
 
-        if (formaPagamento.getDescricao().contains(QR_CODE)) {
+        if (formaPagamentoDescricao.contains(QR_CODE)) {
             String qrCode = pagamentoGateway.gerarQrCode(pedidoEmitido);
             pedidoEmitido.setQrCode(qrCode);
         }

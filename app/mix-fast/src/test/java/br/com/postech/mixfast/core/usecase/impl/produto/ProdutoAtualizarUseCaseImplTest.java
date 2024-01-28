@@ -2,6 +2,7 @@ package br.com.postech.mixfast.core.usecase.impl.produto;
 
 import br.com.postech.mixfast.core.entity.Categoria;
 import br.com.postech.mixfast.core.entity.Produto;
+import br.com.postech.mixfast.core.exception.produto.ProdutoDuplicatedException;
 import br.com.postech.mixfast.core.gateway.ProdutoGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.categoria.CategoriaBuscarPorCodigoUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.produto.ProdutoBuscarPorCodigoUseCase;
@@ -121,5 +122,19 @@ class ProdutoAtualizarUseCaseImplTest {
         Produto produtoAtualizado = produtoAtualizarUseCaseImpl.atualizar(CODIGO, produtoRequest);
 
         Assertions.assertNotNull(produtoAtualizado);
+    }
+
+    @Test
+    void naoDeveAtualizarUmProduto_Erro_ProdutoExistente() {
+        when(produtoGateway.encontrarPorNome(anyString()))
+                .thenReturn(Boolean.TRUE);
+
+        Exception exception = Assertions.assertThrows(ProdutoDuplicatedException.class, () ->
+                produtoAtualizarUseCaseImpl.atualizar(CODIGO, produtoRequest));
+
+        String mensagemEsperada = "Produto informado já cadastrado";
+        String mensagemAtual = exception.getMessage();
+
+        Assertions.assertTrue(mensagemAtual.contains(mensagemEsperada));
     }
 }

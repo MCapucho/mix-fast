@@ -23,5 +23,5 @@ public interface WebhookDocumentable {
             @ApiResponse(responseCode = "409", description = "Erro na comunicação com o banco de dados",
                     content = { @Content(schema = @Schema(implementation = ErrorResponse.class),
                             mediaType = "application/json") })})
-    ResponseEntity<?> receberNotificacaoPagamento(@Parameter WebhookHttp webhookHttp);
+    ResponseEntity<String> receberNotificacaoPagamento(@Parameter WebhookHttp webhookHttp);
 }

@@ -31,7 +31,7 @@ public class PedidoHttp extends RepresentationModel<PedidoHttp> {
 
     @JsonProperty(value = "forma_pagamento")
     @NotNull(message = "A forma de pagamento é obrigatório, não pode ser nulo ou vazio")
-    private FormaPagamentoHttp formaPagamento;
+    private String formaPagamento;
 
     private Integer fila;
 

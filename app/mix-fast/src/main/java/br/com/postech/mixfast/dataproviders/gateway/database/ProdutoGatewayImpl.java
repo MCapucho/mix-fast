@@ -38,22 +38,32 @@ public class ProdutoGatewayImpl implements ProdutoGateway {
     @Transactional
     @Override
     public List<Produto> buscarTodos() {
-        List<ProdutoDB> listaProdutosDB = produtoRepository.findAll();
-        List<Produto> listaProduto = new ArrayList<>();
+        try {
+            List<ProdutoDB> listaProdutosDB = produtoRepository.findAll();
+            List<Produto> listaProduto = new ArrayList<>();
 
-        listaProdutosDB.forEach(result -> {
-            Produto produto = produtoDBMapper.dbToEntity(result);
-            listaProduto.add(produto);
-        });
+            listaProdutosDB.forEach(result -> {
+                Produto produto = produtoDBMapper.dbToEntity(result);
+                listaProduto.add(produto);
+            });
 
-        return listaProduto;
+            return listaProduto;
+        } catch (Exception e) {
+            log.error("Erro ao buscar todos produtos", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
     }
 
     @Override
     public Produto buscarPorCodigo(String codigo) {
-        return produtoRepository.findById(codigo)
-                .map(produtoDBMapper::dbToEntity)
-                .orElse(null);
+        try {
+            return produtoRepository.findById(codigo)
+                    .map(produtoDBMapper::dbToEntity)
+                    .orElse(null);
+        } catch (Exception e) {
+            log.error("Erro ao buscar uma categoria por código", e);
+            throw new ResourceFailedException(BANCO_DE_DADOS);
+        }
     }
 
     @Override

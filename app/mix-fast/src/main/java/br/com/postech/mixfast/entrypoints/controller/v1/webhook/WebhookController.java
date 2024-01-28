@@ -21,7 +21,7 @@ public class WebhookController implements WebhookDocumentable {
     private final WebhookUseCase webhookUseCase;
 
     @PostMapping
-    public ResponseEntity<?> receberNotificacaoPagamento(@RequestBody WebhookHttp webhookHttp) {
+    public ResponseEntity<String> receberNotificacaoPagamento(@RequestBody WebhookHttp webhookHttp) {
         webhookUseCase.atualizar(webhookHttp.getCodigoPedido(), webhookHttp.getStatusPagamento());
         log.info("Status do pagamento atualizado no pedido com sucesso");
         return ResponseEntity.status(HttpStatus.OK).body(

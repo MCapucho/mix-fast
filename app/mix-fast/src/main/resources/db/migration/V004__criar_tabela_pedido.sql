@@ -4,5 +4,6 @@ CREATE TABLE tb_pedidos (
     data_pedido datetime not null,
     valor_total decimal(10, 2) not null,
     status varchar(20) not null,
-    cliente_codigo varchar(255)
+    cliente_codigo varchar(255),
+    forma_pagamento_codigo varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
