@@ -59,16 +59,16 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
           "value": "3306"
         },
         {
-          "name": "MERCADO_PAGO_TOKEN",
-          "value": "TEST-2380996068417028-090223-5c491b74d2c2d766d02bbe8269ac4fe3-1398154307"
+          "name": "URL_GATEWAY",
+          "value": "https://wifyye62fe.execute-api.us-east-1.amazonaws.com/mixfast"
         },
         {
-          "name": "MERCADO_PAGO_USER_ID",
-          "value": "1398154307"
+          "name": "URL_GATEWAY_TOKEN",
+          "value": "https://xzgdnfubcj.execute-api.us-east-1.amazonaws.com/mixfast-token"
         },
         {
-          "name": "MERCADO_PAGO_POS",
-          "value": "MIXFASTCX01"
+          "name": "CLIENT_ID",
+          "value": "10970049021"
         }
       ],
       "secrets": [

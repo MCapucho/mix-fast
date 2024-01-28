@@ -27,10 +27,13 @@ logging:
 feign:
   client:
     config:
+      token: 
+        url: ${URL_GATEWAY_TOKEN}/login
+        client: ${CLIENT_ID}
       formapagamento:
-        url: http://localhost:9081/v1/formas_pagamento
+        url: ${URL_GATEWAY}/v1/formas_pagamento
       pagamento:
-        url: http://localhost:9081/v1/pagamentos
+        url: ${URL_GATEWAY}/v1/pagamentos
 
 management:
   endpoints:

@@ -4,10 +4,12 @@ import br.com.postech.mixfast.dataproviders.model.rest.formapagamento.FormaPagam
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 @FeignClient(name = "formapagamento", url = "${feign.client.config.formapagamento.url}", configuration = FormaPagamentoConfig.class)
 public interface IFormaPagamentoClient {
 
     @GetMapping("/{codigo}")
-    FormaPagamentoApiResponse buscarPorCodigo(@PathVariable("codigo") String codigo);
+    FormaPagamentoApiResponse buscarPorCodigo(@PathVariable("codigo") String codigo,
+                                              @RequestHeader("Authorization") String token);
 }
