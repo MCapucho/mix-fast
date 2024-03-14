@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "e2235a9a-1636-4052-9531-06ca2e23f557",
-		"name": "Mix Fast",
+		"_postman_id": "925f0dd9-d23a-4ee6-86d3-5ac7cc757bd2",
+		"name": "Mix Fast - AWS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "19886292"
 	},
@@ -12,43 +12,13 @@
 				{
 					"name": "Categoria - Cadastrar",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Lanches\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
 							}
 						},
-						"url": "http://localhost:9080/v1/categorias"
-					},
-					"response": []
-				},
-				{
-					"name": "Categoria - Buscar Todas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/v1/categorias"
-					},
-					"response": []
-				},
-				{
-					"name": "Categoria - Buscar Por Código",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/v1/categorias/e6e5fc2a-2884-4c17-886d-b495c3eec1a8"
-					},
-					"response": []
-				},
-				{
-					"name": "Categoria - Atualizar",
-					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -59,7 +29,61 @@
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/categorias/89e04f96-2303-4f37-ac29-0b9cc992d733"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/categorias"
+					},
+					"response": []
+				},
+				{
+					"name": "Categoria - Buscar Todas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/categorias"
+					},
+					"response": []
+				},
+				{
+					"name": "Categoria - Buscar Por Código",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/categorias/e40d037d-e7fe-46f0-ab2a-59eb65dd9bbf"
+					},
+					"response": []
+				},
+				{
+					"name": "Categoria - Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Doces\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/categorias/e40d037d-e7fe-46f0-ab2a-59eb65dd9bbf"
 					},
 					"response": []
 				},
@@ -67,8 +91,14 @@
 					"name": "Categoria - Deletar Por Código",
 					"request": {
 						"method": "DELETE",
-						"header": [],
-						"url": "http://localhost:9080/v1/categorias/e6e5fc2a-2884-4c17-886d-b495c3eec1a8"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/categorias/9f41bc52-82ae-4430-9e28-83f8ac053199"
 					},
 					"response": []
 				}
@@ -80,27 +110,51 @@
 				{
 					"name": "Produto - Cadastrar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Refrigerante Coca Cola 350ml\",\n    \"descricao\": \"\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"89e04f96-2303-4f37-ac29-0b9cc992d733\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"Refrigerante Coca Cola Zero 350ml\",\n    \"descricao\": \"\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"1ea24ea6-bbe0-4c47-a94b-9147cd6f1c51\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/produtos"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/produtos"
 					},
 					"response": []
 				},
 				{
 					"name": "Produto - Buscar Todos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/v1/produtos"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/produtos"
 					},
 					"response": []
 				},
@@ -108,8 +162,14 @@
 					"name": "Produto - Buscar Por Código",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/v1/produtos/adcca1d5-9519-46dc-a4c4-0e853194b428"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/produtos/860f1df0-8220-440f-9ecd-d97cc725399d"
 					},
 					"response": []
 				},
@@ -117,7 +177,13 @@
 					"name": "Produto - Atualizar",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"descricao\": \"Sem descrição\"\n}",
@@ -127,7 +193,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/produtos/adcca1d5-9519-46dc-a4c4-0e853194b428"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/produtos/860f1df0-8220-440f-9ecd-d97cc725399d"
 					},
 					"response": []
 				},
@@ -135,8 +201,14 @@
 					"name": "Produto - Deletar Por Código",
 					"request": {
 						"method": "DELETE",
-						"header": [],
-						"url": "http://localhost:9080/v1/produtos/bba7f993-5a14-492c-b776-238c9c66987b"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/produtos/35406274-b96b-4f40-892d-ac3da9686982"
 					},
 					"response": []
 				},
@@ -147,7 +219,13 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"nome\": \"X-Bacon Egg\",\n    \"descricao\": \"Pão, hamburguer, bacon, ovo, presunto e queijo\",\n    \"preco\": 23.90,\n    \"categoria\": {\n        \"codigo\": \"5c96f8ba-cbbe-41d1-932c-314b1e3e4b10\"\n    }\n}",
@@ -157,7 +235,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/produtos/categoria/58d88ac6-6af6-4aec-b277-296ce79efc34"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/produtos/categoria/35406274-b96b-4f40-892d-ac3da9686982"
 					},
 					"response": []
 				}
@@ -208,27 +286,51 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Teste Cliente {{$randomInt}}\",\n    \"cpf\": {{cpf}},\n    \"email\": \"{{$randomEmail}}\"\n}",
+							"raw": "{\n    \"nome\": \"Teste Cliente 01\",\n    \"cpf\": \"77647913000\",\n    \"email\": \"teste@teste01.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/clientes"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/clientes"
 					},
 					"response": []
 				},
 				{
 					"name": "Cliente - Buscar Todos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/v1/clientes"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/clientes"
 					},
 					"response": []
 				},
@@ -249,7 +351,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/clientes/ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-2.amazonaws.com/mixfast/v1/clientes/ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
 					},
 					"response": []
 				},
@@ -267,7 +369,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/clientes/ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-2.amazonaws.com/mixfast/v1/clientes/ec0eff40-2e36-48e9-a54a-92d8ef4f8121"
 					},
 					"response": []
 				},
@@ -276,7 +378,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:9080/v1/clientes/4c93a381-2367-492e-81f9-95149d3218e2"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-2.amazonaws.com/mixfast/v1/clientes/4c93a381-2367-492e-81f9-95149d3218e2"
 					},
 					"response": []
 				},
@@ -297,7 +399,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/clientes/cpf/17977662280"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-2.amazonaws.com/mixfast/v1/clientes/cpf/17977662280"
 					},
 					"response": []
 				}
@@ -309,27 +411,39 @@
 				{
 					"name": "Forma Pagamento - Cadastrar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descricao\": \"QRCode\"\n}",
+							"raw": "{\n    \"descricao\": \"Dinheiro\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/formas_pagamento"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/formas_pagamento"
 					},
 					"response": []
 				},
 				{
 					"name": "Forma Pagamento - Buscar Todas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:9080/v1/formas_pagamento"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/formas_pagamento"
 					},
 					"response": []
 				},
@@ -337,8 +451,14 @@
 					"name": "Forma Pagamento - Buscar Por Código",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/v1/formas_pagamento/d8dcd127-4320-49b5-805e-fe6fcbf2022d"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/formas_pagamento/58cdcd40-a52b-4a40-b739-91a4ef7ee54b"
 					},
 					"response": []
 				},
@@ -346,17 +466,23 @@
 					"name": "Forma Pagamento - Atualizar",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descricao\": \"QRCode\"\n}",
+							"raw": "{\n    \"descricao\": \"QRCode2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/formas_pagamento/e77c466d-6356-4a39-89ba-38cba52807c3"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/formas_pagamento/58cdcd40-a52b-4a40-b739-91a4ef7ee54b"
 					},
 					"response": []
 				},
@@ -364,8 +490,43 @@
 					"name": "Forma Pagamento - Deletar Por Código",
 					"request": {
 						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/formas_pagamento/58cdcd40-a52b-4a40-b739-91a4ef7ee54b"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pagamento",
+			"item": [
+				{
+					"name": "Pagamento - Gerar QRCode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
 						"header": [],
-						"url": "http://localhost:9080/v1/formas_pagamento/ce089d5b-07e9-45e1-8bb1-e15d194c8cf8"
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pedido\": \"92a4d489-6047-4f85-8716-30d0c5bbd13c\",\n    \"valor_total\": 120.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/pagamentos"
 					},
 					"response": []
 				}
@@ -377,18 +538,30 @@
 				{
 					"name": "Pedido - Enviar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"1ba23864-10ac-4cdc-bd27-7d21b3ef1541\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"9ed3fce0-bc9f-44ed-89e5-47fcb7008505\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": {\n        \"codigo\": \"d6d20636-572e-4118-9771-2fd6ce8ace44\"\n    }\n}",
+							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"b0d1888d-140f-44cb-be84-656c9c9b76db\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"2986880b-87de-4b24-b276-5f6971d91379\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": \"5e3cc27c-6676-40f1-b871-b2ca7e35725d\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/pedidos"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/pedidos"
 					},
 					"response": []
 				},
@@ -396,26 +569,44 @@
 					"name": "Pedido - Enviar sem Cliente",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"itens\": [\n        {\n            \"produto\": \"bb440cf1-0ac2-472f-8375-e9c1f2bc5619\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": {\n        \"codigo\": \"83a5d0d1-1856-4b35-b5d7-a48bc0482335\"\n    }\n}",
+							"raw": "{\n    \"itens\": [\n        {\n            \"produto\": \"860f1df0-8220-440f-9ecd-d97cc725399d\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": {\n        \"codigo\": \"b7625671-ded8-4dad-bfed-5cc22cbf20c7\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/pedidos"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/pedidos"
 					},
 					"response": []
 				},
 				{
 					"name": "Pedido - Buscar Todos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/v1/pedidos"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/pedidos"
 					},
 					"response": []
 				},
@@ -423,8 +614,14 @@
 					"name": "Pedido - Buscar Por Código",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/v1/pedidos/f3af42ab-a820-4ca7-8eec-6346cd78b6f6"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/pedidos/4201c049-f0c8-4535-a7b0-39b7b605cd43"
 					},
 					"response": []
 				},
@@ -432,8 +629,14 @@
 					"name": "Pedido - Buscar Por Código Status Pagamento",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/v1/pedidos/6501af99-049f-4ec3-9edf-9fb99ae7536c/pagamento"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/pedidos/4201c049-f0c8-4535-a7b0-39b7b605cd43/pagamento"
 					},
 					"response": []
 				},
@@ -441,15 +644,25 @@
 					"name": "Pedido - Buscar Por Status",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:9080/v1/pedidos/status?status=recebido",
-							"protocol": "http",
+							"raw": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/pedidos/status?status=cancelado",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"{{id_api_gateway}}",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
 							],
-							"port": "9080",
 							"path": [
+								"mixfast",
 								"v1",
 								"pedidos",
 								"status"
@@ -457,46 +670,102 @@
 							"query": [
 								{
 									"key": "status",
-									"value": "recebido"
+									"value": "cancelado"
 								}
 							]
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "Producao",
+			"item": [
 				{
-					"name": "Pedido - Preparar",
+					"name": "Producao - Preparar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "PUT",
-						"header": [],
-						"url": "http://localhost:9080/v1/pedidos/7042b3ef-3621-425a-ab29-31814eaff60b/preparamento"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/producoes/pedido/54189c28-757d-44dd-8e1d-6ab4f9d3f00b/preparamento"
 					},
 					"response": []
 				},
 				{
-					"name": "Pedido - Entregar",
+					"name": "Producao - Entregar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "PUT",
 						"header": [],
-						"url": "http://localhost:9080/v1/pedidos/7042b3ef-3621-425a-ab29-31814eaff60b/entrega"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/producoes/pedido/54189c28-757d-44dd-8e1d-6ab4f9d3f00b/entrega"
 					},
 					"response": []
 				},
 				{
-					"name": "Pedido - Finalizar",
+					"name": "Producao - Finalizar",
 					"request": {
 						"method": "PUT",
-						"header": [],
-						"url": "http://localhost:9080/v1/pedidos/7042b3ef-3621-425a-ab29-31814eaff60b/finalizado"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/producoes/pedido/4201c049-f0c8-4535-a7b0-39b7b605cd43/finalizado"
 					},
 					"response": []
 				},
 				{
-					"name": "Pedido - Cancelar",
+					"name": "Producao - Cancelar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "PUT",
 						"header": [],
-						"url": "http://localhost:9080/v1/pedidos/b290d22c-65b0-4fde-8189-a4d95e017a27/cancelamento"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/producoes/pedido/314468ef-2af1-4f2c-845a-d1a99313ef44/cancelamento"
+					},
+					"response": []
+				},
+				{
+					"name": "Producao - Buscar Todos Pedido Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/producoes/pedidos/status"
 					},
 					"response": []
 				}
@@ -508,9 +777,21 @@
 				{
 					"name": "Métricas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/actuator"
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/actuator"
 					},
 					"response": []
 				},
@@ -518,8 +799,15 @@
 					"name": "Hostcheck",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": "http://localhost:9080/hostcheck"
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/hostcheck"
 					},
 					"response": []
 				}
@@ -531,18 +819,128 @@
 				{
 					"name": "Webhook - Atualizar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"codigo_pedido\": \"6501af99-049f-4ec3-9edf-9fb99ae7536c\",\n    \"status_pagamento\": \"aprovado\"\n}",
+							"raw": "{\n    \"codigo_pedido\": \"8c8cea21-3dc7-4f5d-8c5f-1004eabbcffd\",\n    \"status_pagamento\": \"aprovado\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:9080/v1/webhooks"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/webhooks"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "Token - Create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mcapuchoribeiro@icloud.com\",\n    \"password\": \"Q1w2e3r4@\",\n    \"cpf\": \"10970049021\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{id_api_gateway_token}}.execute-api.us-east-1.amazonaws.com/mixfast-token/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Token - Confirm",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"10970049021\",\n    \"code\": \"882595\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{id_api_gateway_token}}.execute-api.us-east-1.amazonaws.com/mixfast-token/confirm"
+					},
+					"response": []
+				},
+				{
+					"name": "Token - Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.idToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "allow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"10970049021\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{id_api_gateway_token}}.execute-api.us-east-1.amazonaws.com/mixfast-token/login"
 					},
 					"response": []
 				}
