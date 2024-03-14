@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
   [
     {
       "name": "container_${var.name}",
-      "image": "022874923015.dkr.ecr.us-east-1.amazonaws.com/mixfast:latest",
+      "image": "211125470560.dkr.ecr.us-east-1.amazonaws.com/mixfast:latest",
       "essential": true,
       "portMappings": [
         {
@@ -40,7 +40,7 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
       "environment": [
         {
           "name": "DB_HOST",
-          "value": "dbmixfast.ct05vyvkxmk9.us-east-1.rds.amazonaws.com"
+          "value": "dbmixfast.cfyi0q0ccpic.us-east-1.rds.amazonaws.com"
         },
         {
           "name": "DB_PASSWORD",
@@ -60,11 +60,11 @@ resource "aws_ecs_task_definition" "mixfast_ecs_task_definition" {
         },
         {
           "name": "URL_GATEWAY",
-          "value": "https://wifyye62fe.execute-api.us-east-1.amazonaws.com/mixfast"
+          "value": "https://wdz22x6xj4.execute-api.us-east-1.amazonaws.com/mixfast"
         },
         {
           "name": "URL_GATEWAY_TOKEN",
-          "value": "https://xzgdnfubcj.execute-api.us-east-1.amazonaws.com/mixfast-token"
+          "value": "https://hwn2wv5ioj.execute-api.us-east-1.amazonaws.com/mixfast-token"
         },
         {
           "name": "CLIENT_ID",
