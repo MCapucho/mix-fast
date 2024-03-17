@@ -6,6 +6,7 @@ import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import br.com.postech.mixfast.core.gateway.FormaPagamentoGateway;
 import br.com.postech.mixfast.core.gateway.PagamentoGateway;
 import br.com.postech.mixfast.core.gateway.PedidoGateway;
+import br.com.postech.mixfast.core.gateway.ProducerNotificationGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.cliente.ClienteBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,8 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PedidoEmitirUseCaseImplTest {
@@ -30,6 +30,8 @@ class PedidoEmitirUseCaseImplTest {
     private PedidoGateway pedidoGateway;
     @Mock
     private PagamentoGateway pagamentoGateway;
+    @Mock
+    private ProducerNotificationGateway producerNotificationGateway;
     @Mock
     private FormaPagamentoGateway formaPagamentoGateway;
     @Mock
@@ -63,6 +65,9 @@ class PedidoEmitirUseCaseImplTest {
         when(pedidoGateway.emitir(any(Pedido.class)))
                 .thenReturn(pedido);
 
+        doNothing().when(producerNotificationGateway)
+                .notificarPedido();
+
         Pedido pedidoEmitido = pedidoEmitirUseCaseImpl.emitir(pedido);
 
         Assertions.assertNotNull(pedidoEmitido);
@@ -82,6 +87,9 @@ class PedidoEmitirUseCaseImplTest {
 
         when(pagamentoGateway.gerarQrCode(any(Pedido.class)))
                 .thenReturn("abc1234");
+
+        doNothing().when(producerNotificationGateway)
+                .notificarPedido();
 
         Pedido pedidoEmitido = pedidoEmitirUseCaseImpl.emitir(pedido);
 

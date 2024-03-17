@@ -5,6 +5,7 @@ import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import br.com.postech.mixfast.core.gateway.FormaPagamentoGateway;
 import br.com.postech.mixfast.core.gateway.PagamentoGateway;
 import br.com.postech.mixfast.core.gateway.PedidoGateway;
+import br.com.postech.mixfast.core.gateway.ProducerNotificationGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.cliente.ClienteBuscarPorCodigoUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoEmitirUseCase;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
 
     private final PedidoGateway pedidoGateway;
     private final PagamentoGateway pagamentoGateway;
+    private final ProducerNotificationGateway producerNotificationGateway;
 
     private final FormaPagamentoGateway formaPagamentoGateway;
     private final ClienteBuscarPorCodigoUseCase clienteBuscarPorCodigoUseCase;
@@ -42,6 +44,7 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
             throw new PedidoFailedException("Erro ao emitir o pedido informado");
         }
 
+        producerNotificationGateway.notificarPedido();
         return pedidoEmitido;
     }
 }

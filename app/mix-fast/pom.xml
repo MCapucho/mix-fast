@@ -19,6 +19,7 @@
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.0</spring-cloud.version>
 
+		<aws.sdk.sqs.version>2.25.11</aws.sdk.sqs.version>
 		<commons-lang3.version>3.12.0</commons-lang3.version>
 		<jacoco-plugin.version>0.8.8</jacoco-plugin.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
@@ -40,6 +41,7 @@
 			**/*Http.*,
 			**/*Response.*,
 			**/*Mapper.*,
+			**/*NotificationGatewayImpl.*,
 			**/*Application.*
 		</sonar.coverage.exclusions>
 	</properties>
@@ -92,6 +94,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- AWS SDK -->
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>sqs</artifactId>
+			<version>${aws.sdk.sqs.version}</version>
 		</dependency>
 
 		<!-- Banco de Dados -->
@@ -220,6 +229,7 @@
 						<exclude>br/com/postech/mixfast/core/usecases/interfaces/**/*</exclude>
 						<exclude>br/com/postech/mixfast/dataproviders/exception/**/*</exclude>
 						<exclude>br/com/postech/mixfast/dataproviders/model/**/*</exclude>
+						<exclude>br/com/postech/mixfast/dataproviders/gateway/mensageria/**/*</exclude>
 						<exclude>br/com/postech/mixfast/dataproviders/repository/**/*</exclude>
 					</excludes>
 				</configuration>

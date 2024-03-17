@@ -22,7 +22,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Bebidas\"\n}",
+							"raw": "{\n    \"nome\": \"Lanches\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -126,7 +126,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Refrigerante Coca Cola Zero 350ml\",\n    \"descricao\": \"\",\n    \"preco\": 3.90,\n    \"categoria\": {\n        \"codigo\": \"1ea24ea6-bbe0-4c47-a94b-9147cd6f1c51\"\n    }\n}",
+							"raw": "{\n    \"nome\": \"X- Tudo Completo\",\n    \"descricao\": \"Pão, hamburguer, ovo, frango, presunto, queijo, bacon, calabresa, tomate, alface, milho\",\n    \"preco\": 33.50,\n    \"categoria\": {\n        \"codigo\": \"b7e3d74b-e391-481c-b257-cbc0e8f4fabe\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -251,15 +251,6 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
 									"function cpf() {",
 									"  const rnd = (n) => Math.round(Math.random() * n);",
 									"  const mod = (base, div) => Math.round(base - Math.floor(base / div) * div)",
@@ -281,7 +272,18 @@
 									"pm.environment.get(\"variable_key\");",
 									"pm.globals.get(\"variable_key\");"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -302,7 +304,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Teste Cliente 01\",\n    \"cpf\": \"77647913000\",\n    \"email\": \"teste@teste01.com\"\n}",
+							"raw": "{\n    \"nome\": \"Teste Cliente {{$randomInt}}\",\n    \"cpf\": {{cpf}},\n    \"email\": \"{{$randomEmail}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -421,7 +423,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descricao\": \"Dinheiro\"\n}",
+							"raw": "{\n    \"descricao\": \"QRCode\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -554,7 +556,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"b0d1888d-140f-44cb-be84-656c9c9b76db\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"2986880b-87de-4b24-b276-5f6971d91379\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": \"5e3cc27c-6676-40f1-b871-b2ca7e35725d\"\n}",
+							"raw": "{\n    \"cliente\": {\n        \"codigo\": \"24de9e07-7510-407b-a817-e12616d7811c\"\n    },\n    \"itens\": [\n        {\n            \"produto\": \"0b5cc7c6-ec4f-4beb-bab8-018a3a2e73fb\",\n            \"quantidade\": 1\n        },\n        {\n            \"produto\": \"fbcbc1de-5418-466e-9222-a3c411f814a2\",\n            \"quantidade\": 2\n        }\n    ],\n    \"forma_pagamento\": \"40b59f45-4f6c-4940-96f4-c502cfc9edf3\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -568,6 +570,12 @@
 				{
 					"name": "Pedido - Enviar sem Cliente",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -578,7 +586,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"itens\": [\n        {\n            \"produto\": \"860f1df0-8220-440f-9ecd-d97cc725399d\",\n            \"quantidade\": 3\n        }\n    ],\n    \"forma_pagamento\": {\n        \"codigo\": \"b7625671-ded8-4dad-bfed-5cc22cbf20c7\"\n    }\n}",
+							"raw": "{\n    \"itens\": [\n        {\n            \"produto\": \"0b5cc7c6-ec4f-4beb-bab8-018a3a2e73fb\",\n            \"quantidade\": 1\n        },\n        {\n            \"produto\": \"fbcbc1de-5418-466e-9222-a3c411f814a2\",\n            \"quantidade\": 2\n        }\n    ],\n    \"forma_pagamento\": \"5f001b66-a6fb-4003-9ce7-a75aabb7c1ae\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -613,6 +621,12 @@
 				{
 					"name": "Pedido - Buscar Por Código",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -621,7 +635,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/pedidos/4201c049-f0c8-4535-a7b0-39b7b605cd43"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/pedidos/7fcc60aa-e9ef-4547-a6ae-9050bc4a10c6"
 					},
 					"response": []
 				},
@@ -699,7 +713,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/producoes/pedido/54189c28-757d-44dd-8e1d-6ab4f9d3f00b/preparamento"
+						"url": "https://{{id_api_gateway}}.execute-api.us-east-1.amazonaws.com/mixfast/v1/producoes/pedido/385548f3-d375-4ec1-82d8-d0beeeccfbce/preparamento"
 					},
 					"response": []
 				},
@@ -835,7 +849,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"codigo_pedido\": \"8c8cea21-3dc7-4f5d-8c5f-1004eabbcffd\",\n    \"status_pagamento\": \"aprovado\"\n}",
+							"raw": "{\n    \"codigo_pedido\": \"c2f0612e-fe98-442d-96e9-7c537aaadf14\",\n    \"status_pagamento\": \"aprovado\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -894,7 +908,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cpf\": \"10970049021\",\n    \"code\": \"882595\"\n}",
+							"raw": "{\n    \"cpf\": \"10970049021\",\n    \"code\": \"985088\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
