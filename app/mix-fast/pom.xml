@@ -41,6 +41,7 @@
 			**/*Http.*,
 			**/*Response.*,
 			**/*Mapper.*,
+			**/*NotificationGatewayImpl.*,
 			**/*Application.*
 		</sonar.coverage.exclusions>
 	</properties>
