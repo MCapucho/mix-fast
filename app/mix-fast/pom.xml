@@ -228,6 +228,7 @@
 						<exclude>br/com/postech/mixfast/core/usecases/interfaces/**/*</exclude>
 						<exclude>br/com/postech/mixfast/dataproviders/exception/**/*</exclude>
 						<exclude>br/com/postech/mixfast/dataproviders/model/**/*</exclude>
+						<exclude>br/com/postech/mixfast/dataproviders/gateway/mensageria/**/*</exclude>
 						<exclude>br/com/postech/mixfast/dataproviders/repository/**/*</exclude>
 					</excludes>
 				</configuration>

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sqs.SqsClient;
-import software.amazon.awssdk.services.sqs.model.CreateQueueRequest;
 import software.amazon.awssdk.services.sqs.model.GetQueueUrlRequest;
 import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
 import software.amazon.awssdk.services.sqs.model.SqsException;
@@ -18,13 +17,15 @@ public class ProducerNotificationGatewayImpl implements ProducerNotificationGate
     @Value("${aws.queue.name}")
     private String queueName;
 
+    Region region = Region.US_EAST_1;
+
+    SqsClient sqsClient = SqsClient.builder()
+            .region(region)
+            .build();
+
     @Override
     public void notificarPedido() {
         try {
-            SqsClient sqsClient = SqsClient.builder()
-                    .region(Region.US_EAST_1)
-                    .build();
-
             GetQueueUrlRequest getQueueRequest = GetQueueUrlRequest.builder()
                     .queueName(queueName)
                     .build();
@@ -39,8 +40,7 @@ public class ProducerNotificationGatewayImpl implements ProducerNotificationGate
 
             sqsClient.sendMessage(sendMsgRequest);
         } catch (SqsException e) {
-            System.err.println(e.awsErrorDetails().errorMessage());
-            System.exit(1);
+            System.out.println(e.getMessage());
         }
     }
 }
