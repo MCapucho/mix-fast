@@ -1,6 +1,9 @@
 package br.com.postech.mixfast.dataproviders.gateway.mensageria;
 
+import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.gateway.ProducerNotificationGateway;
+import br.com.postech.mixfast.dataproviders.model.mensageria.NotificacaoRequest;
+import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,8 @@ public class ProducerNotificationGatewayImpl implements ProducerNotificationGate
     @Value("${aws.queue.name}")
     private String queueName;
 
+    private final Gson gson;
+
     Region region = Region.US_EAST_1;
 
     SqsClient sqsClient = SqsClient.builder()
@@ -24,23 +29,36 @@ public class ProducerNotificationGatewayImpl implements ProducerNotificationGate
             .build();
 
     @Override
-    public void notificarPedido() {
-        try {
-            GetQueueUrlRequest getQueueRequest = GetQueueUrlRequest.builder()
-                    .queueName(queueName)
+    public void notificarPedido(Pedido pedido) {
+        if (pedido.getCliente() != null) {
+            NotificacaoRequest notificacaoRequest = NotificacaoRequest.builder()
+                    .codigoPedido(pedido.getCodigo())
+                    .nomeCliente(pedido.getCliente().getNome())
+                    .emailCliente(pedido.getCliente().getEmail())
+                    .valorTotalPedido(pedido.getValorTotal())
+                    .statusPedido(pedido.getStatusPedido().getDescricao())
+                    .statusPagamento(pedido.getStatusPagamento().getDescricao())
                     .build();
 
-            String queueUrl = sqsClient.getQueueUrl(getQueueRequest).queueUrl();
+            String notificacaoJson = gson.toJson(notificacaoRequest);
 
-            SendMessageRequest sendMsgRequest = SendMessageRequest.builder()
-                    .queueUrl(queueUrl)
-                    .messageBody("Olá")
-                    .delaySeconds(5)
-                    .build();
+            try {
+                GetQueueUrlRequest getQueueRequest = GetQueueUrlRequest.builder()
+                        .queueName(queueName)
+                        .build();
 
-            sqsClient.sendMessage(sendMsgRequest);
-        } catch (SqsException e) {
-            System.out.println(e.getMessage());
+                String queueUrl = sqsClient.getQueueUrl(getQueueRequest).queueUrl();
+
+                SendMessageRequest sendMsgRequest = SendMessageRequest.builder()
+                        .queueUrl(queueUrl)
+                        .messageBody(notificacaoJson)
+                        .delaySeconds(5)
+                        .build();
+
+                sqsClient.sendMessage(sendMsgRequest);
+            } catch (SqsException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

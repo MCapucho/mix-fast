@@ -44,7 +44,7 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
             throw new PedidoFailedException("Erro ao emitir o pedido informado");
         }
 
-        producerNotificationGateway.notificarPedido();
+        producerNotificationGateway.notificarPedido(pedido);
         return pedidoEmitido;
     }
 }
