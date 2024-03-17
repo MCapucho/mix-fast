@@ -1,5 +1,6 @@
 package br.com.postech.mixfast.dataproviders.gateway.mensageria;
 
+import br.com.postech.mixfast.core.entity.Cliente;
 import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.gateway.ProducerNotificationGateway;
 import br.com.postech.mixfast.dataproviders.model.mensageria.NotificacaoRequest;
@@ -29,12 +30,12 @@ public class ProducerNotificationGatewayImpl implements ProducerNotificationGate
             .build();
 
     @Override
-    public void notificarPedido(Pedido pedido) {
+    public void notificarPedido(Pedido pedido, Cliente cliente) {
         if (pedido.getCliente() != null) {
             NotificacaoRequest notificacaoRequest = NotificacaoRequest.builder()
                     .codigoPedido(pedido.getCodigo())
-                    .nomeCliente(pedido.getCliente().getNome())
-                    .emailCliente(pedido.getCliente().getEmail())
+                    .nomeCliente(cliente.getNome())
+                    .emailCliente(cliente.getEmail())
                     .valorTotalPedido(pedido.getValorTotal())
                     .statusPedido(pedido.getStatusPedido().getDescricao())
                     .statusPagamento(pedido.getStatusPagamento().getDescricao())
