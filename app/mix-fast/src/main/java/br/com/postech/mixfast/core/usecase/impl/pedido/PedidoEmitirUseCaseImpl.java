@@ -1,5 +1,6 @@
 package br.com.postech.mixfast.core.usecase.impl.pedido;
 
+import br.com.postech.mixfast.core.entity.Cliente;
 import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import br.com.postech.mixfast.core.gateway.FormaPagamentoGateway;
@@ -26,8 +27,10 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
 
     @Override
     public Pedido emitir(Pedido pedido) {
+        Cliente cliente = null;
+
         if (pedido.getCliente() != null) {
-            clienteBuscarPorCodigoUseCase.buscarPorCodigo(pedido.getCliente().getCodigo());
+            cliente = clienteBuscarPorCodigoUseCase.buscarPorCodigo(pedido.getCliente().getCodigo());
         }
 
         String formaPagamentoDescricao =
@@ -44,7 +47,7 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
             throw new PedidoFailedException("Erro ao emitir o pedido informado");
         }
 
-        producerNotificationGateway.notificarPedido(pedidoEmitido);
+        producerNotificationGateway.notificarPedido(pedidoEmitido, cliente);
         return pedidoEmitido;
     }
 }

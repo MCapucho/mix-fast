@@ -66,7 +66,7 @@ class PedidoEmitirUseCaseImplTest {
                 .thenReturn(pedido);
 
         doNothing().when(producerNotificationGateway)
-                .notificarPedido(pedido);
+                .notificarPedido(pedido, cliente);
 
         Pedido pedidoEmitido = pedidoEmitirUseCaseImpl.emitir(pedido);
 
@@ -89,7 +89,7 @@ class PedidoEmitirUseCaseImplTest {
                 .thenReturn("abc1234");
 
         doNothing().when(producerNotificationGateway)
-                .notificarPedido(pedido);
+                .notificarPedido(pedido, cliente);
 
         Pedido pedidoEmitido = pedidoEmitirUseCaseImpl.emitir(pedido);
 
