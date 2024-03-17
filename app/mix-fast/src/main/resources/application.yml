@@ -35,6 +35,10 @@ feign:
       pagamento:
         url: ${URL_GATEWAY}/v1/pagamentos
 
+aws:
+  queue:
+    name: mixfast-notificacao-pedido
+
 management:
   endpoints:
     web:

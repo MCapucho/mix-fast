@@ -36,7 +36,8 @@ resource "aws_iam_policy" "ecs_task_execution_policy" {
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents",
-        "logs:DescribeLogStreams"
+        "logs:DescribeLogStreams",
+        "sqs:*"
       ]
       Resource = ["*"]
     }]
@@ -81,7 +82,8 @@ resource "aws_iam_policy" "ecs_task_policy" {
         "ecr:PutImage",
         "ecr:InitiateLayerUpload",
         "ecr:UploadLayerPart",
-        "ecr:CompleteLayerUpload"
+        "ecr:CompleteLayerUpload",
+        "sqs:*"
       ]
       Resource = ["*"]
     }]
