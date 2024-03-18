@@ -37,7 +37,10 @@ feign:
 
 aws:
   queue:
-    name: mixfast-notificacao-pedido
+    name:
+      pedido: mixfast-notificacao-pedido
+      aprovado: mixfast-notificacao-pedido-pagamento-aprovado
+      reprovado: mixfast-notificacao-pedido-pagamento-reprovado
 
 management:
   endpoints:

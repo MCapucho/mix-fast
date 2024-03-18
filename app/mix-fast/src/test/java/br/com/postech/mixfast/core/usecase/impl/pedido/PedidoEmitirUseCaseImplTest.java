@@ -2,6 +2,7 @@ package br.com.postech.mixfast.core.usecase.impl.pedido;
 
 import br.com.postech.mixfast.core.entity.Cliente;
 import br.com.postech.mixfast.core.entity.Pedido;
+import br.com.postech.mixfast.core.entity.enums.StatusPedido;
 import br.com.postech.mixfast.core.exception.pedido.PedidoFailedException;
 import br.com.postech.mixfast.core.gateway.FormaPagamentoGateway;
 import br.com.postech.mixfast.core.gateway.PagamentoGateway;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.UUID;
 
@@ -42,6 +44,8 @@ class PedidoEmitirUseCaseImplTest {
 
     @BeforeEach
     void setUp() {
+        ReflectionTestUtils.setField(pedidoEmitirUseCaseImpl, "queuePedido", "mixfast-notificacao-pedido");
+
         cliente = Cliente.builder()
                 .codigo(UUID.randomUUID().toString())
                 .build();
@@ -51,6 +55,7 @@ class PedidoEmitirUseCaseImplTest {
                 .formaPagamento(UUID.randomUUID().toString())
                 .cliente(cliente)
                 .fila(1)
+                .statusPedido(StatusPedido.RECEBIDO)
                 .build();
     }
 
@@ -66,7 +71,7 @@ class PedidoEmitirUseCaseImplTest {
                 .thenReturn(pedido);
 
         doNothing().when(producerNotificationGateway)
-                .notificarPedido(pedido, cliente);
+                .notificarPedido(pedido, cliente, "mixfast-notificacao-pedido");
 
         Pedido pedidoEmitido = pedidoEmitirUseCaseImpl.emitir(pedido);
 
@@ -89,7 +94,7 @@ class PedidoEmitirUseCaseImplTest {
                 .thenReturn("abc1234");
 
         doNothing().when(producerNotificationGateway)
-                .notificarPedido(pedido, cliente);
+                .notificarPedido(pedido, cliente, "mixfast-notificacao-pedido");
 
         Pedido pedidoEmitido = pedidoEmitirUseCaseImpl.emitir(pedido);
 

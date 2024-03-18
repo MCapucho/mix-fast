@@ -1,8 +1,10 @@
 package br.com.postech.mixfast.core.usecase.impl.webhook;
 
+import br.com.postech.mixfast.core.entity.Cliente;
 import br.com.postech.mixfast.core.entity.Pedido;
 import br.com.postech.mixfast.core.entity.enums.StatusPagamento;
 import br.com.postech.mixfast.core.gateway.PedidoGateway;
+import br.com.postech.mixfast.core.gateway.ProducerNotificationGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoBuscarPorCodigoUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.UUID;
 
@@ -29,13 +32,21 @@ class WebhookUseCaseImplTest {
     private PedidoBuscarPorCodigoUseCase pedidoBuscarPorCodigoUseCase;
     @Mock
     private PedidoGateway pedidoGateway;
+    @Mock
+    private ProducerNotificationGateway producerNotificationGateway;
 
     private Pedido pedido;
 
     @BeforeEach
     void setUp() {
+        ReflectionTestUtils.setField(webhookUseCaseImpl, "queueAprovado", "mixfast-notificacao-pedido-pagamento-aprovado");
+        ReflectionTestUtils.setField(webhookUseCaseImpl, "queueReprovado", "mixfast-notificacao-pedido-pagamento-reprovado");
+
         pedido = Pedido.builder()
                 .codigo(UUID.randomUUID().toString())
+                .cliente(Cliente.builder()
+                        .codigo(UUID.randomUUID().toString())
+                        .build())
                 .build();
     }
 
@@ -46,6 +57,10 @@ class WebhookUseCaseImplTest {
 
         doNothing().when(pedidoGateway)
                 .atualizarStatusPagamento(pedido);
+
+        pedido.setStatusPagamento(StatusPagamento.APROVADO);
+        doNothing().when(producerNotificationGateway)
+                .notificarPedido(pedido, pedido.getCliente(), "mixfast-notificacao-pedido-pagamento-aprovado");
 
         webhookUseCaseImpl.atualizar(CODIGO_PEDIDO, CODIGO_STATUS_PAGAMENTO_APROVADO);
 
@@ -60,6 +75,10 @@ class WebhookUseCaseImplTest {
 
         doNothing().when(pedidoGateway)
                 .atualizarStatusPagamento(pedido);
+
+        pedido.setStatusPagamento(StatusPagamento.REPROVADO);
+        doNothing().when(producerNotificationGateway)
+                .notificarPedido(pedido, pedido.getCliente(), "mixfast-notificacao-pedido-pagamento-reprovado");
 
         webhookUseCaseImpl.atualizar(CODIGO_PEDIDO, CODIGO_STATUS_PAGAMENTO_REPROVADO);
 

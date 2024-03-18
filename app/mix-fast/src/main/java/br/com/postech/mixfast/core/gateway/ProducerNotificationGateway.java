@@ -5,5 +5,5 @@ import br.com.postech.mixfast.core.entity.Pedido;
 
 public interface ProducerNotificationGateway {
 
-    void notificarPedido(Pedido pedido, Cliente cliente);
+    void notificarPedido(Pedido pedido, Cliente cliente, String queueName);
 }
