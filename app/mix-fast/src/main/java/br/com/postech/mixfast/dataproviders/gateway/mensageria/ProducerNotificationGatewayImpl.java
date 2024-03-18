@@ -6,7 +6,6 @@ import br.com.postech.mixfast.core.gateway.ProducerNotificationGateway;
 import br.com.postech.mixfast.dataproviders.model.mensageria.NotificacaoRequest;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sqs.SqsClient;
@@ -18,9 +17,6 @@ import software.amazon.awssdk.services.sqs.model.SqsException;
 @Service
 public class ProducerNotificationGatewayImpl implements ProducerNotificationGateway {
 
-    @Value("${aws.queue.name}")
-    private String queueName;
-
     private final Gson gson;
 
     Region region = Region.US_EAST_1;
@@ -30,7 +26,7 @@ public class ProducerNotificationGatewayImpl implements ProducerNotificationGate
             .build();
 
     @Override
-    public void notificarPedido(Pedido pedido, Cliente cliente) {
+    public void notificarPedido(Pedido pedido, Cliente cliente, String queueName) {
         if (pedido.getCliente() != null) {
             NotificacaoRequest notificacaoRequest = NotificacaoRequest.builder()
                     .codigoPedido(pedido.getCodigo())

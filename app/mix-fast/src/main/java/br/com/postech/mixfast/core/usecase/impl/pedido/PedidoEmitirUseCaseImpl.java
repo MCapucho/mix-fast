@@ -10,11 +10,15 @@ import br.com.postech.mixfast.core.gateway.ProducerNotificationGateway;
 import br.com.postech.mixfast.core.usecase.interfaces.cliente.ClienteBuscarPorCodigoUseCase;
 import br.com.postech.mixfast.core.usecase.interfaces.pedido.PedidoEmitirUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
+
+    @Value("${aws.queue.name.pedido}")
+    private String queuePedido;
 
     private static final String QR_CODE = "Code";
 
@@ -47,7 +51,7 @@ public class PedidoEmitirUseCaseImpl implements PedidoEmitirUseCase {
             throw new PedidoFailedException("Erro ao emitir o pedido informado");
         }
 
-        producerNotificationGateway.notificarPedido(pedidoEmitido, cliente);
+        producerNotificationGateway.notificarPedido(pedidoEmitido, cliente, queuePedido);
         return pedidoEmitido;
     }
 }
