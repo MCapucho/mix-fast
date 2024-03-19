@@ -41,6 +41,7 @@ aws:
       pedido: mixfast-notificacao-pedido
       aprovado: mixfast-notificacao-pedido-pagamento-aprovado
       reprovado: mixfast-notificacao-pedido-pagamento-reprovado
+      cozinha: mixfast-notificacao-pedido-cozinha
 
 management:
   endpoints:

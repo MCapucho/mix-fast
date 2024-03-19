@@ -41,6 +41,7 @@ class WebhookUseCaseImplTest {
     void setUp() {
         ReflectionTestUtils.setField(webhookUseCaseImpl, "queueAprovado", "mixfast-notificacao-pedido-pagamento-aprovado");
         ReflectionTestUtils.setField(webhookUseCaseImpl, "queueReprovado", "mixfast-notificacao-pedido-pagamento-reprovado");
+        ReflectionTestUtils.setField(webhookUseCaseImpl, "queueCozinha", "mixfast-notificacao-pedido-cozinha");
 
         pedido = Pedido.builder()
                 .codigo(UUID.randomUUID().toString())
@@ -61,6 +62,8 @@ class WebhookUseCaseImplTest {
         pedido.setStatusPagamento(StatusPagamento.APROVADO);
         doNothing().when(producerNotificationGateway)
                 .notificarPedido(pedido, pedido.getCliente(), "mixfast-notificacao-pedido-pagamento-aprovado");
+        doNothing().when(producerNotificationGateway)
+                .notificarPedido(pedido, pedido.getCliente(), "mixfast-notificacao-pedido-cozinha");
 
         webhookUseCaseImpl.atualizar(CODIGO_PEDIDO, CODIGO_STATUS_PAGAMENTO_APROVADO);
 

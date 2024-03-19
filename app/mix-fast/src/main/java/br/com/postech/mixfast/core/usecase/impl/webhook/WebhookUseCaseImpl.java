@@ -22,6 +22,9 @@ public class WebhookUseCaseImpl implements WebhookUseCase {
     @Value("${aws.queue.name.reprovado}")
     private String queueReprovado;
 
+    @Value("${aws.queue.name.cozinha}")
+    private String queueCozinha;
+
     private final PedidoBuscarPorCodigoUseCase pedidoBuscarPorCodigoUseCase;
     private final PedidoGateway pedidoGateway;
     private final ProducerNotificationGateway producerNotificationGateway;
@@ -33,7 +36,11 @@ public class WebhookUseCaseImpl implements WebhookUseCase {
                 StatusPagamento.APROVADO : StatusPagamento.REPROVADO);
         pedidoGateway.atualizarStatusPagamento(pedido);
 
-        producerNotificationGateway.notificarPedido(pedido, pedido.getCliente(),
-                pedido.getStatusPagamento() == StatusPagamento.APROVADO ? queueAprovado : queueReprovado);
+        if (pedido.getStatusPagamento() == StatusPagamento.APROVADO) {
+            producerNotificationGateway.notificarPedido(pedido, pedido.getCliente(), queueAprovado);
+            producerNotificationGateway.notificarPedido(pedido, pedido.getCliente(), queueCozinha);
+        } else {
+            producerNotificationGateway.notificarPedido(pedido, pedido.getCliente(), queueReprovado);
+        }
     }
 }
