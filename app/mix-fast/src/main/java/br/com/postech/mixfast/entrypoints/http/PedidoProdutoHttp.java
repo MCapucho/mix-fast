@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UUID;
 
 @Data
 @Builder
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class PedidoProdutoHttp {
 
     @NotBlank(message = "O produto é um campo obrigatório, não pode ser nulo ou vazio")
+    @UUID(message = "O código do produto é inválido")
     private String produto;
 
     @Min(value = 1, message = "A quantidade mínima do produto é igual a 1")
