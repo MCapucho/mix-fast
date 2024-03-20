@@ -21,6 +21,8 @@ import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -133,6 +135,16 @@ public class RestExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleException(HttpMessageNotReadableException ex) {
         return handleGeneric(null, ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+    public ResponseEntity<ErrorResponse> handleException(HttpMediaTypeNotSupportedException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<ErrorResponse> handleException(HttpRequestMethodNotSupportedException ex) {
+        return handleGeneric(null, ex.getMessage(), HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @ExceptionHandler(Exception.class)

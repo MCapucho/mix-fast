@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
 @RequiredArgsConstructor
 @Log4j2
 @RestController
@@ -35,15 +32,6 @@ public class PedidoController implements PedidoDocumentable {
     public ResponseEntity<PedidoHttp> emitir(@Valid @RequestBody PedidoHttp pedidoHttp) {
         Pedido pedido = pedidoEmitirUseCase.emitir(pedidoHttpMapper.httpToEntity(pedidoHttp));
         PedidoHttp pedidoHttpEmitido = pedidoHttpMapper.entityToHttp(pedido);
-
-        pedidoHttpEmitido.add(linkTo(methodOn(PedidoController.class)
-                .preparar(pedidoHttpEmitido.getCodigo())).withSelfRel());
-        pedidoHttpEmitido.add(linkTo(methodOn(PedidoController.class)
-                .entregar(pedidoHttpEmitido.getCodigo())).withSelfRel());
-        pedidoHttpEmitido.add(linkTo(methodOn(PedidoController.class)
-                .finalizar(pedidoHttpEmitido.getCodigo())).withSelfRel());
-        pedidoHttpEmitido.add(linkTo(methodOn(PedidoController.class)
-                .cancelar(pedidoHttpEmitido.getCodigo())).withSelfRel());
 
         log.info("Pedido emitido com sucesso");
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoHttpEmitido);

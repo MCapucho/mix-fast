@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UUID;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.math.BigDecimal;
@@ -31,6 +32,7 @@ public class PedidoHttp extends RepresentationModel<PedidoHttp> {
 
     @JsonProperty(value = "forma_pagamento")
     @NotNull(message = "A forma de pagamento é obrigatório, não pode ser nulo ou vazio")
+    @UUID(message = "O código do produto é inválido")
     private String formaPagamento;
 
     private Integer fila;
