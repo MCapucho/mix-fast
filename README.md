@@ -38,25 +38,10 @@ Para ter acesso aos endpoints do sistema é possível utilizar o
 #### 3) Cadastrar Cliente
 - http://localhost:9080/v1/clientes
 
-#### 4) Cadastrar Formas de Pagamento
-- http://localhost:9080/v1/formas_pagamento
-
-#### 5) Enviar pedido com/sem Cliente
+#### 4) Enviar pedido com/sem Cliente
 - http://localhost:9080/v1/pedidos
 
-#### 6) Pedido
--> Obs: Todos os pedidos são emitidos com o status "RECEBIDO"
-
-- Endpoints para atualizar os status do pedido
-- http://localhost:9080/v1/pedidos/{codigo-do-pedido}/preparamento
-- http://localhost:9080/v1/pedidos/{codigo-do-pedido}/entrega
-- http://localhost:9080/v1/pedidos/{codigo-do-pedido}/finalizado
-
-#### Opcional (Somente quando o status for *RECEBIDO*)
-* Cancelamento
-  - http://localhost:9080/v1/pedidos/{codigo-do-pedido}/cancelamento
-
-#### 7) Notificação de Pagamento
+#### 5) Notificação de Pagamento
 - http://localhost:9080/v1/webhooks
 
 
